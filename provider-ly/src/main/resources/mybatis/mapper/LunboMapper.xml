@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.LunboMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.Lunbo" >
+    <id column="carouselid" property="carouselid" jdbcType="INTEGER" />
+    <result column="carouselurl" property="carouselurl" jdbcType="VARCHAR" />
+    <result column="lxid" property="lxid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    carouselid, carouselurl, lxid
+  </sql>
+  <select id="querylylunbo" resultType="HashMap">
+    select lb.*,fl.flname llxxname from ly_lunbotu lb ,ly_classify fl where lb.lxid=fl.flid
+  </select>
+<insert id="addLunbo">
+  insert into ly_lunbotu (carouselurl, lxid
+  )
+  values (#{carouselurl,jdbcType=VARCHAR}, #{lxid,jdbcType=INTEGER}
+         )
+
+</insert>
+
+  <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ly_lunbotu
+    where carouselid = #{carouselid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ly_lunbotu
+    where carouselid = #{carouselid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jk.model.Lunbo" >
+    insert into ly_lunbotu (carouselid, "carousel url", lxid
+      )
+    values (#{carouselid,jdbcType=INTEGER}, #{carouselUrl,jdbcType=VARCHAR}, #{lxid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jk.model.Lunbo" >
+    insert into ly_lunbotu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="carouselid != null" >
+        carouselid,
+      </if>
+      <if test="carouselUrl != null" >
+        "carousel url",
+      </if>
+      <if test="lxid != null" >
+        lxid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="carouselid != null" >
+        #{carouselid,jdbcType=INTEGER},
+      </if>
+      <if test="carouselUrl != null" >
+        #{carouselUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="lxid != null" >
+        #{lxid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jk.model.Lunbo" >
+    update ly_lunbotu
+    <set >
+      <if test="carouselUrl != null" >
+        "carousel url" = #{carouselUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="lxid != null" >
+        lxid = #{lxid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where carouselid = #{carouselid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jk.model.Lunbo" >
+    update ly_lunbotu
+    set "carousel url" = #{carouselUrl,jdbcType=VARCHAR},
+      lxid = #{lxid,jdbcType=INTEGER}
+    where carouselid = #{carouselid,jdbcType=INTEGER}
+  </update>-->
+</mapper>

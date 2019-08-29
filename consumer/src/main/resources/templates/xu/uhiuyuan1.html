@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>会员列表</title>
+
+    <!-- 引入jquery -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+
+    <!-- 引入 css  -->
+    <!-- 引入bootstrap的css -->
+    <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-treeview的css -->
+    <link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-addTabs的css -->
+    <link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
+    <!-- 引入bootstrap-table的css -->
+    <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
+    <!-- 引入fileinput的css -->
+    <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
+
+    <!-- 引入 js  -->
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/treeview/bootstrap-treeview.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/addTabs/addTabs.js"></script>
+    <!-- 引入bootstrap-table的js-->
+    <script type="text/javascript" src="../js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- 引入bootbox.js -->
+    <script type="text/javascript" src="../js/bootbox/bootbox.js"></script>
+    <!-- 引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/fileinput.min.js"></script>
+    <!--  引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
+    <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+
+</head>
+<body>
+
+<div>
+<input type="text" class="form-control"  id="name" placeholder="请输入客户昵称" style="width: 150px">
+
+<button type="button" class="btn btn-success" onclick="sousuo()">查询</button>
+</div>
+
+
+<!-- table 数据展示  -->
+<table id="data" ></table>
+
+<button class="btn btn-info btn-sm" onclick="pizenghiuyuan()">批量赠送</button>
+<button class="btn btn-danger btn-sm" onclick="piquxiao()">批量取消</button>
+
+
+
+<!--单个赠送会员-->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- 头部 -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>  <!-- X号关闭 -->
+                <h4 class="modal-title" id="myModalLabel">赠送会员</h4>
+            </div>
+
+            <!-- 中部   form内容设置  -->
+            <form id="form1">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">会员名称</label>
+                            <select id="sehiuyuan" name="mid"> </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">到期时间</label>
+                        <input type="date" id="bddate" name="bddate" />
+                    </div>
+
+                    <input type="hidden" id="keid" name="uid">
+                </div>
+
+                <!-- 尾部 （按扭）-->
+                <div class="modal-footer">
+                    <button type="button" onclick="zengsong()" class="btn btn-ok"> 赠送 </button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div>
+
+
+
+</body>
+<script>
+    //查询    数据展示
+    $(function () {
+        //创建bootstrapTable
+        $("#data").bootstrapTable({
+            url: "../xu/uhiuyuancha",
+            method : 'post',
+            striped : true, // 斑马线效果     默认false
+
+            //选中行是不选中复选框或者单选按钮
+            clickToSelect : true,
+            //showToggle : true, //是否显示详细视图和列表视图的切换按钮
+            cardView : false, //是否显示详细视图 为true时显示详细视图
+            uniqueId : "id", //每一行的唯一标识，一般为主键列
+           // showColumns : true, //是否显示所有的列
+           // showRefresh : true, //是否显示刷新按钮
+            minimumCountColumns : 2, //  最少留两列
+            detailView : false, //是否显示父子表
+            toolbar : '#tabToolBar', //  工具定义位置
+            sidePagination : 'server',
+            toolbar : '#toolbar',
+            pagination : true, //是否展示分页
+            pageList : [ 2,4, 8, 10 ],//分页组件
+            pageNumber : 1,
+
+            pageSize : 2,//默认每页条数
+            //启动回车键做搜索功能
+            searchOnEnterKey : true,
+            //设置为false 将禁止所有列的排序。
+            sortable : true,
+            //设置默认排序为 name
+            sortName : 'id',
+            //定义排序方式，'asc' 或者 'desc'。
+            sortOrder : "desc",
+            //设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
+            // 设置为limit可以获取limit, offset, search, sort, order  queryParamsType:'undefined',
+            queryParamsType : 'undefined',
+            // 请求服务器数据
+            queryParams : function queryParams(params) {
+                var param = {
+                    pageNumber : params.pageNumber,
+                    pageSize : params.pageSize,
+                    sortName : params.sortName,
+                    sortOrder : params.sortOrder,
+                    name : $("#name").val()
+                };
+                return param;
+            },
+            columns : [
+                { field : 'checkbox',checkbox : true }, //开启复选框
+                {field : 'xx', title : '客户', width : 300,
+                    formatter:function(value,row,index){
+                        var a="<img src='../upload/"+row.img+"' width='30' height='30'>";
+                        a+="<a href='javascript:xiangqing("+row.keid+")'>"+row.nickname+"</a>";
+                        return a;
+                    }
+                },
+                { field : 'phone', title : '手机号',width : 300 },
+                { field : 'rank', title : '会员级别', width : 300 },
+                {field: 'price', title: '价格', width: 300,
+                    formatter: function (value, row, index) {
+                        return "￥" + value;
+                    }
+                },
+                { field : 'addate', title : '购买时间', width : 300 },
+                { field : 'bddate', title : '到期时间', width : 300 },
+                { field : 'x', title : '操作', width : 300,
+                    formatter:function(value,row,index){
+                        var bddate=JSON.stringify(row.bddate);
+                        var a="<a href='javascript:zenghiuyuan("+row.keid+","+bddate+","+row.mid+")' >赠送会员 </a>   |  ";
+                          a+="  <a href='javascript:quxiao("+row.keid+")' >取消会员</a>";
+                        return  a;
+                    }
+                }
+            ]
+        });
+    })
+
+    //条件查询     使用parameUtil工具类
+    function sousuo() {
+        $("#data").bootstrapTable("refresh", {
+            "query":{
+                "name" : $("#name").val(),
+            }
+        });
+    }
+
+    //客户详情
+    xiangqing=function(keid){
+        location.href="../xu/xkehuxiangqing1?keid="+keid;
+    }
+
+
+    //批量  取消会员
+    function piquxiao() {
+        var arr = $('#data').bootstrapTable("getSelections");//获取选中的行
+        console.log(arr);
+        if (arr.length <= 0) {
+            alert("请选择要取消会员的客户！");
+            return ;
+        }
+        var ids = "";
+        for (var i = 0; i < arr.length; i++) {
+            ids += arr[i].keid + ",";
+        }
+
+        ids = ids.substring(0, ids.length - 1);
+        if(confirm("确定要取消这"+arr.length+"位客户的会员吗？")){
+            $.ajax({
+                url: "../xu/quxiaohiuyuan",
+                data: {ids: ids},
+                type: "post",
+                success: function () {
+                    alert("已取消");
+                    $("#data").bootstrapTable("refresh");
+                }, error: function () {
+                    alert("失败！");
+                }
+            })
+        }
+    }
+    //单个 取消会员
+    function quxiao(keid) {
+        if(confirm("确定要取消这位客户的会员吗？")){
+            $.ajax({
+                url: "../xu/quxiaohiuyuan",
+                data: {ids: keid},
+                type: "post",
+                success: function () {
+                    $("#data").bootstrapTable("refresh");
+                }, error: function () {
+                    alert("失败！");
+                }
+            })
+        }
+    }
+
+
+    //单个赠送会员 下拉查
+    zenghiuyuan =function(keid,bddate,mid){
+
+        $.ajax({
+            url:"../xu/uXiaLaHiuYuan",
+            success:function(data){
+                var  op=" ";
+                for (var i = 0; i < data.length; i++) {
+                    op +="<option value='"+data[i].hyid+"'>"+data[i].rank+"";
+                }
+                $("#sehiuyuan").html(op);
+
+                //回显
+                $("#sehiuyuan").val(mid);
+                $("#keid").val(keid);  //隐藏id
+                $("#bddate").val(bddate);
+
+                $('#myModal1').modal('show'); //代开弹框
+            }
+
+        })
+    }
+
+    //单个 赠送会员 改
+    zengsong=function(){
+        $.ajax({
+            url: '../xu/uZengHiuYuan',
+            type: 'post',
+            data: $("#form1").serialize(),
+            success: function () {
+                $('#myModal1').modal('hide'); //隐藏 (执行完关闭弹框)
+                $("#form1")[0].reset();  //清除form表单
+                $('#data').bootstrapTable("refresh");  //refresh刷新当前页
+            }, error: function () {
+                alert("失败！");
+            }
+        });
+    }
+
+    //批量赠送
+    pizenghiuyuan=function(){
+        alert("批量取消还不够用？单个赠送还不够用？还想批量赠送，老子就不开发...呸 ");
+    }
+
+</script>
+</html>

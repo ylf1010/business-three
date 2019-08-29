@@ -1,0 +1,109 @@
+/*
+[name]红色[/name]
+[iconbgcolor]#de0000[/iconbgcolor]
+Powered by Discuz! X
+*/
+
+/*
+{#YANSE1}=#@de0000
+{#YANSE2}=#@cc0000
+{#YANSE3}=#@ff8484
+{#YANSE4}=#@ff5f5f
+{#YANSE5}=#@ff3f3f
+*/
+
+/*其他*/
+.topLine h2 a:hover{color:#de0000 !important;}
+.news h2 a:hover {color:#de0000 !important;}
+
+/*全局*/
+a:hover{ text-decoration:none; color:#de0000}
+
+/*导航样式*/
+#nv { overflow: hidden;  height: 45px; background:#de0000; }
+#nv li.a { margin-left: -1px; background:#cc0000; }
+#nv li a:hover { background:#cc0000; }
+#nv li.hover a:hover, #nv li.hover a { background:#cc0000; }
+
+/*搜索样式*/
+.tt_search #scbar {height: 26px;border:0; border-radius:4px;background:#cc0000;}
+.tt_userinfo .tt_author:hover > a{background:#F2F2F2;border:3px solid #de0000; border-bottom:none;}
+.tt_userinfo .son{position:absolute; background:#fff;left:1px;top:43px; display:none; z-index:10; border:3px solid #de0000;border-top:none; }
+#qmenu.qmenu_tt.a {border-color:#de0000;background:#cc0000 url(qmenu.png) center no-repeat;}
+#qmenu_menu.qmenu_menu_tt {position: relative;width: 180px;margin-top: 14px;padding: 20px 10px 10px;border: 1px solid #cc0000;border-radius: 5px;background: #fff;box-shadow: none;}
+#qmenu_menu.qmenu_menu_tt:before {content: "";position: absolute;right: 9px;top: -5px;height: 0;width: 0;border-color: transparent transparent #cc0000 transparent;border-style: dashed dashed solid dashed;border-width: 0 5px 5px;}
+.fl_g dt a,.fl_tb h2 a{ font-size:16px; color:#cc0000}
+
+/*底部增加的链接*/
+.tt_footer a:hover{text-decoration: none;color:#de0000 !important}
+a.post_btn { display:inline-block; height:40px; width:250px; text-align:center; background:#de0000 url(post_big.png) center center no-repeat;}
+a.post_btn:hover{background:#cc0000 url(post_big.png) center center no-repeat;}
+
+/*板块排行*/
+.tt_bm_hot .tab li.now {height: 37px;line-height: 32px;border-top: 4px solid #de0000;background: white;font-weight:700;}
+.tt_bm_hot #test2_1 li a:hover{ color:#de0000}
+.tt_bm_hot #test2_1 li .tab_1,.tt_bm_hot #test2_1 li .tab_2,.tt_bm_hot #test2_1 li .tab_3{ background:#de0000}
+.tt_bm_hot #test2_2 li a:hover{ color:#de0000}
+.tt_bm_hot #test2_2 li .tab_1,.tt_bm_hot #test2_2 li .tab_2,.tt_bm_hot #test2_2 li .tab_3{ background:#de0000}
+
+.tt_jctj .slidebar ul li.on{ background:#de0000}
+.tt_rmph .bm_c li .li_1,.tt_rmph .bm_c li .li_2,.tt_rmph .bm_c li .li_3{ color:#de0000; border: 2px solid #de0000;}
+.tt_rmph .bm_c li a.em_1,.tt_rmph .bm_c li a.em_2,.tt_rmph .bm_c li a.em_3{ color:#de0000}
+.tt_rmph .bm_c li a:hover{ color:#de0000}
+
+.tt_mxyh em a:hover {color:#de0000;}
+
+/*主题列表右侧*/
+.bm .bm_h_forum{ padding:0 10px;height: 40px;line-height: 40px;border-width: medium medium 1px;border-style: none none solid;border-color: -moz-use-text-color -moz-use-text-color #EFEFEF;-moz-border-top-colors: none;-moz-border-right-colors: none;-moz-border-bottom-colors: none;-moz-border-left-colors: none;border-image: none;border-radius: 5px 5px 0px 0px;background: -moz-linear-gradient(center top , #ff5f5f, #f2c7cb) repeat scroll 0% 0% transparent;font-weight: bold;}
+.bm .bm_h_forum h2{ color:#de0000}
+
+/*二级下拉导航*/
+#hd .p_pop {min-width: 150px;padding: 0;border: none;border-radius: 0 0 5px 5px;background:#ff8484;box-shadow: none;overflow: hidden;}
+#hd .p_pop a {display: block;height: 40px;line-height: 40px;font-size: 14px;padding: 0 10px;border-bottom: 1px solid #ff3f3f;color:#ffffff;}
+#hd .p_pop li:last-child a {border-bottom: none;}
+#hd .p_pop a:hover {color: #ffffff !important;background:#ff5f5f;}
+.tt_home_left #uhd .mt{ font-size:14px; color:#de0000;}
+.tt_home_left #uhd .tb li.a a{ border:none; font-size:14px; color:#de0000;margin-right:-1px;}
+.tt_regedit .bm .bm_h h3{ font-size:16px !important; color:#de0000}
+
+/*群组*/
+a.tt_create_group1{ color:#fff; display:inline-block; width:230px; font-weight:700; font-size:14px; height:40px; line-height:40px; text-align:center; background:#de0000}
+a.tt_create_group1:hover{ display:inline-block; background:#cc0000}
+a.tt_create_group2{ color:#fff; display:inline-block; font-weight:700; font-size:14px; height:40px; line-height:40px; text-align:center; background:#de0000}
+a.tt_create_group2:hover{ display:inline-block; background:#cc0000}
+.tt_group_focus a:hover{ color:#de0000 !important;font-weight:700;}
+.tt_forumlink a {display: block;height: 45px;line-height: 45px;margin: 0 -20px;background:#de0000;color: #fff;font-size: 20px;font-weight: bold;text-align: center;}
+.tt_forumlink a:hover {background:#cc0000; color:#fff !important;}
+.tt_forumlink a:active {background:#de0000;box-shadow: inset 0 2px 1px rgba(0, 0, 0, 0.2);}
+.midaben_con .midaben_signpanel {background-color: #de0000;height: 60px;display: block;position: relative;border-radius: 5px;background-image: url(tou.png);background-repeat: no-repeat;background-position: 23px 12px;cursor: pointer;}
+.midaben_con .default {cursor: default;background-color: #de0000;}
+
+a.tt_qiandao{ width:230px; height:40px; text-align:center; line-height:40px; color:#fff; font-size:14px; font-weight:700; display:inline-block; background:#cc0000}
+a.tt_qiandao:hover{background:#de0000}
+
+/*颜色处理*/
+.editorChoice .topRank em {border: 2px solid #de0000;color:#de0000;}
+
+/*COMMON.CSS*/
+.pnc, a.pnc { color:#fff !important; vertical-align: middle; overflow: hidden; margin-right: 3px; padding:2px 0; cursor: pointer;border: none;border-radius: 4px;background: #de0000;background: -webkit-linear-gradient(top, #de0000, #cc0000);background: -moz-linear-gradient(top, #de0000, #cc0000);background: -ms-linear-gradient(top, #de0000, #cc0000);background: -o-linear-gradient(top, #de0000, #cc0000);background: linear-gradient(top, #de0000, #cc0000);}
+.alert_right, .alert_error, .alert_info { text-align:center; min-height: 40px; height: auto !important; height: 40px; line-height:40px;font-size: 14px; font-weight:400; color:#de0000 }
+#editorbox .tb .a a, .tb .current a {border: 1px solid #de0000;  color:#de0000; background: {WRAPBG};}
+
+
+/*MODULE.CSS*/
+#vfastpost{background:#de0000;padding:3px;position:relative;}
+#vfastpost:hover{background:#cc0000}
+#vfastpost #vf_b button{width:50px; font-size:14px;display:block;height:30px;line-height:30px;overflow:hidden;background:#cc0000; margin: 0; padding: 0; border: none;}
+
+
+/*EXTEND_MODULE.CSS*/
+#autopbn:hover i {border-color: #cc0000 transparent transparent;}
+.pl .card_inner .c_action a.z {background: #de0000;background: -webkit-linear-gradient(top, #de0000, #cc0000);background: -moz-linear-gradient(top, #de0000, #cc0000);background: -ms-linear-gradient(top, #de0000, #cc0000);background: -o-linear-gradient(top, #de0000, #cc0000);background: linear-gradient(top, #de0000, #cc0000);color: #fff;}
+.pti .author a {color: #cc0000;}
+.recommendItemTop dd a {color: #cc0000;}
+.recommendItemBottom dd a.btn {margin-top: 0;width: 120px;height: 28px;line-height: 28px;border-radius: 3px;background: #cc0000;color: #fff;text-align: center;}
+.pg strong {background: #de0000;color: #fff;}
+#f_pst .pn {border: none;border-radius: 4px;background: #de0000;background: -webkit-linear-gradient(top, #de0000, #cc0000);background: -moz-linear-gradient(top, #de0000, #cc0000);background: -ms-linear-gradient(top, #de0000, #cc0000);background: -o-linear-gradient(top, #de0000, #cc0000);background: linear-gradient(top, #de0000, #cc0000);}
+.ttp a:hover { border-color: {HIGHLIGHTLINK}; color: #de0000; text-decoration: none; }
+
+

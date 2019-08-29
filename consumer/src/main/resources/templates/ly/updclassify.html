@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base href="<%=basePath%>">
+    <title>标题</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="This is my page">
+    <!--引入文件上传的css、js-->
+    <link rel="stylesheet" href="/js4/bootstrap-fileinput/css/fileinput.css">
+    <script type="text/javascript" src="/js4/bootstrap-fileinput/js/fileinput.js"></script>
+    <script type="text/javascript" src="/js4/bootstrap-fileinput/js/locales/zh.js"></script>
+    <style type="text/css">
+        .myrow{
+            margin-bottom:10px
+        }
+    </style>
+</head>
+<form role="form" id="updflformId">
+    <input type="hidden" name="flid" th:value="${classify.flid }">
+    <div class="form-group">
+        <label for="flname">分类(名称)</label>
+        <input type="text" class="form-control"  th:value="${classify.flname}" name="flname" placeholder="分类(名称)"/>
+    </div>
+    <div class="row myrow">
+        <div class="col-md-2">
+            <label for="headImg">酒品类型图片</label>
+        </div>
+        <div class="col-md-10" >
+            <input type="text" id="testimg" name="flphoto" />
+            <input type="file"  class="projectfile"  name="imgg" id="headImg">
+        </div>
+    </div>
+
+    <br>
+    <!--<div class="form-group">
+        <label for="name">分类(展示图片)</label>
+        <input type="hidden" id="burl" name="flphoto" th:value="${classify.flphoto}">
+        <input type="file" id="imgFileBTN" >
+        &lt;!&ndash;  图片回显的位置 &ndash;&gt;
+        <div id="showImgDiv" style="width: 150px;height: 200px;border‐style:solid;border‐width:1px; border‐color:black;">
+            <img  th:src="@{${classify.flphoto}}"  width="150px"  height="200px">
+        </div>
+        &lt;!&ndash;  进度条位置 &ndash;&gt;
+        <div id="showBarDiv" ></div>
+        &lt;!&ndash;  <input type="button" onclick="uploadObj.uploadify('cancel');" value="取消">
+         <input type="button" onclick="uploadObj.uploadify('upload','*');"value="确定上传"> &ndash;&gt;
+    </div><br>-->
+    <div class="form-group">
+        <label for="productnumber">商品(数量)</label>
+        <input type="text" class="form-control" id="name" th:value="${classify.productnumber}" name="productnumber" placeholder="商品(数量)"/>
+    </div>
+    <div class="form-group">
+        <label for="name">创建时间</label>
+        <input th:type="date" class="form-control" th:value="${#dates.format(classify.fltime,'yyyy-MM-dd')}" name="fltime" style="width:200">
+    </div>
+
+    <!--<div class="form-group">
+        <label for="email" class="col-sm-2 control-label">上下架</label>
+        <div class="col-sm-6">
+            &lt;!&ndash; 样式1 &ndash;&gt;
+            <select class="form-control" name="productsxj">
+                <option value="-1">请选择</option>
+                <option value="1" >上架</option>
+                <option value="2" >下架</option>
+            </select>
+        </div>
+    </div><br>-->
+    <!--<div class="form-group">
+        <label for="productdescribe">商品(描述)</label>
+        <textarea id="editor_id" name="productdescribe" style="width:500px;height:300px;"></textarea>
+    </div>-->
+    <script>
+
+        $(function () {
+            uploadImg();
+        })
+        function uploadImg(flphoto){
+            $('#headImg').fileinput({
+                language: 'zh', //设置语言
+                uploadUrl: '../lyclassify/updaloadImg', //上传的地址
+                allowedFileExtensions: ['jpg', 'gif', 'png'],//接收的文件后缀
+                showUpload: true, //是否显示上传按钮
+                showCaption: false,//是否显示标题
+                browseClass: "btn btn-primary", //按钮样式
+                dropZoneEnabled: false,//是否显示拖拽区域
+                //minImageWidth: 50, //图片的最小宽度
+                //minImageHeight: 50,//图片的最小高度
+                //maxImageWidth: 1000,//图片的最大宽度
+                //maxImageHeight: 1000,//图片的最大高度
+                //maxFileSize: 0,//单位为kb，如果为0表示不限制文件大小
+                //minFileCount: 0,
+                maxFileCount: 2, //表示允许同时上传的最大文件个数
+                enctype: 'multipart/form-data',
+                validateInitialCount:true,
+                previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+                msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+
+            }).on('fileuploaded', function(event, data, previewId, index) {
+
+                var imgval = $('#testimg').val();
+
+                if(imgval == null || imgval == "" || imgval == undefined){
+                    imgval = data.response.responseText;
+                }/*else{
+			imgval += ","+"http://<%= request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/"+data.response;
+		}*/
+                $('#testimg').val(imgval);
+            });
+        }
+       /* $(function(){
+            //文件域的id
+            uploadObj = $("#imgFileBTN").uploadify({
+                //前台请求后台的url 不可忽略的参数
+                'uploader' :"../lyclassify/uploadPhotoFile",
+                //插件自带 不可忽略的参数
+                'swf' : '../js/uploadify/uploadify.swf',
+                //撤销按钮的图片路径
+                'cancelImg' : '../js/uploadify/uploadify‐cancel.png',
+
+                //auto：如果为true 为自动上传 ；如果为false 那么需要手动点击上传按钮上传
+                'auto' : true,
+
+                //上传后进度条是否消失
+                'removeCompleted' : true,
+
+                //可以同时选择多个文件 默认为true 不可忽略
+                'multi' : true,
+                //上传文件的个数
+                'uploadLimit' : 5,
+
+                //给上传按钮设置文字
+                'buttonText' : '上传照片',
+
+                'removeTimeout' : 1,
+                //设置上传图片的类型
+                'fileTypeExts' : '*.jpg;*.jpge;*.gif;*.png',
+
+                //限制上传的图片的大小
+                'fileSizeLimit' : '2MB',
+                //给div的进度条加背景 不可忽略
+                'queueID' : 'showBarDiv',
+                // action中接收文件的全局变量名
+                'fileObjName' : 'artImg',
+                'onUploadSuccess' : function(file, data, response) {
+                    // file 文件对象
+                    // 将图片回显 data 接收到的是图片名称
+                    // response – 有输出时为 true, 如果无响应为 false
+                    //$("#showImg").attr("src","<%=request.getContextPath()%>"+data);
+                    var str = '<img style="width:180px;height:200px;border‐style:solid;border‐width:1px; border‐color:black;"src="..'+data+'">';
+                    $("#showImgDiv").html(str);
+                    $("#burl").val(data);
+                    // append
+                }
+            });
+        })
+*/
+
+
+
+
+
+    </script>
+
+</form>
+
+</body>
+</html>

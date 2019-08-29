@@ -1,0 +1,88 @@
+/** plugin::vanfon_geyan 
+ (C)2014  ������� QQ 938035074
+**/
+
+	
+@-webkit-keyframes heartBig {
+        0% {
+            width: 16px;
+            opacity: .9;
+            filter: alpha(opacity=90)
+        }
+        100% {
+            width: 20px;
+            opacity: .1;
+            filter: alpha(opacity=10)
+        }
+    }
+
+    @keyframes heartBig {
+        0% {
+            width: 16px;
+            opacity: .9;
+            filter: alpha(opacity=90)
+        }
+        100% {
+            width: 20px;
+            opacity: .1;
+            filter: alpha(opacity=10)
+        }
+    }
+
+    @-moz-keyframes heartBig {
+        0% {
+            width: 16px;
+            opacity: .9;
+            filter: alpha(opacity=90)
+        }
+        100% {
+            width: 20px;
+            opacity: .1;
+            filter: alpha(opacity=10)
+        }
+    }
+
+    @-o-keyframes heartBig {
+        0% {
+            width: 16px;
+            opacity: .9;
+            filter: alpha(opacity=90)
+        }
+        100% {
+            width: 20px;
+            opacity: .1;
+            filter: alpha(opacity=10)
+        }
+    }
+
+.vanfon_geyan {
+float:left;
+margin-right:10px;
+margin-left:10px;
+}
+
+.vanfon_geyan a{
+text-decoration: none;
+}
+.vanfon_geyan .heartBig {
+        animation: heartBig 1s ease-in-out;
+        -moz-animation: heartBig 1s ease-in-out;
+        -webkit-animation: heartBig 1s ease-in-out;
+        -o-animation: heartBig 1s ease-in-out;
+		//height:18px;
+ }	
+
+.vanfon_geyan .heart {
+width: 16px;
+display: inline-block;
+position: relative;
+vertical-align: -2px;
+z-index: 5;
+cursor: pointer;
+}
+.vanfon_geyan .zandiv{
+display:inline-block;width:20px;text-aglin:center;height:18px;vertical-align: middle;
+}
+
+
+/** end **/

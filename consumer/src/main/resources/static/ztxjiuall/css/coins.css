@@ -1,0 +1,48 @@
+@charset "utf-8";
+.sub_order_table td .sub_order_btn,.exchange_lst .submit,.step_1,.step_2,.coins_note{ background:url(../img/coins.png) 0 0 no-repeat;}
+/*金币订单结算*/
+.cmain{ width:960px; margin:10px auto 20px auto; border:1px solid #DDDDDD; padding:29px 19px 19px 19px;}
+.step_1,.step_2{ width:1000px; margin:10px auto; background-position:0 0; height:23px;}
+.step_2{ background-position:0 -36px;}
+/*提交订单*/
+.sub_order_rec{ border-bottom:1px solid #ECECEC; height:24px; margin:10px 0;}
+.sub_order_rec strong{ font-size:14px;}
+.sub_order_rec i{ font-style:normal; padding-left:10px; color:#0066FF; font-size:12px;}
+.sub_order_rec span{ font-size:14px; font-weight:bold; color:#FF0000; padding-left:5px;}
+.sub_order_rec a{ padding-left:10px; color:#0066FF;}
+.sub_order_rec a:hover{ color:#0066FF; text-decoration:none;}
+.sub_order_rec_more li{ height:25px; line-height:25px; cursor:pointer;}
+.sub_order_rec_more li input{ vertical-align:middle; position:relative; top:-1px; _top:-3px;}
+.sub_order_rec_more li span{ padding:0 5px;}
+.sub_order_rec_more li .sub_order_mod,.sub_order_rec_more li .sub_order_del{ color:#0066FF;}
+.sub_order_table{ color:#666; padding:10px 0 20px 0;}
+.sub_order_table tr{ height:40px;}
+.sub_order_table td span{ color:#ff0000; padding-right:5px; position:relative; top:3px;}
+.sub_order_table td .sub_order_form1{ width:175px; height:22px; border:1px solid #ddd; line-height:22px;}
+.sub_order_table td .sub_order_form2{ width:300px; height:22px; border:1px solid #ddd; line-height:22px;}
+.sub_order_table td .ordslt{ height:24px;}
+.sub_order_table td .sub_order_btn{ background-position:0 -125px; width:160px; height:25px; cursor:pointer; display:block; float:left;}
+.sub_order_table td .cancel{ color:#222; cursor:pointer; float:left; line-height:30px; padding-left:10px;}
+.exchange_lst{ width:1000px; margin:0 auto;}
+.exchange_lst_tit{ font-size:14px; color:#222; font-weight:bold; height:30px; line-height:30px;}
+.exchange_lst .coins_table{ border-bottom:1px solid #CDCDCD; border-left:1px solid #CDCDCD;}
+.exchange_lst .coins_table th{ background:#F5F5F5; border-top:1px solid #CDCDCD; border-right:1px solid #CDCDCD; padding:10px; font-weight:normal;}
+.exchange_lst .coins_table td{ border-top:1px solid #CDCDCD; border-right:1px solid #CDCDCD; padding:10px;}
+.exchange_lst .coins_table td img{ width:60px; height:60px; border:1px solid #CDCDCD; float:left;}
+.exchange_lst .coins_table td span{ color:#cc0000;}
+.exchange_lst .coins_table td i{ float:left; font-style:normal; line-height:60px; padding-left:10px;}
+.exchange_lst .exchange_lst_spend{ height:20px; padding:20px 0 10px 0; border-bottom:1px dotted #DDDDDD; text-align:right;}
+.exchange_lst .exchange_lst_spend strong{ font-size:16px; color:#cc0000; padding:0 5px;}
+.exchange_lst .submit{ background-position:0 -85px; width:119px; height:30px; line-height:30px; text-align:center; color:#fff; cursor:pointer; font-size:14px; float:right; margin:10px 0 20px 0; clear:both;}
+
+/*金币订单成功*/
+.coins_note{ width:550px; margin:0 auto; background-position:-353px -95px; line-height:24px; color:#222; padding:10px 0 20px 60px;}
+.coins_note p span{ padding-right:20px;}
+.coins_note p a{ color:#0966CE; padding:0 5px;}
+.coins_note p a:hover{ color:#0966CE; text-decoration:underline;}
+/*弹层*/
+.popLay{ width:365px; height:188px; background:#fffadc; border:2px solid #ffe23f; border-radius:5px; position:absolute; left:50%; top:50%; margin:-96px 0 0 -184px; z-index:1000;}
+.popLay .close{ background:url(../zhuanti/3years/images/close.jpg) no-repeat top right;  cursor:pointer; text-indent:-999em; overflow:hidden; width:14px; height:14px; position:absolute; top:5px; right:5px;}
+.popLay .popLay_con{ font-size:14px; height:80px; line-height:26px; padding:38px 52px 0 52px; width:260px; text-align:center;}
+.popLay .popLay_btn{ text-align:center;}
+.popLay .popLay_btn a{ padding:0 10px;}

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>会员设置</title>
+
+    <!-- 引入jquery -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+
+    <!-- 引入 css  -->
+    <!-- 引入bootstrap的css -->
+    <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-treeview的css -->
+    <link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-addTabs的css -->
+    <link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
+    <!-- 引入bootstrap-table的css -->
+    <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
+    <!-- 引入fileinput的css -->
+    <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
+
+    <!-- 引入 js  -->
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/treeview/bootstrap-treeview.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/addTabs/addTabs.js"></script>
+    <!-- 引入bootstrap-table的js-->
+    <script type="text/javascript" src="../js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- 引入bootbox.js -->
+    <script type="text/javascript" src="../js/bootbox/bootbox.js"></script>
+    <!-- 引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/fileinput.min.js"></script>
+    <!--  引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
+    <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+
+</head>
+<body >
+
+<!-- table 数据展示  -->
+<table id="data" ></table>
+
+<button class="btn btn-info" data-toggle="modal" data-target="#myModal2">+添会员</button>
+
+
+<!--修改会员级别添加框-->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- 头部 -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>  <!-- X号关闭 -->
+                <h4 class="modal-title" id="myModalLabel">会员</h4>
+            </div>
+
+            <!-- 中部   form内容设置  -->
+            <form id="form1">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">会员名</label>
+                        <input id="rank" name="rank" class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">会员特权</label>
+                        <input id="tequan" name="tequan" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">价格</label>
+                        <input  id="price" name="price" class="form-control"/> 元/年
+                    </div>
+
+                </div>
+
+                <input type="hidden" id="hyid" name="hyid">
+                <!-- 尾部 （按扭）-->
+                <div class="modal-footer">
+                    <button type="button" onclick="baocun(1)" class="btn btn-ok"> 保存 </button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div>
+
+<!--新建会员级别添加框-->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- 头部 -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>  <!-- X号关闭 -->
+                <h4 class="modal-title" id="myModalLabel">会员</h4>
+            </div>
+
+            <!-- 中部   form内容设置  -->
+            <form id="form2">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">会员名</label>
+                        <input id="rank2" name="rank" class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">会员特权</label>
+                        <input id="tequan2" name="tequan" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">价格</label>
+                        <input  id="price2" name="price" class="form-control"/> 元/年
+                    </div>
+
+                </div>
+
+                <!-- 尾部 （按扭）-->
+                <div class="modal-footer">
+                    <button type="button" onclick="baocun(2)" class="btn btn-ok"> 保存 </button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div>
+
+
+</body>
+<script>
+    //查询    数据展示
+    $(function () {
+        //创建bootstrapTable
+        $("#data").bootstrapTable({
+            url: "../xu/uHiuYuanShezhi",
+            method : 'post',
+            //选中行是不选中复选框或者单选按钮
+            clickToSelect : true,
+            cardView : true, //是否显示详细视图 为true时显示详细视图
+            sidePagination : 'server',  //数据展示不可去
+            columns : [
+                { field : 'checkbox',checkbox : true }, //开启复选框
+
+                { field : 'rank', title : '会员级别',width : 300 ,
+                    formatter:function(value,row,index){
+                        return "<font  color='#990099'>"+value+"</font>";
+
+                    }
+                },
+                { field : 'tequan', title : '会员特权', width : 300 },
+                { field : 'price', title : '价格', width : 300,
+                    formatter:function(value,row,index){
+                        return "<font  color='#990099'>￥</font>"+value+"/年";
+                    }
+                },
+                { field : 'xx', title : '*操作', width : 300,
+                    formatter:function(value,row,index){
+                    var a="<a href='javascript:bianji()' >编辑  |  </a>";
+                     if(row.hystatus == 1){
+                         a+="<a href='javascript:guanbi("+row.hyid+",2)' >关闭</a>";
+                     }else if(row.hystatus == 2){
+                         a+="<a href='javascript:guanbi("+row.hyid+",1)' >开启</a>";
+                     }
+                        return  a;
+                    }
+        }
+
+            ]
+        });
+    })
+
+
+    //编辑
+    bianji =function(){
+        var array = $('#data').bootstrapTable("getSelections");//获取选中的行  数组
+        var  arr=array[0];  //转化对象
+        if(array.length != 1){  //判断数组长度 为一条时回显
+            return ;
+        }else {
+            //打开弹框
+            $("#myModal1").modal("show");
+            //回显
+            $("#hyid").val(arr.hyid);
+            $("#rank").val(arr.rank);
+            $("#tequan").val(arr.tequan);
+            $("#price").val(arr.price);
+
+        }
+
+    }
+
+    //新增 编辑
+    baocun=function(a){
+        $.ajax({
+            url: '../xu/uaddHiuYuan',
+            type: 'post',
+            data: $("#form"+a).serialize(),
+            success: function () {
+                $('#myModal'+a).modal('hide'); //隐藏 (执行完关闭弹框)
+                $("#form"+a)[0].reset();  //清除form表单
+                $('#data').bootstrapTable("refresh");  //refresh刷新当前页
+            }, error: function () {
+                alert("失败！");
+            }
+        });
+    }
+
+    //关闭  开启
+    guanbi=function(hyid,a) {
+            $.ajax({
+                url: "../xu/udeleteHiuYuan",
+                data: {hyid: hyid,a:a},
+                type: "post",
+                success: function () {
+                    $("#data").bootstrapTable("refresh");
+                }, error: function () {
+                    alert("失败！");
+                }
+            })
+    }
+
+</script>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base href="<%=basePath%>">
+    <title>标题</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="This is my page">
+<link rel="stylesheet" type="text/css" href="../../Assets/css/reset.css"/>
+<script type="text/javascript" src="../Assets/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../Assets/plugins/pro/js/jquery-1.2.6.pack.js"></script>
+<script type="text/javascript" src="../Assets/plugins/pro/js/base.js"></script>
+<script type="text/javascript" src="../Assets/js/js_z.js"></script>
+<link rel="stylesheet" type="text/css" href="../Assets/css/thems.css">
+
+</head>
+
+<body>
+<!--头部-->
+<div class="head clearfix" >
+    <div class="logo"><a href="index.html"><img src="http://aliying.oss-cn-beijing.aliyuncs.com/aliying/1566696863951.png" alt="酒仙网"/></a></div>
+    <div class="head_r">
+        <div class="shopcar"></div>
+        <div class="by"><img src="http://aliying.oss-cn-beijing.aliyuncs.com/aliying/1566698029487.png" alt=""/></div>
+    </div>
+</div>
+<ul class="nav clearfix">
+    <li><a href="../ztx/toztxjiuxian">首页</a></li>
+    <li><a th:href="'../ztx/queryone?productid='+${product.productid}">成品下单区</a></li>
+    <li><a href="../lxx/queryClose">我的订单</a></li>
+    <li><a href="../xu1/shopping1">我的购物车</a></li>
+    <li><a href="../lxx/geren">个人中心</a></li>
+    <li><a href="../ztx/toztxshoucang">我的收藏</a></li>
+</ul>
+<!--头部-->
+<div class="space_hx">&nbsp;</div>
+<div class="scd">
+	<div class="pst">
+    	<span>您现在的位置：</span>
+        <a href="../ztx/toztxjiuxian">首页></a>
+        <a th:href="'../ztx/queryone?productid='+${product.productid}">成品下单区</a>
+    </div>
+
+	<div class="space_hx">&nbsp;</div>
+    <div class="pro_d">
+    	<div class="pro_da clearfix">
+            <div class="pro_dal">
+                <div id="preview">
+                    <div class="jqzoom" id="spec-n1" onClick="">
+                        <IMG height=384 th:src="@{${product.productphoto}}"  th:jqimg="@{${product.productphoto}}" width=452>
+                    </div>
+                    <div id="spec-n5">
+                        <!--<div class="control" id="spec-left">
+                            <img src="../Assets/images/p_prev.png" alt="" />
+                        </div>-->
+                        <div id="spec-list">
+                            <ul class="list-h">
+                                <li><img th:src="@{${product.productphoto}}"> </li>
+                               <li><img th:src="@{${product.productphoto}}"> </li>
+                               <li><img th:src="@{${product.productphoto}}"> </li>
+                            </ul>
+                        </div>
+                        <!--<div class="control" id="spec-right">
+                            <img src="../Assets/images/p_next.png" alt="" />
+                        </div>-->
+                        
+                    </div>
+                </div>
+                <SCRIPT type=text/javascript>
+                    $(function(){			
+                       $(".jqzoom").jqueryzoom({
+                            xzoom:400,
+                            yzoom:384,
+                            offset:10,
+                            position:"right",
+                            preload:1,
+                            lens:1
+                        });
+                        $("#spec-list").jdMarquee({
+                            deriction:"left",
+                            width:452,
+                            height:120,
+                            step:2,
+                            speed:4,
+                            delay:10,
+                            control:true,
+                            _front:"#spec-right",
+                            _back:"#spec-left"
+                        });
+                        $("#spec-list img").bind("mouseover",function(){
+                            var src=$(this).attr("src");
+                            $("#spec-n1 img").eq(0).attr({
+                                src:src.replace("\/n5\/","\/n1\/"),
+                                jqimg:src.replace("\/n5\/","\/n0\/")
+                            });
+                            $(this).css({
+                                "border":"1px solid #E90E22",
+                            });
+                        }).bind("mouseout",function(){
+                            $(this).css({
+                                "border":"1px solid #aaa",
+                            });
+                        });				
+                    })
+                    </SCRIPT>
+            </div>
+<script type="text/javascript" src="../Assets/plugins/pro/js/lib.js"></script>
+<script type="text/javascript" src="../Assets/plugins/pro/js/zzsc.js"></script>
+            <form id="addformid">
+                <input type="hidden" name="productid" th:value="${product.productid}">
+                <input type="hidden" name="productname" th:value="${product.productname}">
+                <input type="hidden" name="productphoto" th:value="${product.productphoto}">
+
+                <input type="hidden" name="winejhl" th:value="${product.winejhl}">
+                <input type="hidden" name="winedushu" th:value="${product.winedushu}">
+                <input type="hidden" name="productprice" th:value="${product.productprice}">
+                <input type="hidden" name="productcount" id="productcountid" value="1">
+            </form>
+
+
+
+            <div class="pro_dar">
+                <h1 th:text="${product.winedushu}+'°'+${product.productname}+''+${product.winejhl}+'ml'"></h1>
+                <table cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td th:text="'香型：'+${product.winefragrant}"></td>
+                    <td th:text="'口感：'+${product.winemouthfeel}"></td>
+                    <td th:text="'色泽：'+${product.wineseze}"></td>
+                  </tr>
+                  <tr>
+                    <td th:text="'搭配美食：'+${product.winedpms}"></td>
+                    <td th:text="'储藏条件：'+${product.winestore}"></td>
+                    <td th:text="'建议醒酒时间：'+${product.winexjsj}"></td>
+                  </tr>
+                    <tr>
+                        <td th:text="'年份：'+${#dates.format(product.productdate,'yyyy-MM-dd')}"></td>
+                    </tr>
+                </table>
+                <div class="lei">
+                	<a th:href="'../ztx/querytiaojian?winebrandid='+${product.winebrandid}" th:each="b:${blist}" th:if="${product.winebrandid==b.brandid}" th:text="${b.brandname}"></a>
+                    <a th:href="'../ztx/querytiaojian?productpid='+${product.productpid}" th:each="c:${clist}" th:if="${product.productpid==c.flid}" th:text="${c.flname}"></a>
+                    <a th:href="'../ztx/querytiaojian?wineyieldlyid='+${product.wineyieldlyid}" th:each="f:${flist}" th:if="${product.wineyieldlyid==f.orignshiid}" th:text="${f.orignshiname}"></a>
+                </div>
+                <ul class="ra clearfix">
+                    <li class="clearfix">
+                    	<span class="title">数量：</span>
+                        	<input type="button" style="width:20px" value="-" onclick="jianshao()">
+                            <input id="countid" style="width:30px" type="text" value="1">
+                            <input type="button" style="width:20px" value="+" onclick="zengjia()">
+                    </li>
+                </ul>
+                <div class="price">￥：<span id="priceid" th:value="${product.productprice}" th:text="${product.productprice}"></span></div>
+                <div class="scar">
+                    <a href="javascript:jiaru()">加入购物车</a>
+                </div>
+                <div class="scar">
+                    <a href="javascript:jiesuan()">立即抢购</a>
+                </div>
+            </div>
+        </div>
+        <div class="space_hx">&nbsp;</div>
+       <!-- <div class="pro_dm">
+        	<div class="pro_head"><span>商品详情</span></div>
+            <div class="pm_ctn">
+            	<img src="../Assets/images/bg_b.png" alt=""/>
+            </div>
+        </div>-->
+    </div>
+</div>
+<div class="space_hx">&nbsp;</div>
+<!--底部-->
+<div class="foot">
+	<p>Copyright 2015 © 1902B三组 All rights reserved. 粤ICP备123456789号-2<a href="../">最新公告</a> | <a href="../">联系我们</a></p>
+</div>
+<!--底部-->
+
+<script>
+    function zengjia() {
+        var b=$("#countid").val();
+        var c=parseInt(b);
+        var d=c+1;
+        $("#countid").val(d);
+        $("#productcountid").val(d);
+    }
+    function jianshao() {
+        var b=$("#countid").val();
+        var c=parseInt(b);
+        if(c>1){
+            var d=c-1;
+            $("#countid").val(d);
+            $("#productcountid").val(d);
+        }
+    }
+
+    function jiaru(){
+        $.ajax({
+            url:"../xu1/addshopping",
+            type:"post",
+            data:$("#addformid").serialize(),
+            success:function(flag){
+               if(flag==1){
+                   location.href="../lxx/LoginUser";
+               }else{
+                   alert("已加入")
+               }
+            }
+        })
+    }
+
+    function jiesuan(){
+        $.ajax({
+            url:"../ysqthree/panduanuser",
+            type:"post",
+            data:$("#addformid").serialize(),
+            success:function(flag){
+                var parse = JSON.parse(flag);
+                if(parse.productid==null){
+                    location.href="../lxx/LoginUser";
+                    return;
+                }
+                location.href = "../ysqthree/tiao?"+$("#addformid").serialize();
+            }
+        })
+    }
+</script>
+</body>
+</html>

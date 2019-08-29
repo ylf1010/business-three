@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.RefundysqMapper">
+
+<select id="cha" parameterType="com.jk.util.ParameUtil" resultType="com.jk.model.Refundysq">
+  select * from refund_ysq where 1=1 <include refid="aa"></include>
+</select>
+  <sql id="aa">
+    <if test="refundway!=null and refundway!=''">
+      and refundway = #{refundway}
+    </if>
+    <if test="status!=null and status!=''">
+      and status = #{status}
+    </if>
+    <if test="state!=null and state!=''">
+      and state = #{state}
+    </if>
+    <if test="cause!=null and cause!=''">
+      and cause = #{cause}
+    </if>
+  </sql>
+  <select id="queryTree" resultType="com.jk.model.YsqEvaluate">
+    select * from evaluate_ysq where (id = #{0} or pid=#{0})
+  </select>
+  <insert id="addHuiFu" parameterType="com.jk.model.YsqEvaluate">
+    insert into evaluate_ysq (text,time,pid)
+    values (#{text},now(),#{id})
+  </insert>
+</mapper>

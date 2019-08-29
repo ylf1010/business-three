@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>足迹</title>
+    <!-- 引入jquery -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+
+    <!-- 引入 css  -->
+    <!-- 引入bootstrap的css -->
+    <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-treeview的css -->
+    <link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-addTabs的css -->
+    <link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
+    <!-- 引入bootstrap-table的css -->
+    <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
+
+
+    <!-- 引入 js  -->
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/treeview/bootstrap-treeview.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/addTabs/addTabs.js"></script>
+    <!-- 引入bootstrap-table的js-->
+    <script type="text/javascript" src="../js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- 引入bootbox.js -->
+    <script type="text/javascript" src="../js/bootbox/bootbox.js"></script>
+    <!-- 引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/fileinput.min.js"></script>
+    <!--  引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
+    <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+
+    <style>
+        body{ text-align:center}
+        #divcss5{margin:0 auto;border:0px solid #000;width:800px}
+    </style>
+
+</head>
+
+<body>
+<!-- 网页顶部导航信息 -->
+<!--导航条  最上头放置以下内容的黑框-->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+
+    <!-- 容器 以下内容为 顶部信息   -->
+    <div class="container-fluid">
+
+        <!-- 此段为窗口小化时用’三‘来代替隐藏所有导航信息 -->
+        <button type="button" class="navbar-toggle collapsed"
+                data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span> <span
+                class="icon-bar"></span> <span class="icon-bar"></span> <span
+                class="icon-bar"></span>
+        </button>
+        <!-- Brand and toggle get grouped for better mobile display -->
+
+        <!-- 头部信息 -->
+        <div class="navbar-header">
+            <a class="navbar-brand glyphicon glyphicon-globe"
+               href="javascript:dialogRedis()" id="menu-toggle"> 三组酒圣网 </a>
+        </div>
+
+        <!-- 左边 信息 -->
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse"
+             id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav">
+                <li class="active "><a href="#"
+                                       class="glyphicon glyphicon-grain">&nbsp我的足迹&nbsp&nbsp <span
+                        class="sr-only">(current)</span></a></li>
+
+                <li><a href="../ztx/toztxjiuxian" class="glyphicon ">&nbsp&nbsp首页&nbsp&nbsp&nbsp&nbsp</a></li>
+                <li><a href="../xu1/shopping1" class="glyphicon glyphicon-shopping-cart">&nbsp&nbsp购物车&nbsp&nbsp&nbsp&nbsp</a></li>
+
+
+                <!-- 右边的    导航 按钮样式 -->
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li><a href="../lxx/LoginUser"> &nbsp登录</a></li>
+                    <li><a href="../lxx/Register">&nbsp免费注册 </a></li>
+                    <li><a href="../lxx/zhuxiao">&nbsp&nbsp 注销</a></li>
+                </ul>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<br><br><br>
+
+<div   class="alert alert-info" style="height: 80px">
+    <h3>
+        <strong>酒圣网</strong> 我的足迹
+    </h3>
+</div>
+
+<br><br>
+<div id="divcss5">
+
+    <div  id="data" style="margin:0 auto;border:0px solid #000" class="alert alert-warning"></div>
+
+</div>
+
+
+<br><br><br><br><br>
+<!--页脚-->
+<!--
+<div class="footerBotBox">
+    <div class="footerBot clearfix">
+        <div class="footerBotLeft">
+            <p class="footerInfo">
+                <a href="#" target="_blank" rel="nofollow">公司简介<i></i></a> <a href="#" target="_blank" rel="nofollow">管理团队<i></i></a>
+                <a href="#" target="_blank" rel="nofollow">媒体报道<i></i></a> <a href="#" target="_blank" rel="nofollow">联系我们<i></i></a>
+                <a href="#" target="_blank">网站地图<i></i></a> <a href="#" target="_blank">品牌大全<i></i></a>
+            </p>
+            <p class="copyright">
+                北京酒圣网络科技有限公司&nbsp;&nbsp;©&nbsp;&nbsp;酒圣网&nbsp;&nbsp;&nbsp;2011&nbsp;&nbsp;jiuxian.com&nbsp;&nbsp;All&nbsp;&nbsp;&nbsp;Rights&nbsp;Reserved&nbsp;&nbsp;&nbsp;<a href="javascript:;" target="_blank" rel="nofollow">京ICP备17043395号</a>&nbsp;&nbsp;&nbsp;京公网安备1101050188221
+            </p>
+            <p class="footerAddr" style="color: #999; line-height: 22px; padding-top: 5px;">
+                <span>统一社会信用代码&nbsp;&nbsp;91110302306646672B&nbsp;&nbsp;&nbsp;食品流通许可证编号&nbsp;&nbsp;JY11131010328793&nbsp;&nbsp;&nbsp;京食药网食备201910019&nbsp;&nbsp;&nbsp;</span>
+            </p>
+            <p class="footerAddr" style="color: #999; line-height: 22px; padding-bottom: 7px;">
+                <span>地址：北京市北京经济技术开发区经海五路58号院8幢4层</span>
+            </p>
+            <p class="copybot">
+                <span id="kx_verify" style="float: left; padding-right: 6px;"></span>
+                <script type="text/javascript">
+                    (function() {
+                        var _kxs = document.createElement('script');
+                        _kxs.id = 'kx_script';
+                        _kxs.async = true;
+                        _kxs.setAttribute('cid', 'kx_verify');
+                        _kxs.src = ('https:' == document.location.protocol
+                            ? 'https://ss.knet.cn' : 'http://rr.knet.cn')
+                            + '/static/js/icon3.js?sn=2011040600100007749&tp=icon3';
+                        _kxs.setAttribute('size', 0);
+                        var _kx = document.getElementById('kx_verify');
+                        _kx.parentNode.insertBefore(_kxs, _kx);
+                    })();
+                </script>
+
+            </p>
+            <p class="footerPro" style="padding: 8px 0 6px;">购买前请确认达到法定饮酒年龄！酒仙网不销售任何含酒精产品给18岁以下人士！</p>
+        </div>
+    </div>
+</div>
+-->
+
+</body>
+<script>
+    //查询    数据展示
+    $(function () {
+        //创建bootstrapTable
+        $("#data").bootstrapTable({
+            url: "../xu1/history",
+            method : 'post',
+
+            // striped : false, // 斑马线效果     默认false
+            //classes:'info',
+            border:'0px solid transparent',
+            //cardView : false, //是否显示详细视图
+            // showRefresh : true, //是否显示刷新按钮
+            // toolbar : '#tabToolBar', //  工具定义位置
+            sidePagination : 'server',
+            // toolbar : '#toolbar',
+            /*点击复选框行触发事件
+            onClickRow : function(row, tr,flied){
+                sum();
+             },*/
+
+
+            columns : [
+                // { field : 'checkbox',checkbox : true}, //开启复选框
+                {field : 'xx', title : '', width : 800,height:500,
+                    formatter:function(value,row,index){
+                        var a="<a href='javascript:xiangqing("+row.productid+")'><img src='"+row.productphoto+"' width='150' height='80'></a> <br>";
+                        a+="<a href='javascript:xiangqing("+row.productid+")'>  "+row.productname+"</a><br>";
+                        a+="<a href='javascript:xiangqing("+row.productid+")'><font color='#c71585'>￥"+row.productprice+"</font> </a>";
+                        return a;
+                    }
+                }
+
+            ]
+        });
+    })
+
+
+    //跳商品详情页
+    xiangqing=function(productid){
+        location.href="../ztx/queryone?productid="+productid;
+    }
+</script>
+</html>

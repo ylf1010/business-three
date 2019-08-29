@@ -1,0 +1,89 @@
+/* CSS Document */
+HTML{FONT-FAMILY:Arial, Helvetica, sans-serif,"宋体"; text-align:left;word-break:break-all;text-overflow:ellipsis; }
+body{FONT-SIZE:12px; COLOR:#666;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{padding:0; margin:0;}
+ul,li{list-style:none;margin:0px;padding:0px}
+form{ padding:0px; margin:0px}
+td{FONT-SIZE:12px}
+img{border:0px}
+a{ COLOR:#666;TEXT-DECORATION:none;blr:expression(this.onFocus=this.blur());}
+a:hover{color:#cc0001; text-decoration:underline;}
+input, select { vertical-align: middle;outline:none;}
+.clear{clear:both; font-size:0; line-height:0; height:0;}
+.clearfix:after{clear:both;display:block;content:"...";visibility:hidden;height:0;font-size:0;}
+.clearfix{*zoom:1;}
+@charset "utf-8";
+/* CSS Document */.publicIcon{}.publicIcon{ background:url(../img/newIndexImg/public-24.png) no-repeat; _background:url(../img/newIndexImg/public-8.png) no-repeat;}
+.topHeaderWrap{ width:100%; height:27px; background:#f6f6f6;}
+.topHeader{ width:1000px; height:27px; line-height:27px; margin:0 auto; position:relative; z-index:104;}
+.topCollect{ float:left; height:27px; position:relative; z-index:100;width:400px;overflow: hidden;}
+.topCollect ul li{float:left;margin-right: 5px; }.topCollect .userName{ margin-right: 8px}.topCollect .cartlogout{ margin-right: 12px}.topCollect .newsNum{ color:#666; margin-right: 12px;}.topCollect .newsNum em,.topHeaderLeft .newsNum i{ font-style:normal; font-size:12px; display:inline-block;}.topCollect .newsNum i{ color:#cc0000; padding-left:2px; font-weight:bold; font-style:normal;}.topCollect .newsNum:hover{ text-decoration:none;}.topCollect .newsNum:hover em{ text-decoration:underline;}
+.topRight{ float:right; height:27px; position:relative;}
+.topRight li{ float:left; height:27px; position:relative; z-index:9998;}
+.topRight li span{ float:left;}
+.topRight li a{ padding:0 3px; float:left;}
+.topRight li i{ background:#cfcfcf; width:1px; font-size:0; height:12px; display:inline-block; float:left; margin:8px 5px 0;}
+.topRight .hotTel{ padding-left:5px;}
+.topRight .hotTel strong{ color:#ca1926; font-style:italic; font-size:16px; position:relative; top:2px; padding-left:5px;}
+.topRight li .userName{ width:60px; height:27px; overflow:hidden; text-align:right;}
+.midHeader { background:#fff; height: 90px; width: 100%;}
+.midHeaderBox { height: 90px; margin: 0 auto; position: relative; width: 1000px; z-index: 102;}
+.jxwLogo { float: left; height: 63px; margin-top: 20px; width: 257px;}
+.jxwLogo .jxwIndex { float: left; width: 140px;}
+.jxwLogo .jxwIndex a { display: block; height: 63px; width: 140px;}
+.bayProcess{ float:right; margin-top:25px;}
+.bayProcess .proPic{ width:396px; height:27px; background:url(../images/ch_icon.png) no-repeat; margin:0 26px 0 16px;}
+.bayProcess .proTex{ width:438px; height:16px; line-height:16px; overflow:hidden; white-space:nowrap; margin-top:8px;}
+.bayProcess .proTex span{ color:#aaa; margin-right:117px;}
+.bayProcess .proTex .on{ color:#666;}
+﻿a{}
+.footer{ width:100%; background:#f9f9f9; min-width:1000px;}
+.footerTopBox{ width:100%; background:#333;}
+.footerTop{ width:1000px; margin:0px auto; height:84px; border-bottom:1px solid #494949;}
+.footerTop .footerContact{ float:left; height:40px; line-height:40px; padding:22px 0; font-family:"微软雅黑";}
+.footerContact i,.footerContact b,.footerContact span{ display:inline-block; float:left;}
+.footerContact i{ width:40px; height:40px; background-position:-144px -22px; margin-right:18px;}
+.footerContact b{ font-size:24px; color:#cc0000; margin-right:25px;}
+.footerContact span{ font-size:14px; color:#fff; margin-right:8px;}
+.footerTop .footerTopRight{ float:right; height:32px; padding:26px 0;}
+.footerTopRight .ftRight-tit{ float:left; line-height:32px; color:#fff; font-family:"微软雅黑"; padding-right:10px;}
+.footerTopRight .ftRight-form{ float:left; width:240px; height:30px; border:1px solid #494949; position:relative; z-index:99;}
+.footerTopRight .ftRight-form input{ width:190px; height:30px; line-height:30px; padding:0 6px; background:none; border:none; float:left; color:#fff;outline:none;}
+.footerTopRight .ftRight-form span{ display:inline-block; height:30px; line-height:30px; color:#999; position:absolute; left:6px; top:0px;}
+.footerTopRight .ftRight-form i{ display:inline-block; width:22px; height:18px; background-position:-133px 0; margin:6px 0 0 10px; cursor:pointer; float:left;}
+.footerServices{ width:1000px; margin:0px auto; overflow:hidden; padding:30px 0 60px;}
+.footerServices ul li{ width:130px; float:left; display:inline; margin-right:15px;}
+.footerServices ul li h3{ font-weight:normal; height:26px; line-height:26px; padding:5px 0;}
+.footerServices ul li h3 i{ display:inline-block; width:26px; height:26px; margin-right:9px; float:left;}
+.footerServices ul li.servicesItme01 h3 i{ background-position:0 -131px;}
+.footerServices ul li.servicesItme02 h3 i{ background-position:-30px -131px;}
+.footerServices ul li.servicesItme03 h3 i{ background-position:-60px -131px;}
+.footerServices ul li.servicesItme04 h3 i{ background-position:-90px -131px;}
+.footerServices ul li.servicesItme05 h3 i{ background-position:-120px -131px;}
+.footerServices ul li.servicesItme06 h3 i{ background-position:-150px -131px;}
+.footerServices ul li h3 span{ display:inline-block; width:95px; font-size:14px; color:#fff; font-family:"微软雅黑"; float:left; overflow:hidden; white-space:nowrap;}
+.footerServices ul li p{ width:95px; height:26px; line-height:26px; padding-left:35px; overflow:hidden; white-space:nowrap;}
+.footerServices ul li p a,.footerServices ul li p a:hover{ color:#ccc;}
+.footerServices ul li.jxMicroblogging{ margin-right:0px;}
+.jxMicroblogging .item{ width:130px; height:28px; line-height:28px; padding:5px 0 13px; position:relative;}
+.jxMicroblogging .item i{ display:inline-block; width:28px; height:28px; margin-right:9px; float:left; cursor:pointer;}
+.jxMicroblogging .weixin i{ background-position:-103px -74px;}
+.jxMicroblogging .sinaMb i{ background-position:-140px -74px;}
+.jxMicroblogging .item a{ display:inline-block; color:#fff; font-family:"微软雅黑"; float:left;}
+.jxMicroblogging .item a:hover{ color:#fff; text-decoration:none;}
+.jxMicroblogging .weixin .weixinCode{ width:84px; height:84px; position:absolute; left:37px; top:35px; display:none;}
+.footerBotBox{ width:100%;}
+.footerBot{ width:1000px; margin:0px auto; padding:20px 0 40px;}
+.footerBotLeft{ float:left; width:760px; overflow:hidden;}
+.footerBotLeft p{ line-height:26px; text-align:left;}
+.footerBotLeft .footerInfo{ height:16px; margin-left:-9px; padding:4px 0;}
+.footerBotLeft .footerInfo a{ display:inline-table; height:16px; line-height:16px; padding:0 8px; overflow:hidden; position:relative;}
+.footerBotLeft .footerInfo a i{ width:1px; height:12px; background:#999; font-size:0; position:absolute; left:0; top:2px; }
+.footerBotLeft .footerPro{ color:#cc0000; padding:12px 0 6px;}
+.footerBotLeft .copybot{ height:47px;}
+.footerBotLeft .copybot a{ display:inline-table; margin-right:5px;}
+.footerBotCode{ width:240px; float:left; text-align:center; padding-top:20px;}
+.footerBotCode div{ float:left; width:80px; display:inline; margin-left:40px;}
+.footerBotCode div img{ width:80px; height:80px;}
+.footerBotCode div .codePic{ width:80px; height:80px;}
+.footerBotCode div .codeText{ width:80px; height:24px; line-height:24px; overflow:hidden; white-space:nowrap; padding-top:5px;}

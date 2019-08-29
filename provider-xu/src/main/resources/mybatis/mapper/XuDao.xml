@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.XuDao" >
+
+                    <!-- 客户 -->
+     <!-- 客户列表查询  总条数-->
+     <select id="xkehulistcount"  parameterType="map"  resultType="int">
+         select  count(1)
+         from  xu_user  a,  xu_jifen b, xu_member c ,xu_biaoqian d
+         where a.jfid=b.jfid  and a.member=c.hyid and a.bqid=d.bqid
+
+         <include refid="sql1"></include>
+     </select>
+
+    <!-- 客户列表查询  -->
+    <select id="xkehulist"  parameterType="map"  resultType="com.jk.model.User_xu">
+        select a.keid,a.nickname,a.img,a.phone,a.endtime,c.rank,c.hystatus,b.jfsum,d.bqname,d.bqid
+        from  xu_user  a,  xu_jifen b, xu_member c ,xu_biaoqian d
+        where a.jfid=b.jfid  and a.member=c.hyid and a.bqid=d.bqid
+        <include refid="sql1"></include>
+        limit  #{sta},#{end}
+    </select>
+
+  <!--条件-->
+    <sql id="sql1">
+         <if test="name !=null and  name !='' "> and  (a.nickname = #{name}  or  a.phone = #{name})</if>
+        <if test="hiuyuan == 0 "> and  a.member = 1</if>
+        <if test="hiuyuan == 1 "> and  a.member != 1</if>
+        <if  test="stajifen !=null and stajifen !='' ">and  b.jfsum >= #{stajifen}</if>
+        <if  test="endjifen !=null and endjifen !='' ">and  b.jfsum &lt;= #{endjifen}</if>
+        <if  test="zuselect1 !=null and zuselect1 !='' and zuselect1 !=1 "> and  a.zuid = #{zuselect1}</if>
+
+    </sql>
+
+    <!--客户信息批删-->
+    <delete id="xdelete1"  parameterType="String" >
+         delete  from xu_user where keid in
+         <foreach collection="array" open="(" close=")" item="id" separator=",">
+             #{id}
+         </foreach>
+    </delete>
+
+    <!--对应客户积分 批删-->
+    <delete id="xdelete1jifen"  parameterType="String" >
+        delete  from xu_jifen where uid in
+        <foreach collection="array" open="(" close=")" item="id" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--标签下拉查-->
+    <select id="xXiaLaBiaoQian"  resultType="com.jk.model.BiaoQian_xu">
+        select * from  xu_biaoqian
+    </select>
+
+    <!--客户标签更改-->
+   <update id="xupdateBiaoQian"  parameterType="com.jk.model.User_xu">
+       update  xu_user  set  bqid=#{bqid}  where keid=#{keid}
+   </update>
+
+    <!--下拉 分组-->
+      <select id="xxiala1"  resultType="com.jk.model.Zu_xu">
+          select zuid,zuname from xu_zu
+      </select>
+
+    <!--移动 移出分组-->
+      <update id="xupdate1">
+          update xu_user set zuid=#{1} where keid =#{0}
+      </update>
+
+    <!--新建分组-->
+    <insert id="xaddfenzu" parameterType="com.jk.model.Zu_xu">
+        insert into xu_zu(zuname) values (#{zuname})
+    </insert>
+
+  <!--客户详情  单个查-->
+    <select id="xkehuxiangqing" parameterType="Integer" resultType="com.jk.model.User_xu">
+     select a.keid,a.nickname,a.img,a.phone,a.sex,a.weixin,a.source,
+         a.endtime,a.statime,a.remark,c.rank,b.jfsum,d.bqname
+        from  xu_user  a,  xu_jifen b, xu_member c ,xu_biaoqian d
+        where a.jfid=b.jfid  and a.member=c.hyid and a.bqid=d.bqid
+        and a.keid=#{keid}
+    </select>
+
+    <!--客户详情页  修改客户信息-->
+    <update id="xupdatekehu" parameterType="com.jk.model.User_xu">
+        update  xu_user set nickname=#{nickname},phone=#{phone},weixin=#{weixin},source=#{source},
+             remark=#{remark}  where  keid=#{keid}
+    </update>
+
+    <!--客户详情页  加积分-->
+    <update id="xupdatejifen"  parameterType="com.jk.model.Jifen_xu">
+        update  xu_jifen  set jftype=#{jftype},czdate=#{czdate},activity=#{cause},glname=#{glname},
+          cause=#{cause},jifen=#{jifen},jfsum=jfsum+#{jifen}    where uid=#{uid}
+    </update>
+
+
+
+                <!--会员-->
+    <!--会员列表查询总条数-->
+    <select id="uhiuyuancount"  parameterType="map" resultType="int">
+           select count(1)  from xu_um  a,xu_user b,xu_member c
+	            where  a.uid=b.keid  and  a.mid=c.hyid  and c.hyid !=1  and b.member !=1
+	       <include refid="sqlhiuyuan"></include>
+    </select>
+
+    <!--会员列表查询-->
+    <select id="uhiuyuancha"  parameterType="map" resultType="com.jk.model.Um_xu">
+        select a.addate,a.bddate,a.mid,b.keid,b.img,b.nickname,b.phone,c.rank,c.price  from
+             xu_um  a,xu_user b,xu_member c
+              where  a.uid=b.keid  and  a.mid=c.hyid  and c.hyid !=1  and b.member !=1
+             <include refid="sqlhiuyuan"></include>
+             limit  #{sta},#{end}
+    </select>
+
+    <sql id="sqlhiuyuan" >
+        <if test="name !=null  and  name !='' "> and  b.nickname like #{name}</if>
+    </sql>
+
+    <!-- 取消会员 更改客户表-->
+    <update id="quxiaohiuyuan" parameterType="String" >
+        update  xu_user set member =1 where  keid  in
+        <foreach collection="array" open="(" close=")" item="id" separator=",">
+            #{id}
+        </foreach>
+    </update>
+
+    <!-- 取消会员 删除会员中间表-->
+    <delete id="deleteum_xu" parameterType="String" >
+        delete  from xu_um where  uid in
+       <foreach collection="array" open="(" close=")" item="id" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--赠送会员 下拉查-->
+    <select id="uXiaLaHiuYuan" resultType="com.jk.model.Member_xu">
+        select * from  xu_member
+    </select>
+
+    <!--赠送会员-->
+    <update id="uZengHiuYuan" parameterType="com.jk.model.Um_xu" >
+        update xu_um  set mid=#{mid} , bddate=#{bddate}  where uid=#{uid}
+    </update>
+
+    <!--赠送会员改  同时改客户表-->
+    <update id="uupdateKeHu" parameterType="com.jk.model.Um_xu">
+            update  xu_user set member =#{mid}  where keid=#{uid}
+    </update>
+
+
+    <!--会员设置查询-->
+     <select id="uHiuYuanShezhi" resultType="com.jk.model.Member_xu">
+         select * from xu_member  where hyid !=1 group by price
+     </select>
+
+    <!--会员开启 关闭-->
+    <update id="udeleteHiuYuan" >
+       update  xu_member  set hystatus =#{1}  where hyid=#{0}
+    </update>
+
+    <!--会员新增-->
+    <insert id="uaddHiuYuan" parameterType="com.jk.model.Member_xu">
+        insert into xu_member(rank,price,tequan)  values(#{rank},#{price},#{tequan})
+    </insert>
+
+    <!--会员修改-->
+    <update id="uupdateHiuYuan" parameterType="com.jk.model.Member_xu" >
+         update  xu_member set   rank=#{rank},price=#{price},tequan=#{tequan}
+            where hyid=#{hyid}
+    </update>
+
+    <!--积分查询总条数-->
+    <select id="uJiFencount" parameterType="map" resultType="int">
+        select count(1) from xu_jifen a,xu_user b where a.uid=b.keid
+	     <include refid="sqljifen"></include>
+    </select>
+
+    <!--积分查询总-->
+    <select id="uJiFenCha"  parameterType="map" resultType="com.jk.model.Jifen_xu">
+        select b.nickname,a.jftype,a.czdate,a.activity,a.glname,a.cause,a.jifen
+	         from xu_jifen a,xu_user b where a.uid=b.keid
+        <include refid="sqljifen"></include>
+        limit #{sta},#{end}
+    </select>
+
+      <sql id="sqljifen">
+          <if test="stajifen ==1"> and jftype = 1</if>
+          <if test="stajifen ==2"> and jftype = 2</if>
+      </sql>
+
+
+
+    <!--标签管理查询-->
+    <select id="uBiaoQianCha" resultType="com.jk.model.BiaoQian_xu">
+        select * from xu_biaoqian  where bqid !=1
+    </select>
+
+    <!--标签删除-->
+    <delete id="udeleteBiaoQian" parameterType="Integer" >
+        delete from xu_biaoqian where bqid=#{bqid}
+    </delete>
+
+    <!--标签删除 需改动使用该标签客户关联  默认1为空-->
+    <update id="uupdateKeHuBiaoQian" parameterType="Integer">
+        update xu_user set bqid=1 where bqid=#{bqid}
+    </update>
+
+    <!--标签修改-->
+    <update id="uupdateBiaoQian"  parameterType="com.jk.model.BiaoQian_xu" >
+        update  xu_biaoqian  set bqname=#{bqname},tianjian=#{tianjian}
+          where  bqid=#{bqid}
+    </update>
+
+    <!--标签新增-->
+    <insert id="uaddBiaoQian"  parameterType="com.jk.model.BiaoQian_xu">
+        insert  into xu_biaoqian (bqname,bqsum,tianjian,bqdate)   values(#{bqname},0,#{tianjian},#{bqdate})
+    </insert>
+
+
+    <!--优惠劵查-->
+    <select id="ulistyouhiu" resultType="com.jk.model.Youhiu_xu">
+        select * from xu_youhiu  where 1=1
+        <if test="name == 1 "> and enddate &lt; now()</if>
+        <if test="name == 2 "> and enddate >= now()</if>
+         order by enddate
+    </select>
+
+    <!--优惠劵删-->
+    <delete id="udeleteyouhiu" parameterType="String">
+        delete from  xu_youhiu  where yhid in
+        <foreach collection="array" open="(" close=")" item="id" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <!--优惠劵增-->
+   <insert id="uaddyouhiu" parameterType="com.jk.model.Youhiu_xu">
+       insert  into xu_youhiu(yhname,shangpinid,yhtype,man,jian,shuliang,xianling,stadate,enddate,cuangdate,shuoming,lianjie,member)
+         values(#{yhname},#{shangpinid},#{yhtype},#{man},#{jian},#{shuliang},#{xianling},#{stadate},#{enddate},now(),#{shuoming},#{lianjie},#{member})
+   </insert>
+
+    <!--优惠劵改-->
+    <update id="uupdateyouhiu"  parameterType="com.jk.model.Youhiu_xu">
+        update xu_youhiu set yhname=#{yhname},shangpinid=#{shangpinid},yhtype=#{yhtype},man=#{man},jian=#{jian},
+          shuliang=#{shuliang},xianling=#{xianling},stadate=#{stadate},enddate=#{enddate},shuoming=#{shuoming},lianjie=#{lianjie},member=#{member}
+                    where yhid=#{yhid}
+    </update>
+
+
+
+</mapper>

@@ -1,0 +1,44 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0;padding:0;}
+body{font-family:Arial Black,'Microsoft Yahei';font-size:12px;}
+div,span,object,frame,h1,h2,h3,h4,h5,h6,p,blockquote,a,code,em,img,q,small,strong,dd,dl,dt,li,ol,ul,fieldset,form,label,table,tbody,tr,th,td,input,menu{margin:0;padding:0;font-style:normal;}
+input,button,select,textarea{outline:none;}
+h1,h2,h3,h4,h5,h6{font-variant:normal;}
+select,label,textarea,input{font-family: 'lucida grande',tahoma,verdana,arial,STHeiTi,simsun,sans-serif;}
+table{border-collapse:collapse;border-spacing:0;}
+ul,li{list-style:none}
+fieldset,img{border:0;margin:0;padding:0;vertical-align:top;}
+caption,th{text-align:left;}  
+blockquote,q{quotes:none;}  
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}  
+
+.clearfix:after{clear:both;display:block;content:"...";visibility:hidden;height:0;font-size:0;}
+.clearfix{*zoom:1;}
+a{text-decoration:none;color:#333;}
+a:hover{color:#454545;}
+
+.imgbox{position:relative;}
+.imgbox img{width:100%;height:auto;}
+#btn{background:url(../img/btn.png) no-repeat;width:132px;height:63px;position:absolute;bottom:0;left:50%;margin-left:-66px;z-index:999;display:block;}
+.imgbox .nav{width:980px;position:absolute;left:50%;margin-left:-490px;top:0;z-index:99;}
+.imgbox .navList{width:300px;float:right;text-align:right;}
+.imgbox .navList a span{display:block;height:60px;float:right;width:230px;padding-right:70px;font-size:25px;color:#3d3d3d;line-height:60px;background:url(../img/icon.png) no-repeat 0 0;}
+
+.imgbox .navList a span.style1{background-position:0 0;}
+.imgbox .navList a span.style2{background-position:0 -60px;}
+.imgbox .navList a span.style3{background-position:0 -120px;}
+.imgbox .navList a span.style4{background-position:0 -180px;}
+.imgbox .navList a:hover span.style1{background-position:0 -240px;}
+.imgbox .navList a:hover span.style2{background-position:0 -300px;}
+.imgbox .navList a:hover span.style3{background-position:0 -360px;}
+.imgbox .navList a:hover span.style4{background-position:0 -420px;}
+.imgbox .navList a:hover span{color:#e15a00;}
+
+
+
+
+
+
+
+

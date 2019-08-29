@@ -1,0 +1,66 @@
+/*公告中心列表页start*/
+.main{ width:1000px; margin:0 auto;}
+/*color*/
+.not_list_dl dd em a,.not_list_dl dt a{ color:#333;}
+
+
+/*img*/
+.part_baner a img{ display:block;}
+/*h*/
+.h4_part { height:30px; background:#f7f7f7; padding:0 10px; font:14px/30px "微软雅黑"; margin-bottom:10px;}
+.new_notice_title h3{ font:20px/40px "微软雅黑"; height:40px; color:#333; border-bottom:1px solid #ebebeb;}
+.new_notice_abuot h5{ height:30px; font:14px/30px bold;}
+/*main*/
+.main,.part_baner2{ margin-bottom:10px;}
+.side_left{ padding-right: 210px;}
+.side_right{ float: right; width:195px;}
+/*part_baner*/
+.part_baner,.part_baner2{width:195px; overflow:hidden;}
+/*notice_guide*/
+.notice_guide{height:36px; line-height:36px; font-size:14px; margin-top:5px; font-family:"微软雅黑";}
+    .notice_guide em{ font-style:normal; font-weight:bold;}
+    .notice_guide i{ font-family:Verdana; font-style:normal; padding:0 2px;}
+/*new_notice*/
+.new_notice,.notice_list{ border:1px solid #ebebeb;}
+    .new_notice,.not_list_dl{ padding:15px;}
+/*new_notice_title*/
+.new_notice_title{ line-height:24px; color:#666; text-align:center;}
+/*new_notice_abuot*/
+.new_notice_abuot{ padding:15px 0;}
+    .new_notice_abuot p{ padding-left:24px; line-height:24px; margin-bottom:2px; font-size: 14px; text-align:justify; text-justify:inter-ideograph;}
+    .new_notice_abuot p em{ color:#c00; font-style:normal}
+    .new_notice_abuot p.abuot_algr,.abuot_algr{ text-align:right;}
+    .new_notice_abuot p.about_pad{ text-align:left;}
+    .new_notice_abuot p b{ color:#049; font-weight:normal}
+    .new_notice_abuot p.about_pad em{ display:inline-block; margin-right:10px; white-space: nowrap;}
+/*not_list_dl*/
+.not_list_dl dt{ font-weight: bold; font-size:16px; font-family:"微软雅黑"; height:30px; line-height:30px;}
+    .not_list_dl dd p{line-height: 24px; text-indent: 24px;}
+    .not_list_dl dd span{ display:block; color:#999; line-height:18px;}
+    .not_list_dl dd em{ display:block; text-align:right; margin-top:3px; line-height:24px; font-style:normal;}
+.not_list_dl2{ background:#f5f5f5;}
+/*notice_page*/
+.notice_page{ margin-top:10px; text-align:center;}
+    .notice_page a,.notice_page em,.notice_page b{ display: inline-block; height:20px; line-height:20px; padding:0 8px; border:1px solid #ebebeb; vertical-align:middle; margin:0 2px; font-style:normal;}
+    .notice_page b{ background:#f7f7f7; color:#c00;}
+/*公告中心列表页end*/
+
+/*公告中心详情页start*/
+.noticeBody{width:100%; min-width:1000px;}
+.noticeBody .noticeWap{width:1000px; margin:0 auto; font-family:"微软雅黑";}
+.noticeBody .noticeGuide{height:36px; line-height:36px; font-size:14px; margin-top:5px;}
+.noticeBody .noticeGuide em{font-style:normal; font-weight:bold;}
+.noticeBody .noticeGuide i{font-family:Verdana; font-style:normal; padding:0 2px;}
+.noticeBody .noticeBox{ border:1px solid #ccc; padding:25px 60px; margin:15px 0 15px 0;font-size:16px; color:#333;}
+.noticeBody .noticeName span{float:left; display:inline-block;}
+.noticeBody .noticeName span.left{border-bottom:5px solid #7f0019; width:250px; margin:18px 50px 0 0; }
+.noticeBody .noticeName span.right{border-bottom:5px solid #7f0019; width:250px; margin:18px 0 0 50px;}
+.noticeBody .noticeName span.middle{ font-size:28px;  font-weight:700; width:278px; text-align:center;}
+.noticeBody .noticeTitle{ line-height:36px; text-align:center;  margin-top:45px; font-size:18px; }
+.noticeBody .noticeTitle .publicTime{font-size:12px;}
+.noticeBody .noticeCon{padding:0 100px;}
+.noticeBody .noticeCon .dear{height:36px; line-height:36px;}
+.noticeBody .noticeCon .noticeDetail{ margin-top:20px; line-height:32px; text-indent:32px;}
+.noticeBody .noticeCon .company{ text-align:right; margin-top:50px; line-height:36px; height:36px;}
+.noticeBody .noticeCon .time{text-align:right;line-height:36px; height:36px;}
+/*公告中心详情页end*/

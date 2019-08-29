@@ -1,0 +1,80 @@
+/* CSS Document */
+
+.topHeaderCon,.midHeaderCon,.navWrap .nav,.footerTop,.footerServices,.footerBot,.ban_cter{ width:1200px;}
+.topHeaderLeft{ width:370px; }
+.headerSearch,.headerSearch .hotWords{ width:540px;}
+.searchHome .search-form{ width:439px;}
+.searchHome .searchCon{ width:450px;}
+.searchCon ul a span{ width:280px;}
+.searchCon ul a em{ width:120px;}
+.footerServices ul li{ width:158px;}
+.footerServices ul li p,.footerServices ul li h3 span{ width:123px;}
+.midHeader{background: url(http://misc.jiuxian.com/img/bgImg/topbg.jpg) no-repeat center top scroll;}
+
+/*用户中心首页1200样式*/
+.user{width: 1200px;}
+.user .account{width: 759px;}
+.security .improve{margin-left: 35px;}
+.security .yzHome{margin-right: 62px;}
+.security .yzHome .phone{margin-right: 65px;}
+.middle .line .title i{margin-left: 18px;}
+.proListUc ul.img{margin-left: 30px;margin-right: 35px;}
+.proListUc .name,.proListUc .payWay, .proListUc .time, .proListUc .type{margin-right: 33px;}
+.colList ul li{ width:128px;}
+.colList ul li.first{margin-left: 0;}
+.colList .colFrame{width: 640px;margin-left:40px;}
+.prev{margin-left: 30px;}
+.next{margin-right: 30px;}
+.user .main,.commentAll{width: 985px;}
+.show .info{width: 871px;}
+.commentW .part1{width: 560px;}
+.commentW .part2{width: 200px;}
+.commentW .part3 {width: 223px;}
+.rightBox{ width:985px;}
+.userBotBox{ width:1200px;}
+.uBotRecommend{ width:1000px;}
+.ubRemList{ width:900px;}
+.ubRemList ul li{ width:115px;}
+.listWarp .listBox .msgContent{ width:832px;}
+.commentAll .listLeft,.rightConTitle .titleLeft{ width:100px;}
+.commentAll .listRight{width: 865px;}
+.commentBox .commentDetail{ width:790px;}
+.writeComment{ width:778px;}
+.replyList li .writeComment{ width:748px;}
+.replyList li .replyCon{ width:757px;}
+.zpContent table{ width:1105px;}
+.upPhLeft{ width:436px;}
+.upPhRight{ width:416px;}
+.upPhRecom-con a{ margin:0 7px 10px 0; }
+.question p,.answer p{width: 820px;}
+.xd textarea{ width:830px;}
+.sd .addItem-pro{ width:455px;}
+.commentCon_tr .commentCon_td2 .xscommentInter{ width:280px;}
+/*.mycolBox .mycConInt{ width:330px;}*/
+.infoDetail .infoDetail-r{ width:775px;}
+.ord-point .ordPointCancle{margin-right: 38px;}
+.ord-point .ope04{margin: 4px 36px 4px 0;}
+.ord-point b{margin-right:40px}
+.ord-point .ord-pointB{margin-left:26px}
+.uGuideBox{ width:1200px; margin-left:-600px;}
+.uGuideWrap01 .uGuide{ left:320px;}
+.uGuideWrap05{ width:759px; background:url(../../img/usercenter/guide/guideWrap05.jpg) no-repeat center center;}
+
+/*私人订制*/
+.myWorkCate li{ width:210px;}
+.myWorkPic{ width:921px;}
+.myWorkPic ul{ width:1050px;}
+.myWorkPic li{ margin-right:43px;}
+/*快捷支付*/
+.quickList{ width:856px;}
+.quickList ul{ width:910px;}
+.quickList li{  margin:0 50px 30px 0;}
+/*订单回收站*/
+.ord-num .rec{ right:68px;}
+.addCommentreply .reply-r p em{ width: 800px;}
+.list-2{ width:400px;}
+.list-3{width:200px;}
+.list-4{ margin:12px 0 0 100px;}
+
+/* 电子发票 */
+.invoiceInfo{ width:1200px;}

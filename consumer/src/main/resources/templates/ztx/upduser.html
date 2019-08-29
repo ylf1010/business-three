@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+<form id="addFormId" class="form-inline">
+    <input th:type="hidden" name="id" th:value="${user.id}">
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <label>用户名称 :</label>
+            </td>
+            <td>
+                <input th:type="text" class="form-control" th:value="${user.username}" name="username" style="width:200"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>用户密码 :</label>
+            </td>
+            <td>
+                <input th:type="text" class="form-control" th:value="${user.password}" name="password" style="width:200"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>昵称 :</label>
+            </td>
+            <td>
+                <input th:type="text" class="form-control" th:value="${user.baccount}" name="baccount" style="width:200"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>电话 :</label>
+            </td>
+            <td>
+                <input type="text" class="form-control" th:value="${user.phone}" name="phone" style="width:200">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>邮箱 :</label>
+            </td>
+            <td>
+                <input type="text" class="form-control" th:value="${user.email}" name="email" style="width:200">
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

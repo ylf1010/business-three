@@ -1,0 +1,63 @@
+.clearfix:after{clear:both;display: block;content: "...";visibility: hidden;height: 0;font-size: 0;}
+.clearfix{*zoom:1;}
+.feedbackWrap{ width:100%; background:#fff;font-family:"微软雅黑";}
+.feedbackHeader{ width:100%; height:108px; border-bottom:1px solid #cccccc;}
+.feedbackHeadBox{ width:1000px; margin:0 auto; height:108px;}
+.feedbackLogo{ background:url(../../images/newHomePageImg/feedLogo.jpg) no-repeat; width:264px; height:63px; float:left; margin-top:26px;}
+.feedbackLogo a{ display:block; width:129px; height:63px;}
+.backHome{ float:right; margin-top:76px;}
+.backHome a{ background:url(../../images/newHomePageImg/backHome.jpg) no-repeat left center; font-family:"微软雅黑"; color:#2171c2; padding-left:17px; display:inline-block;}
+.backHome a:hover{ color:#2171c2; text-decoration:none;}
+.feedbackMain{ width:1000px; margin:0 auto; padding-bottom:50px; position:relative; z-index:1;}
+.feedbackMain h2{ font-size:18px; color:#333; line-height:56px; text-align:center;}
+.feedbackInfo{ padding:20px 30px; background:#fafafa;}
+.feedbackInfo p{ color:#999999; line-height:24px; font-size:14px;}
+.feedbackInfo .text{ padding-left:28px;}
+.feedbackForm{ padding-left:150px;}
+.feedbackForm li{ padding:5px 0;}
+.feedbackForm li .itemTitle{ font-size:14px; float: left; width:84px; height:36px; line-height:36px; text-align:right; display:inline-block; vertical-align:middle;}
+.feedbackForm li .itemRight,.feedbackForm li .notic{ float:left; padding-left:5px; line-height:36px; display:inline-block; vertical-align:middle; font-size:14px;}
+.feedbackForm li .itemRight{ position:relative;}
+.feedbackForm li .itemRight p{ position:absolute; left:10px; top:0; line-height:36px; color:#999; font-size:12px;}
+.feedbackForm li .itemRight .textNot{ line-height:18px; top:3px; width:504px;}
+.feedbackForm li .notic{ height:36px; line-height:36px; color:#cc0000; display:none;}
+.feedbackForm li b{ font-weight:normal; color:#cc0000; padding-right:2px;}
+.feedbackForm li .itemRight input{ display:inline-block; height:34px; line-height:34px; border:1px solid #ccc; color:#999;font-family:"微软雅黑"; padding:0 5px; font-size:12px;}
+.feedbackForm li .itemRight select{font-family:"微软雅黑"; color:#999; width:240px; height:34px; line-height:34px; border:1px solid #ccc;}
+.feedbackForm li .itemRight label{ display:inline-block; margin-right:20px;}
+.feedbackForm li .itemRight label input{ display:inline-block; vertical-align:middle; width:12px; height:12px; overflow:hidden; border:none;}
+.feedbackForm li .itemRight label span{ display:inline-block; vertical-align:middle; padding-left:5px;}
+.feedForm1{ border:1px solid #ccc; width:500px; height:143px; resize:none; font-size:12px; color:#999;font-family:"微软雅黑"; padding:5px; overflow-y: auto;}
+.feedForm2{ width:112px; float:left;}
+.feedForm3{ width:237px;}
+.feedbackForm li .itemRight .feedForm4{ height:34px; width:114px; background:#cf010e; font-size:14px; border:1px solid #cf010e; color:#fff; line-height:34px; font-family:"微软雅黑"; overflow:hidden; cursor:pointer;}
+.feedbackForm li .itemRight .yzm,.feedbackForm li .itemRight a{ float:left; display:inline-block;}
+.feedbackForm li .itemRight .yzm{ margin:5px 0 0 10px; cursor:pointer;}
+.feedbackForm li .itemRight a{ line-height:36px; margin-left:12px;}
+.feedbackForm li .itemRight .feedForm5{ border:none;}
+
+.popWrap{ width:400px; height:180px; position:absolute; left:50%; top:50%; margin:-95px 0 0 -205px; background:#fff; border:5px solid #ccc; border-radius:5px; font-family:"微软雅黑"; display:none; z-index:1000;}
+.popBox{ width:400px; height:150px; position:relative; padding-top:30px;}
+.popWrap h3{ text-align:center; font-size:16px; color:#666; font-weight:normal;}
+.popWrap h3 i{ background:url(../../images/newHomePageImg/popIcon.png) no-repeat; width:38px; height:38px; display:inline-block; vertical-align:middle;}
+.popWrap h3 span{ display:inline-block; line-height:38px; vertical-align:middle; color:#000; padding-left:10px;}
+.popWrap p{ text-align:center; line-height:30px; margin:10px 0 20px;}
+.popWrap .backIndex{ color:#fff; width:60px; height:28x; line-height:28px; display:block; margin:0 auto; background:#cc0000; text-align:center; border-radius:5px;}
+.popWrap .backIndex:hover{ color:#fff; text-decoration:none;}
+.popBox .close{ background:url(../../images/newHomePageImg/close.png) no-repeat; display:inline-block; position:absolute; right:10px; top:10px; width:14px; height:14px; cursor:pointer;}
+/*新增*/
+.codeFix{ border:2px solid #f6f5f5; padding:10px; width:178px; height:226px; position: absolute; right:0; top:190px; background:#fff; z-index:10;}
+.codeTop{ width:100%; height:50px; position:relative; z-index:1;}
+.txImg{ background:url(../../images/feedback/tx.jpg) no-repeat; background-size:100%; width:50px; height:50px; position:absolute; left:0; top:0;}
+.contact{ margin-left:55px; height:50px;}
+.contact .name{ font-size:0; line-height:25px;}
+.contact .name span,.contact .name i{ display: inline-block; vertical-align:middle;}
+.contact .name span{ font-size:12px; color:#333; font-family:"微软雅黑"; margin-right:5px;}
+.contact .name i{ background:url(../../images/feedback/icon.jpg) no-repeat; width:11px; height:11px;}
+.contact .wxNum{ font-size:12px; line-height:25px;}
+.hhfCode{ background:url(../../images/feedback/code.jpg) no-repeat; width:140px; height:140px; margin:20px auto 0;}
+
+
+
+
+

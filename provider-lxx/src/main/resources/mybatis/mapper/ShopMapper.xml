@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.LxxMapper">
+
+    <!-- 新增 店铺-->
+    <insert id="addShop"   parameterType="com.jk.model.RenZhengBean">
+INSERT INTO dianpu_lxx(dpname,dplogo,dpphone,shengid,shiid,xianid,dpxxdz,dpdesc,status,shzt)
+VALUES(#{dpname},#{dplogo},#{dpphone},#{shengid},#{shiid},#{xianid},#{dpxxdz},#{dpdesc},1,1)
+</insert>
+
+
+    <update id="addEnterprise" parameterType="com.jk.model.RenZhengBean">
+
+ update dianpu_lxx set qyname = #{qyname},qyxydm=#{qyxydm},qyzs=#{qyzs},qyphone=#{qyphone},txfs=#{txfs},yhid=#{yhid},khsheng=#{khsheng},khshi=#{khshi},
+ khxian=#{khxian},khyhxm=#{khyhxm},khzh=#{khzh},status = 2 where id = #{id}
+
+    </update>
+
+    <update id="addIndividual" parameterType="com.jk.model.RenZhengBean">
+
+ update dianpu_lxx set gtname = #{gtname},gtsfzh=#{gtsfzh},gtsfzqian=#{gtsfzqian},gtsfzbei=#{gtsfzbei},gtphone=#{gtphone},txfs=#{txfs},yhid=#{yhid},khsheng=#{khsheng},khshi=#{khshi},
+ khxian=#{khxian},khyhxm=#{khyhxm},khzh=#{khzh},status = 2 where id = #{id}
+
+    </update>
+<!--用户注册-->
+    <insert id="addregisUser" parameterType="com.jk.model.User_xu">
+     INSERT INTO xu_user(nickname,username,userpass,img,phone,sex,source,weixin,statime,jfid,member,remark,bqid,zuid)
+     values(#{nickname},#{username},#{userpass},"123.jpg","无","男","QQ","无",NOW(),0,1,"无",1,1)
+  </insert>
+ <!--注册-->
+    <insert id="addJf" >
+       INSERT INTO xu_jifen(uid,jftype,czdate,activity,glname,cause,jifen,jfsum)
+      values(#{uid},1,NOW(),"首次注册","系统","首次赠送",10,1)
+  </insert>
+<!--修改id-->
+    <update id="updateJfid" >
+      update xu_user set jfid = #{0} where keid = #{1}
+      </update>
+<!--待付款-->
+    <select id="queryPaymentOnBehalfOfOthers"  resultType="com.jk.model.YsqJiaoYi" parameterType="java.lang.Integer">
+      select a.ordernumber,a.id,a.productname,a.unitprice,a.amount,a.ordertime,a.state,a.money,a.paymenttime,a.beizhu,a.xu_userid,a.img from  jiaoyi_ysq a where state = 1 and a.xu_userid = #{keid}
+      </select>
+    <!--待发货-->
+    <select id="queryDropShipping"  resultType="com.jk.model.YsqJiaoYi" parameterType="java.lang.Integer">
+      select a.ordernumber,a.id,a.productname,a.unitprice,a.amount,a.ordertime,a.state,a.money,a.paymenttime,a.beizhu,a.xu_userid,a.img from  jiaoyi_ysq a where state = 2 and a.xu_userid = #{keid}
+      </select>
+    <!--已发货-->
+    <select id="queryShippedOrder"  resultType="com.jk.model.YsqJiaoYi" parameterType="java.lang.Integer">
+      select a.ordernumber,a.id,a.productname,a.unitprice,a.amount,a.ordertime,a.state,a.money,a.paymenttime,a.beizhu,a.xu_userid,a.img from  jiaoyi_ysq a where state = 3 and a.xu_userid = #{keid}
+      </select>
+    <!--已完成-->
+    <select id="queryOffTheStocks"  resultType="com.jk.model.YsqJiaoYi" parameterType="java.lang.Integer">
+      select a.ordernumber,a.id,a.productname,a.unitprice,a.amount,a.ordertime,a.state,a.money,a.paymenttime,a.beizhu,a.xu_userid,a.img from  jiaoyi_ysq a where state = 4
+      </select>
+    <!--已关闭-->
+    <select id="queryClose"  resultType="com.jk.model.YsqJiaoYi" parameterType="java.lang.Integer">
+      select a.ordernumber,a.id,a.productname,a.unitprice,a.amount,a.ordertime,a.state,a.money,a.paymenttime,a.beizhu,a.xu_userid,a.img from  jiaoyi_ysq a where state = 5 and a.xu_userid = #{keid}
+      </select>
+    <!--退款中-->
+    <select id="queryRefund"  resultType="com.jk.model.YsqJiaoYi" parameterType="java.lang.Integer">
+      select a.ordernumber,a.id,a.productname,a.unitprice,a.amount,a.ordertime,a.state,a.money,a.paymenttime,a.beizhu,a.xu_userid,a.img from  jiaoyi_ysq a  where state = 6 and a.xu_userid = #{keid}
+      </select>
+    <!--全部订单-->
+    <!--查询个人中心-->
+    <select id="queryIntegral"  resultType="com.jk.model.User_xu" parameterType="java.lang.Integer">
+  select a.*,b.jfsum from xu_user a,xu_jifen b where a.keid=b.jfid  and a.keid = #{keid}
+    </select>
+
+
+
+</mapper>

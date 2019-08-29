@@ -1,0 +1,222 @@
+
+<html>
+<head>
+    <base href="<%=basePath%>">
+    <title>标题</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="This is my page">
+
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <link  href="/js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <link  href="/js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+    <link  href="/js/addTabs/addTabs.css" rel="stylesheet" >
+    <link  href="/js/table/bootstrap-table.min.css" rel="stylesheet" >
+    <link type="text/css" rel="stylesheet" href="/js/fileinput/css/fileinput.min.css" />
+    <script type="text/javascript" src="/js/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/treeview/bootstrap-treeview.min.js"></script>
+    <script type="text/javascript" src="/js/addTabs/addTabs.js"></script>
+    <script type="text/javascript" src="/js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="/js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript" src="/js/bootbox/bootbox.js"></script>
+    <script type="text/javascript" src="/js/fileinput/js/fileinput.min.js"></script>
+    <script type="text/javascript" src="/js/fileinput/js/locales/zh.js"></script>
+    <script type="text/javascript" src="/js/fileinput/themes/fa/theme.js"></script>
+
+    <link rel="stylesheet" href="/js3/easyui/themes/bootstrap/easyui.css" />
+    <link rel="stylesheet" href="/js3/easyui/themes/icon.css" />
+    <script src="/js3/easyui/jquery.easyui.min.js"></script>
+    <script src="/js3/easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script src="/js3/easyui/util-js.js"></script>
+
+    <!--  引入上传图片的js -->
+    <script src="../js/uploadify/jquery.uploadify.min.js"></script>
+    <link rel="stylesheet" href="../js/uploadify/uploadify.css">
+    <script type="text/javascript"  src="../js/kindeditor-4.1.10/kindeditor.js" charset="utf-8"></script>
+    <script type="text/javascript"  src="../js/kindeditor-4.1.10/lang/zh_CN.js" charset="utf-8"></script>
+
+
+</head>
+<body>
+</div>
+
+<table id="dataGrid"></table>
+
+
+</body>
+<script type="text/javascript">
+    $(function(){
+
+
+        initDataGrid();
+    });
+    function initDataGrid() {
+        //创建bootstrapTable
+        $("#dataGrid").bootstrapTable({
+            url: "../lxx/QueryAudit",
+            method: 'post',
+            striped: true,  	// 斑马线效果     默认false
+            //只允许选中一行
+            singleSelect: true,
+            //选中行是不选中复选框或者单选按钮
+            clickToSelect: true,
+            showToggle: true,                    //是否显示详细视图和列表视图的切换按钮
+            cardView: false,                    //是否显示详细视图
+            uniqueId: "id",                 //每一行的唯一标识，一般为主键列
+            showColumns: true,                  //是否显示所有的列
+            showRefresh: true,                  //是否显示刷新按钮
+            minimumCountColumns: 2,     //  最少留两列
+            detailView: false,                  //是否显示父子表
+            toolbar: '#tabToolBar',   //  工具定义位置
+            sidePagination: 'server',
+            toolbar: '#toolbar',
+            pagination: true, //是否展示分页
+            pageList: [2, 4, 8, 10],//分页组件
+            pageNumber: 1,
+            pageSize: 2,//默认每页条数
+            //启动回车键做搜索功能
+            searchOnEnterKey: true,
+            //设置为false 将禁止所有列的排序。
+            sortable: true,
+            //设置默认排序为 name,直接对应数据库的字段
+            sortName: 'id',
+            //定义排序方式，'asc' 或者 'desc'。
+            sortOrder: "desc",
+            //设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
+            // 设置为limit可以获取limit, offset, search, sort, order
+            queryParamsType: 'undefined',
+            // 请求服务器数据
+            queryParams: function queryParams(params) {
+                var param = {
+                    pageNumber: params.pageNumber,
+                    pageSize: params.pageSize,
+                    sortName: params.sortName,
+                    sortOrder: params.sortOrder,
+                    /*  name: $("#name").val()  */
+
+                };
+                return param;
+            },
+            columns: [
+                {field: 'checkbox', checkbox: true},  //开启复选框
+                {field: 'id', title: 'id', width: 300},      //  列    field   代表是 后台  传过来的值
+                {field: 'dpname', title: '名字', width: 300},
+                {field: 'dpphone', title: '电话', width: 300},
+                {field: 'dplogo', title: '店铺图片', width: 300,formatter: function(value,row,index){
+                        return "<img width='100' src='../"+value+"'>"
+                    }},
+                {field: 'dpdesc', title: '介绍', width: 300},
+                {field: 'status', title: '认证状态', width: 300,formatter: function(value,row,index){
+                        var a = "";
+                        if (value==1){
+                            a="未认证";
+                        }else if(value==2){
+                            a="已认证";
+                        }
+                        return a;
+                    }
+                },
+                {field: 'shzt', title: '审核状态', width: 300,formatter: function(value,row,index){
+                    var a = "";
+                        if (value==1){
+                            a="未审核";
+                        }
+                        return a;
+                    }
+                    },
+                {field: 'XXX', title: '操作', width: 300,formatter: function(value,row,index){
+
+                        if (row.shzt==1){
+                            var content = "    <a href='javascript:Pass(&quot;"+row.id+"&quot;)' >通过</a>";
+                            content += " |       <a href='javascript:Not(&quot;"+row.id+"&quot;)' >不通过</a>";
+                        }
+
+                        return content;
+                    }
+                }
+
+
+            ]
+        }
+        );
+    }
+
+
+function Pass(id){
+    $.ajax({
+        url:'../lxx/Pass',
+        type:'post',
+        data:{
+            id:id
+        },
+        success:function(data){
+           alert("审核完成");
+        location.href="../lxx/Audit";
+        }
+
+    })
+}
+    function Not(id){
+        $.ajax({
+            url:'../lxx/Not',
+            type:'post',
+            data:{
+                id:id
+            },
+            success:function(data){
+                alert("审核完成");
+                location.href="../lxx/Audit";
+            }
+
+        })
+    }
+
+
+   //企业图片
+    $(function(){
+
+        //文件域的id
+        uploadObj = $("#imgFileBTN").uploadify({
+            //前台请求后台的url 不可忽略的参数
+            'uploader' :"../lxx/uploadPhotoFile",
+            //插件自带 不可忽略的参数
+            'swf' : '../js/uploadify/uploadify.swf',
+            //撤销按钮的图片路径
+            'cancelImg' : '../js/uploadify/uploadify‐cancel.png',
+            //auto：如果为true 为自动上传 ；如果为false 那么需要手动点击上传按钮上传
+            'auto' : true,
+            //上传后进度条是否消失
+            'removeCompleted' : true,
+            //可以同时选择多个文件 默认为true 不可忽略
+            'multi' : true,
+            //上传文件的个数
+            'uploadLimit' : 5,
+            //给上传按钮设置文字
+            'buttonText' : '上传照片',
+            'removeTimeout' : 1,
+            //设置上传图片的类型
+            'fileTypeExts' : '*.jpg;*.jpge;*.gif;*.png',
+            //限制上传的图片的大小
+            'fileSizeLimit' : '2MB',
+            //给div的进度条加背景 不可忽略
+            'queueID' : 'showBarDiv',
+            // action中接收文件的全局变量名
+            'fileObjName' : 'artImg',
+            'onUploadSuccess' : function(file, data, response) {
+                // file 文件对象
+                // 将图片回显 data 接收到的是图片名称
+                // response – 有输出时为 true, 如果无响应为 false
+                //$("#showImg").attr("src","<%=request.getContextPath()%>"+data);
+                var str = '<img style="width:150px;height:150px" src="..'+data+'">';
+                $("#showImgDiv").html(str);
+                $("#burl").val(data);
+                // append
+            }
+        });
+    })
+
+
+</script>
+</html>

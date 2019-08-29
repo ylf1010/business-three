@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>标签管理</title>
+
+
+    <!-- 引入jquery -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+
+    <!-- 引入 css  -->
+    <!-- 引入bootstrap的css -->
+    <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-treeview的css -->
+    <link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-addTabs的css -->
+    <link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
+    <!-- 引入bootstrap-table的css -->
+    <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
+    <!-- 引入fileinput的css -->
+    <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
+
+    <!-- 引入 js  -->
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/treeview/bootstrap-treeview.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/addTabs/addTabs.js"></script>
+    <!-- 引入bootstrap-table的js-->
+    <script type="text/javascript" src="../js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- 引入bootbox.js -->
+    <script type="text/javascript" src="../js/bootbox/bootbox.js"></script>
+    <!-- 引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/fileinput.min.js"></script>
+    <!--  引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
+    <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+
+
+</head>
+<body>
+
+<!-- table 数据展示  -->
+<table id="data" ></table>
+
+
+<!--修改标签-->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- 头部 -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>  <!-- X号关闭 -->
+                <h4 class="modal-title" id="myModalLabel">标签修改</h4>
+            </div>
+
+            <!-- 中部   form内容设置  -->
+            <form id="form1">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">标签名</label>
+                        <input id="bqname" name="bqname" class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">条件</label>
+                        <input id="tianjian" name="tianjian" class="form-control"/>
+                    </div>
+
+                </div>
+
+                <input type="hidden" id="bqid" name="bqid">
+                <!-- 尾部 （按扭）-->
+                <div class="modal-footer">
+                    <button type="button" onclick="baocun(1)" class="btn btn-ok"> 保存 </button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div>
+
+
+<!--新增标签-->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- 头部 -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>  <!-- X号关闭 -->
+                <h4 class="modal-title" id="myModalLabel">新建标签</h4>
+            </div>
+
+            <!-- 中部   form内容设置  -->
+            <form id="form2">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">标签名</label>
+                        <input  name="bqname" class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">条件</label>
+                        <input  name="tianjian" class="form-control"/>
+                    </div>
+
+                </div>
+                <!-- 尾部 （按扭）-->
+                <div class="modal-footer">
+                    <button type="button" onclick="baocun(2)" class="btn btn-ok"> 保存 </button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div>
+
+</body>
+<script>
+    //查询    数据展示
+    $(function () {
+        //创建bootstrapTable
+        $("#data").bootstrapTable({
+            url: "../xu/uBiaoQianCha",
+            method : 'post',
+            striped : true, // 斑马线效果     默认false
+
+            //选中行是不选中复选框或者单选按钮
+            clickToSelect : true,
+            cardView : false, //是否显示详细视图 为true时显示详细视图
+            showRefresh : true, //是否显示刷新按钮
+            sidePagination : 'server',
+
+            columns : [
+                { field : 'bqname', title : '标签名',width : 300 },
+                { field : 'bqsum', title : '客户数', width : 300 },
+                {field: 'tianjian', title: '条件', width: 300,
+                    formatter: function (value, row, index) {
+                        return "<font  color='#990000'>"+value+"</font>";
+                    }
+                },
+                { field : 'bqdate', title : '创建时间', width : 300 },
+                { field : 'x', title : '操作  <button class="btn btn-info" data-toggle="modal" data-target="#myModal2"">+添标签</button>', width : 300,
+                    formatter:function(value,row,index){
+                        var bqname=JSON.stringify(row.bqname);
+                        var tianjian=JSON.stringify(row.tianjian);
+                        var a="<a href='javascript:bianji("+row.bqid+","+bqname+","+tianjian+")' >编辑 </a>   |  ";
+                        a+="  <a href='javascript:shanchu("+row.bqid+")' >删除</a>";
+                        return  a;
+                    }
+                }
+            ]
+        });
+    })
+
+
+
+
+    //编辑标签
+    bianji=function(bqid,bqname,tianjian){
+        //打开框  回显
+        $("#myModal1").modal('show');
+
+        $("#tianjian").val(tianjian);
+        $("#bqname").val(bqname);
+        $("#bqid").val(bqid);
+    }
+
+    //新建标签   编辑标签
+    baocun=function(a){
+        $.ajax({
+            url: '../xu/uaddBiaoQian',
+            type: 'post',
+            data: $("#form"+a).serialize(),
+            success: function () {
+                $('#myModal'+a).modal('hide'); //隐藏 (执行完关闭弹框)
+                $("#form"+a)[0].reset();  //清除form表单
+                $('#data').bootstrapTable("refresh");  //refresh刷新当前页
+            }, error: function () {
+                alert("失败！");
+            }
+        });
+    }
+
+    //删除
+    shanchu=function(bqid){
+        if (confirm("确定删除")) {
+            $.ajax({
+                url: "../xu/udeleteBiaoQian",
+                data: {bqid: bqid},
+                type: "post",
+                success: function () {
+                    $("#data").bootstrapTable("refresh");
+                }, error: function () {
+                    alert("失败！");
+                }
+            })
+        }
+    }
+
+
+</script>
+</html>

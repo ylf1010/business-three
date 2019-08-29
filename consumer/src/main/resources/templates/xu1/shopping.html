@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en"  >
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+
+    <!-- 引入jquery -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+
+    <!-- 引入 css  -->
+    <!-- 引入bootstrap的css -->
+    <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-treeview的css -->
+    <link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-addTabs的css -->
+    <link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
+    <!-- 引入bootstrap-table的css -->
+    <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
+
+
+    <!-- 引入 js  -->
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/treeview/bootstrap-treeview.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/addTabs/addTabs.js"></script>
+    <!-- 引入bootstrap-table的js-->
+    <script type="text/javascript" src="../js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- 引入bootbox.js -->
+    <script type="text/javascript" src="../js/bootbox/bootbox.js"></script>
+    <!-- 引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/fileinput.min.js"></script>
+    <!--  引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
+    <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+
+
+<style>
+    body{ text-align:center}
+    #divcss5{margin:0 auto;border:0px solid #000;width:300px;height:100px}
+</style>
+
+</head>
+<body>
+<!-- 网页顶部导航信息 -->
+<!--导航条  最上头放置以下内容的黑框-->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+
+    <!-- 容器 以下内容为 顶部信息   -->
+    <div class="container-fluid">
+
+        <!-- 此段为窗口小化时用’三‘来代替隐藏所有导航信息 -->
+        <button type="button" class="navbar-toggle collapsed"
+                data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span> <span
+                class="icon-bar"></span> <span class="icon-bar"></span> <span
+                class="icon-bar"></span>
+        </button>
+        <!-- Brand and toggle get grouped for better mobile display -->
+
+        <!-- 头部信息 -->
+        <div class="navbar-header">
+            <a class="navbar-brand glyphicon glyphicon-globe"
+               href="javascript:dialogRedis()" id="menu-toggle"> 三组酒圣网 </a>
+        </div>
+
+        <!-- 左边 信息 -->
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse"
+             id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav">
+                <li class="active "><a href="#"
+                                       class="glyphicon glyphicon-shopping-cart">&nbsp我的购物车&nbsp&nbsp <span
+                        class="sr-only">(current)</span></a></li>
+
+                <li><a href="../ztx/toztxjiuxian" class="glyphicon ">&nbsp&nbsp首页&nbsp&nbsp&nbsp&nbsp</a></li>
+                <li><a href="../ztx/toztxshoucang" class="glyphicon glyphicon-grain">&nbsp&nbsp收藏夹&nbsp&nbsp&nbsp&nbsp</a></li>
+
+
+            <!-- 右边的    导航 按钮样式 -->
+            <ul class="nav navbar-nav navbar-right">
+
+                <li><a href="../xu1/history1"> &nbsp足迹</a></li>
+                <li> <span id="sp"><a href="../lxx/LoginUser">&nbsp&nbsp &nbsp登录</a></span></li>                <li><a href="../lxx/Register">&nbsp免费注册 </a></li>
+                <li><a href="../lxx/zhuxiao">&nbsp注销</a></li>
+            </ul>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<br><br><br>
+
+<!--提示-->
+<div  id="divcss5" class="alert alert-warning" style="width: 600px;height: 30px">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>温馨提示：</strong> 本店均为正品，请放心购买，祝您购物愉快.
+</div>
+<br>
+
+
+
+<div  id="divcss5"  style="width: 1000px;">
+    <div>
+        <ul class="nav navbar-nav navbar-left">
+
+                <img alt="" src="../upload/xo.jpg" style="width:150px;height: 80px"/>
+
+
+            <br><br>
+            <h3><font color=#FF3333><i>我的购物车</i></font></h3>
+        </ul>
+    </div>
+
+
+
+    <!--数据展示-->
+
+            <div  id="data" style="margin:0 auto;border:0px solid #000;display:1 " class="alert alert-warning"></div>
+
+<br>
+    <div class="alert alert-info">
+
+    <table>
+        <tr>
+            <td>&nbsp&nbsp&nbsp&nbsp已选商品</td>
+            <td><span id="yixuan"><h4><font  color='red'>0</font></h4></span></td>
+            <td>件</td>
+            <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp总计（不含运费）:</td>
+            <td><span id="spsum"><h3><font  color='red'>￥0</font></h3></span> </td>
+            <td>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button class="btn btn-danger btn-lg" onclick="jieshan()">结算</button></td>
+        </tr>
+        <input type="hidden" id="spsum1">
+    </table>
+    </div>
+
+<br><br><br><br><br>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="carousel slide" id="carousel-903621">
+                <ol class="carousel-indicators">
+                    <li class="active" data-slide-to="0" data-target="#carousel-903621">
+                    </li>
+                    <li data-slide-to="1" data-target="#carousel-903621">
+                    </li>
+                    <li data-slide-to="2" data-target="#carousel-903621">
+                    </li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <a href="../ztx/toztxjiuxian">
+                        <img alt="" src="../upload/xo.jpg" style="width:1000px;height: 400px"/>
+                        </a>
+                        <div class="carousel-caption">
+                            <h4>运动</h4>
+                            <p> 生命在于 运动，运动在于 行动，你的好酒正在 流动</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <a href="../ztx/toztxjiuxian">
+                        <img alt="" src="../upload/xo3.jpg" style="width:1000px;height: 400px"/>
+                        </a>
+                        <div class="carousel-caption">
+                            <h4>生活</h4>
+                            <p> 生活 苦辣酸甜各有味道，细细品尝 烈酒的味道</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <a href="../ztx/toztxjiuxian">
+                            <img alt="" src="../upload/xo2.jpg"  style="width:1000px;height: 400px"/>
+                        </a>
+                        <div class="carousel-caption">
+                            <h4>美酒</h4>
+                            <p>这路还长，酒让我陪你慢慢走吧</p>
+                        </div>
+                    </div>
+                </div> <a data-slide="prev" href="#carousel-903621" class="left carousel-control">‹</a> <a data-slide="next" href="#carousel-903621" class="right carousel-control">›</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <br><br><br>
+    <!--页脚-->
+    <div class="footerBotBox">
+        <div class="footerBot clearfix">
+            <div class="footerBotLeft">
+                <p class="footerInfo">
+                    <a href="#" target="_blank" rel="nofollow">公司简介<i></i></a> <a href="#" target="_blank" rel="nofollow">管理团队<i></i></a>
+                    <a href="#" target="_blank" rel="nofollow">媒体报道<i></i></a> <a href="#" target="_blank" rel="nofollow">联系我们<i></i></a>
+                    <a href="#" target="_blank">网站地图<i></i></a> <a href="#" target="_blank">品牌大全<i></i></a>
+                </p>
+                <p class="copyright">
+                    北京酒圣网络科技有限公司&nbsp;&nbsp;©&nbsp;&nbsp;酒圣网&nbsp;&nbsp;&nbsp;2011&nbsp;&nbsp;jiuxian.com&nbsp;&nbsp;All&nbsp;&nbsp;&nbsp;Rights&nbsp;Reserved&nbsp;&nbsp;&nbsp;<a href="javascript:;" target="_blank" rel="nofollow">京ICP备17043395号</a>&nbsp;&nbsp;&nbsp;京公网安备1101050188221
+                </p>
+                <p class="footerAddr" style="color: #999; line-height: 22px; padding-top: 5px;">
+                    <span>统一社会信用代码&nbsp;&nbsp;91110302306646672B&nbsp;&nbsp;&nbsp;食品流通许可证编号&nbsp;&nbsp;JY11131010328793&nbsp;&nbsp;&nbsp;京食药网食备201910019&nbsp;&nbsp;&nbsp;</span>
+                </p>
+                <p class="footerAddr" style="color: #999; line-height: 22px; padding-bottom: 7px;">
+                    <span>地址：北京市北京经济技术开发区经海五路58号院8幢4层</span>
+                </p>
+                <p class="copybot">
+                    <span id="kx_verify" style="float: left; padding-right: 6px;"></span>
+                    <script type="text/javascript">
+                        (function() {
+                            var _kxs = document.createElement('script');
+                            _kxs.id = 'kx_script';
+                            _kxs.async = true;
+                            _kxs.setAttribute('cid', 'kx_verify');
+                            _kxs.src = ('https:' == document.location.protocol
+                                ? 'https://ss.knet.cn' : 'http://rr.knet.cn')
+                                + '/static/js/icon3.js?sn=2011040600100007749&tp=icon3';
+                            _kxs.setAttribute('size', 0);
+                            var _kx = document.getElementById('kx_verify');
+                            _kx.parentNode.insertBefore(_kxs, _kx);
+                        })();
+                    </script>
+
+                </p>
+                <p class="footerPro" style="padding: 8px 0 6px;">购买前请确认达到法定饮酒年龄！酒仙网不销售任何含酒精产品给18岁以下人士！</p>
+            </div>
+        </div>
+    </div>
+
+
+<!--删除-->
+<div class="modal fade" id="myModalshan" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- 头部 -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>  <!-- X号关闭 -->
+                <h4 class="modal-title" id="myModalLabel2">提示</h4>
+            </div>
+
+            <!-- 中部   form内容设置  -->
+            <form id="formshan">
+                <div class="modal-body">
+                  确定要删除该商品吗？
+                </div>
+                 <input type="hidden" id="shanid" >
+                <!-- 尾部 （按扭）-->
+                <div class="modal-footer">
+                    <button type="button" onclick="shanqueding()" class="btn btn-ok"> 确定 </button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div>
+
+</div>
+
+
+
+</body>
+
+<script>
+
+    //查询    数据展示
+    $(function () {
+        //创建bootstrapTable
+        $("#data").bootstrapTable({
+            url: "../xu1/listshopping",
+            method : 'post',
+
+            // striped : false, // 斑马线效果     默认false
+            //classes:'info',
+            border:'0px solid transparent',
+            //cardView : false, //是否显示详细视图
+            // showRefresh : true, //是否显示刷新按钮
+            // toolbar : '#tabToolBar', //  工具定义位置
+            sidePagination : 'server',
+            // toolbar : '#toolbar',
+            /*点击复选框行触发事件
+            onClickRow : function(row, tr,flied){
+                sum();
+             },*/
+
+            //点击全选框时触发的操作
+            onCheckAll:function(){
+                sum11();
+            },
+            //点击全选框取消选择时触发
+            onUncheckAll:function(){
+                sum11();
+            },
+
+            //点击单选框时触发的操作
+            onCheck:function(){
+                sum11();
+            },
+            //点击取消单选框时触发的操作
+            onUncheck:function(){
+                sum11();
+            },
+
+            columns : [
+                { field : 'checkbox',checkbox : true
+
+                }, //开启复选框
+                {field : 'xx', title : '商品信息', width : 800,height:500,
+                    formatter:function(value,row,index){
+                        var a="<img src='"+row.productphoto+"' width='80' height='80'>";
+                        a+="<a href='javascript:xiangqing("+row.productid+")'>  "+row.productname+"   </a>";
+                        a+="<a href='javascript:xiangqing("+row.productid+")'>    "+row.winejhl+"ml    "+row.winedushu+"°</a>";
+                        return a;
+                    }
+                },
+
+                { field : 'productprice', title : '单价', width : 200,height:500,
+                    formatter:function(value,row,index){
+                        return "￥"+value;
+                    }
+                },
+                { field : 'x', title : '数量', width : 350 ,height:500,
+                    formatter:function(value,row,index){
+                        var tr="<button type='button' class=\"btn btn-info\" onclick='jian("+row.productid+","+row.productprice+")'>-</button>"
+                        tr +="<input id='co"+row.productid+"' onkeyup='kuang("+row.productid+","+row.productprice+")' size=1 value='"+row.productcount+"' style='width: 20px'>"
+                        tr +="<button type='button' class=\"btn btn-info\" onclick='jia("+row.productid+","+row.productprice+")'>+</button> <br>"
+                        tr +="<input type='hidden' id='ku"+row.productid+"' size=1 value='"+row.productkucun+"'><span id='kusp"+row.productid+"'></span>";
+
+                        return tr;
+                    }
+                },
+                { field : 'xxx', title : '金额', width : 200,height:500,
+                    formatter:function(value,row,index){
+                        var  a="<font  color='red'>￥</font>";
+                        a+= "<span id='sum"+row.productid+"'  >"+row.productprice * row.productcount+"</span>";  //隐藏的每行总额
+                        return  a;
+                    }
+                },
+                { field : 'x', title : '操作', width : 300,height:500,
+                    formatter:function(value,row,index){
+                        var productname=JSON.stringify(row.productname);
+                       var productphoto=JSON.stringify(row.productphoto);
+                        var  a="<a href='javascript:shanchu("+row.productid+")' >删除  </a> <br>";
+                        a+="<a href='javascript:shoucang("+row.productid+","+productname+","+row.productprice+","+productphoto+")' >移入我的收藏</a><br>";
+                        return  a;
+                    }
+                }
+            ]
+        });
+    })
+
+    //详情
+    xiangqing=function(productid){
+        location.href="../ztx/queryone?productid="+productid;
+
+    }
+
+    //删除
+    shanchu=function(id){
+        $("#shanid").val(id);
+        $("#myModalshan").modal('show');
+    }
+    shanqueding=function(){
+     var id=  $("#shanid").val();
+        $.ajax({
+            url:"../xu1/deleteshopping",
+            data:{id:id},
+            type:"post",
+            success:function(){
+                $("#myModalshan").modal('hide');
+                $("#formshan")[0].reset();
+                $("#data").bootstrapTable("refresh");
+            }
+        })
+    }
+
+
+//价格和
+    sum11=function(){
+        var arr = $('#data').bootstrapTable("getSelections");//获取选中的行
+        console.log(arr);
+        var money =0;
+        var y=0;
+
+        for (var i = 0; i < arr.length; i++) {
+            sums =$("#sum"+arr[i].productid).html();
+            money +=Number(sums);
+            y++;
+        }
+          $("#yixuan").html("<h4><font  color='red'>"+y+"</font></h4>");
+          $("#spsum").html("<h3><font  color='red'>￥"+money+"</font></h3>");
+         $("#spsum1").val(money);
+    }
+
+
+
+    //加 价格
+    jia=function(id,price){
+        var count=Number($("#co"+id).val()); //数量	  //Number 要转为Number格式才行
+        var kucun=Number($("#ku"+id).val()); //库存
+       if(count >= kucun){
+
+           $("#co"+id).val(kucun);
+           $("#kusp"+id).html("<font color='red' >最多只能购买"+kucun+"件</font>");
+        }else{
+
+           $("#co"+id).val(count+1);
+           $("#kusp"+id).html("");
+       }
+
+
+        //每行总额
+        var sum= price*$("#co"+id).val();
+        $("#sum"+id).html(sum);
+        sum11();
+    }
+
+    //减 价格
+    jian=function(id,vprice){
+        $("#kusp"+id).html("");  //最多购买提示设空
+
+        var count=$("#co"+id).val()<=1?1:$("#co"+id).val()-1;
+        $("#co"+id).val(count);
+        //每行总额
+        var sum= vprice*$("#co"+id).val();
+       $("#sum"+id).html(sum);
+        sum11();
+    }
+
+    //文本框
+    kuang=function(id,vprice){
+        var count=Number($("#co"+id).val()); //数量	  //Number 要转为Number格式才行
+        var kucun=Number($("#ku"+id).val()); //库存
+        if(count > kucun){
+            $("#co"+id).val(kucun);
+            $("#kusp"+id).html("<font color='red' >最多只能购买"+kucun+"件</font>");
+        }else  if(count <= 0){
+            $("#co"+id).val(1);
+        }
+        else{
+            $("#co"+id).val(count);
+            $("#kusp"+id).html("");
+        }
+
+        //每行总额
+        var sum= vprice*$("#co"+id).val();
+        $("#sum"+id).html(sum);
+        sum11();
+
+    }
+
+    //结算
+    jieshan=function(){
+        var arr = $('#data').bootstrapTable("getSelections");//获取选中的行
+        console.log(arr);
+        if (arr.length <= 0) {
+            alert("请选择的要购买的商品");
+            return ;
+        }
+        var productid ="";
+        var count="";
+        var productprice="";
+        for (var i = 0; i < arr.length; i++) {
+            productid +=arr[i].productid +",";
+
+            count +=$("#co"+arr[i].productid).val()+",";
+            productprice +=arr[i].productprice +",";
+        }
+        productid = productid.substring(0, productid.length - 1);
+        count = count.substring(0, count.length - 1);
+        productprice = productprice.substring(0, productprice.length - 1);
+
+        $.ajax({
+            url:"../xu1/updatecount",
+            data:{productid:productid,count:count,productprice:productprice},
+            type:"post",
+            success:function(data){
+                if(data == 1){
+                    location.href="../ysqthree/tiao3?ids="+productid;
+                }else if(data == 2){
+
+                }
+            }
+        })
+    }
+
+    //移入收藏
+    shoucang=function(productid,productname,productprice,productphoto){
+        $.ajax({
+            url:"../xu1/addshoucang",
+            data:{productid:productid,productname:productname,productprice:productprice,productphoto:productphoto},
+            success:function () {
+                $("#data").bootstrapTable("refresh");
+            }
+        })
+    }
+
+    //欢迎登陆
+    $.ajax({
+        url:"../lxx/user1",
+        success:function(data){
+            if(data !=null && data !=''){
+                $("#sp").html("<font color='red'>欢迎"+data+"</font>");
+
+            }
+        }
+    })
+
+/*
+  $(function() {
+      alert(125);
+     // var arr = $('#data').bootstrapTable("getSelections");//获取选中的行
+      //console.log(arr);
+    //  alert(arr[i].productprice);
+
+      if(arr ==null || arr =="" ){
+          alert(12);
+      document.getElementById("data").style.display = "none"; //隐藏
+
+  }
+
+  })
+*/
+</script>
+</html>

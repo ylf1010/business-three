@@ -1,0 +1,8 @@
+#austglcmp{
+	background:url("icon.png") no-repeat scroll center 1px; 
+	cursor:pointer;
+}
+.b2r #austglcmp{ 
+	background:url("icon_small.png") no-repeat scroll center 1px;
+	cursor:pointer;
+}

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.ZtxShengMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.ZtxSheng" >
+    <id column="orignid" property="orignid" jdbcType="INTEGER" />
+    <result column="orignname" property="orignname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    orignid, orignname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ly_orignsheng
+    where orignid = #{orignid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ly_orignsheng
+    where orignid = #{orignid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jk.model.ZtxSheng" >
+    insert into ly_orignsheng (orignid, orignname)
+    values (#{orignid,jdbcType=INTEGER}, #{orignname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jk.model.ZtxSheng" >
+    insert into ly_orignsheng
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orignid != null" >
+        orignid,
+      </if>
+      <if test="orignname != null" >
+        orignname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orignid != null" >
+        #{orignid,jdbcType=INTEGER},
+      </if>
+      <if test="orignname != null" >
+        #{orignname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jk.model.ZtxSheng" >
+    update ly_orignsheng
+    <set >
+      <if test="orignname != null" >
+        orignname = #{orignname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where orignid = #{orignid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jk.model.ZtxSheng" >
+    update ly_orignsheng
+    set orignname = #{orignname,jdbcType=VARCHAR}
+    where orignid = #{orignid,jdbcType=INTEGER}
+  </update>
+</mapper>

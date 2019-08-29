@@ -1,0 +1,40 @@
+<script type="text/javascript">
+$(document).ready(function(e) {
+    var winHeight = $(window).height();
+	$(".mainBox .leftNav").css({"height":winHeight-120});
+	$(window).bind("resize",function(){
+		var reHeight = $(window).height();
+		$(".mainBox .leftNav").css({"height":reHeight-120});	
+	});
+	
+	$(".errorPage .returnBtn").click(function(e) {
+        window.location.href = "http://shop.jiuxian.com";
+    });
+	
+	
+	var time = 5;
+	function timeLast(){
+		time--;
+		if(time>0){
+			$(".errorPage .timeLast").text(time);			
+		}else if(time==0){
+			window.location.href = "http://shop.jiuxian.com";
+		}
+	}
+	
+	setInterval(function(){timeLast()},1000)
+});
+
+
+</script>
+
+    <div class="mainBox clearfix">
+    	<div class="errorPage">
+       		<p class="errorTip">页面出错, <span class="timeLast">5</span> 秒后跳回商家后台</p>
+            <p class="returnTip clearfix"><a class="returnBtn" href="javascript:;">返回商家后台</a><span>您已经出现越权操作，请第一时间联系管理员</span></p>
+            <p class="otherTip">世界这么大，醉了都说好</p>
+        	<img class="errorImg" width="570" height="562" src="http://misc.jiuxian.com/images/shop/error.jpg" />	
+        </div>
+
+    </div>
+	

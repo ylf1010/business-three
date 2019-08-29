@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.Xu1Dao" >
+
+    <!--历史记录商品-->
+    <select id="history"  resultType="com.jk.model.Product"  parameterType="String">
+            select * from ly_product  where  productid  in
+            <foreach collection="array" open="(" close=")" item="id" separator=",">
+                #{id}
+            </foreach>
+        </select>
+
+    <!--个人优惠劵-->
+       <select id="YouHiuJuanCha"  resultType="com.jk.model.Youhiu_xu" parameterType="String">
+           select a.*,b.productphoto from xu_youhiu a,ly_product b
+            where  a.shangpinid=b.productid and enddate >= now() and yhid  in
+           <foreach collection="array" open="(" close=")" item="id" separator=",">
+               #{id}
+           </foreach>
+       </select>
+
+</mapper>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.ClassifyMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.Classify" >
+    <id column="flid" property="flid" jdbcType="INTEGER" />
+    <result column="flphoto" property="flphoto" jdbcType="VARCHAR" />
+    <result column="flname" property="flname" jdbcType="VARCHAR" />
+    <result column="productnumber" property="productnumber" jdbcType="INTEGER" />
+    <result column="fltime" property="fltime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    flid, flphoto, flname, productnumber, fltime
+  </sql>
+
+  <select id="showClassify" resultMap="BaseResultMap">
+   select * from  ly_classify where 1=1
+  <if test="flname !=null and flname !=''">
+    and  flname  like '%${flname}%'
+  </if>
+  </select>
+  <insert id="addClassify">
+    insert into ly_classify (flphoto, flname,
+                             productnumber, fltime)
+    values (#{flphoto,jdbcType=VARCHAR}, #{flname,jdbcType=VARCHAR},
+            #{productnumber,jdbcType=INTEGER}, #{fltime,jdbcType=DATE})
+
+  </insert>
+  <delete id="delClassify">
+    delete from  ly_classify where flid in (${flids})
+  </delete>
+  <select id="xgClassifypage" resultMap="BaseResultMap">
+     select  * from  ly_classify  where   flid=#{flid}
+  </select>
+
+
+
+
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ly_classify
+    where flid = #{flid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ly_classify
+    where flid = #{flid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jk.model.Classify" >
+    insert into ly_classify (flid, flphoto, flname, 
+      productnumber, fltime)
+    values (#{flid,jdbcType=INTEGER}, #{flphoto,jdbcType=VARCHAR}, #{flname,jdbcType=VARCHAR}, 
+      #{productnumber,jdbcType=INTEGER}, #{fltime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jk.model.Classify" >
+    insert into ly_classify
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="flid != null" >
+        flid,
+      </if>
+      <if test="flphoto != null" >
+        flphoto,
+      </if>
+      <if test="flname != null" >
+        flname,
+      </if>
+      <if test="productnumber != null" >
+        productnumber,
+      </if>
+      <if test="fltime != null" >
+        fltime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="flid != null" >
+        #{flid,jdbcType=INTEGER},
+      </if>
+      <if test="flphoto != null" >
+        #{flphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="flname != null" >
+        #{flname,jdbcType=VARCHAR},
+      </if>
+      <if test="productnumber != null" >
+        #{productnumber,jdbcType=INTEGER},
+      </if>
+      <if test="fltime != null" >
+        #{fltime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jk.model.Classify" >
+    update ly_classify
+    <set >
+      <if test="flphoto != null" >
+        flphoto = #{flphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="flname != null" >
+        flname = #{flname,jdbcType=VARCHAR},
+      </if>
+      <if test="productnumber != null" >
+        productnumber = #{productnumber,jdbcType=INTEGER},
+      </if>
+      <if test="fltime != null" >
+        fltime = #{fltime,jdbcType=DATE},
+      </if>
+    </set>
+    where flid = #{flid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jk.model.Classify" >
+    update ly_classify
+    set flphoto = #{flphoto,jdbcType=VARCHAR},
+      flname = #{flname,jdbcType=VARCHAR},
+      productnumber = #{productnumber,jdbcType=INTEGER},
+      fltime = #{fltime,jdbcType=DATE}
+    where flid = #{flid,jdbcType=INTEGER}
+  </update>
+</mapper>

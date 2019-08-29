@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>积分明细</title>
+
+    <!-- 引入jquery -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+
+    <!-- 引入 css  -->
+    <!-- 引入bootstrap的css -->
+    <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-treeview的css -->
+    <link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-addTabs的css -->
+    <link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
+    <!-- 引入bootstrap-table的css -->
+    <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
+    <!-- 引入fileinput的css -->
+    <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
+
+    <!-- 引入 js  -->
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/treeview/bootstrap-treeview.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/addTabs/addTabs.js"></script>
+    <!-- 引入bootstrap-table的js-->
+    <script type="text/javascript" src="../js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- 引入bootbox.js -->
+    <script type="text/javascript" src="../js/bootbox/bootbox.js"></script>
+    <!-- 引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/fileinput.min.js"></script>
+    <!--  引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
+    <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+
+</head>
+<body>
+
+<select id="stajifen" onblur="sousuo()">
+    <option value="0">全部类型</option>
+    <option value="1">积分消耗</option>
+    <option value="2">积分发放</option>
+</select>
+
+<button type="button" class="btn btn-success" onclick="jifenshezhi()">积分设置</button>
+
+<!-- table 数据展示  -->
+<table id="data" ></table>
+
+</body>
+<script>
+    //查询    数据展示
+    $(function () {
+        //创建bootstrapTable
+        $("#data").bootstrapTable({
+            url: "../xu/uJiFenCha",
+            method : 'post',
+            striped : true, // 斑马线效果     默认false
+            //只允许选中一行
+            //singleSelect : true,
+            //选中行是不选中复选框或者单选按钮
+            clickToSelect : true,
+          //  showToggle : true, //是否显示详细视图和列表视图的切换按钮
+            cardView : false, //是否显示详细视图 为true时显示详细视图
+            uniqueId : "id", //每一行的唯一标识，一般为主键列
+          //  showColumns : true, //是否显示所有的列
+          //  showRefresh : true, //是否显示刷新按钮
+            minimumCountColumns : 2, //  最少留两列
+            detailView : false, //是否显示父子表
+            toolbar : '#tabToolBar', //  工具定义位置
+            sidePagination : 'server',
+            toolbar : '#toolbar',
+            pagination : true, //是否展示分页
+            pageList : [ 2,4, 8, 10 ],//分页组件
+            pageNumber : 1,
+
+            pageSize : 2,//默认每页条数
+            //启动回车键做搜索功能
+            searchOnEnterKey : true,
+            //设置为false 将禁止所有列的排序。
+            sortable : true,
+            //设置默认排序为 name
+            sortName : 'id',
+            //定义排序方式，'asc' 或者 'desc'。
+            sortOrder : "desc",
+            //设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
+            // 设置为limit可以获取limit, offset, search, sort, order  queryParamsType:'undefined',
+            queryParamsType : 'undefined',
+            // 请求服务器数据
+            queryParams : function queryParams(params) {
+                var param = {
+                    pageNumber : params.pageNumber,
+                    pageSize : params.pageSize,
+                    sortName : params.sortName,
+                    sortOrder : params.sortOrder,
+                    stajifen:params.stajifen,
+                };
+                return param;
+            },
+            columns : [
+                //  {field : 'keid', title : '编号', width : 300},
+                {field : 'nickname', title : '客户', width : 300,
+                    formatter:function(value,row,index){
+                        return "<font  color='red'>"+value+"</font>";  //value;
+                    }
+                },
+                { field : 'jftype', title : '积分类型',width : 300,
+                    formatter:function(value,row,index){
+                        if(value==1){
+                            return "积分消耗";
+                        }
+                        if(value==2){
+                            return "积分发放";
+                        }
+
+                    }
+                },
+                { field : 'czdate', title : '操作时间', width : 300 },
+                { field : 'activity', title : '积分活动', width : 300 },
+                { field : 'glname', title : '操作人', width : 300},
+                { field : 'cause', title : '操作原因', width : 300 },
+                { field : 'jifen', title : '积分明细', width : 300,
+                    formatter:function(value,row,index){
+                        if(row.jftype==1){
+                            return "<font  color='red'>-"+value+"</font>";
+                        }
+                        if(row.jftype==2){
+                            return "<font  color='#990099'>+"+value+"</font>";
+                        }
+
+                    }
+                }
+            ]
+        });
+    })
+
+    //条件查询     使用parameUtil工具类
+    function sousuo() {
+        $("#data").bootstrapTable("refresh", {
+            "query":{
+                "stajifen" : $("#stajifen").val(),
+            }
+        });
+    }
+
+</script>
+</html>

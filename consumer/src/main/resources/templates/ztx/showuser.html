@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="<%=basePath%>">
+    <title>标题</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="This is my page">
+    <!-- 引入jquery -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <!-- 引入bootstrap的css -->
+    <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-treeview的css -->
+    <link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-addTabs的css -->
+    <link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
+    <!-- 引入bootstrap-table的css -->
+    <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
+    <!-- 引入fileinput的css -->
+    <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
+    <!-- 引入my97 -->
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/treeview/bootstrap-treeview.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/addTabs/addTabs.js"></script>
+    <!-- 引入bootstrap-table的js-->
+    <script type="text/javascript" src="../js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- 引入bootbox.js -->
+    <script type="text/javascript" src="../js/bootbox/bootbox.js"></script>
+    <!-- 引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/fileinput.min.js"></script>
+    <!--  引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
+    <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+
+</head>
+<body >
+
+<form id="pro_from" class="form-inline">
+    <div id="leagid"></div>
+    用户名：<input type="text" class="form-control" name="username" >
+    <button type="button" class="btn btn-success" onclick="querytj()">查询</button>
+</form>
+
+<button type="button" class="btn btn-Warning " onclick="adduser()">新增员工</button>
+<button type="button" class="btn btn-Warning " onclick="deleteuser()">批量删除</button>
+
+<!--  表格 -->
+<table id="dataGrid3" ></table>
+
+<!--修改 权限 -->
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- 头部 -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>  <!-- X号关闭 -->
+                <h4 class="modal-title" id="myModalLabel">菜单信息</h4>
+            </div>
+            <!-- 中部   form内容设置  -->
+            <div  id="yonghu">
+            </div>
+            <!-- 尾部 （按扭）-->
+            <div class="modal-footer">
+                <button type="button" onclick="tijiao()" class="btn btn-primary"> 提交更改</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div>
+
+
+
+</body>
+
+<script type="text/javascript">
+
+    $(function(){
+        queryData();
+        showleag();
+    });
+
+    function showleag(){
+        $.ajax({
+            url:"../ztx/querytype",
+            type:"post",
+            success:function(data){
+                var thtml='';
+                for (var i = 0; i < data.length; i++) {
+                    thtml+='<input type="checkbox" value="'+data[i].roleid+'" name="role">'+data[i].rolename+''
+                }
+                $("#leagid").html(thtml);
+            },
+            error:function(){
+                alert("后台错误，请使用debug调试");
+            }
+        })
+    }
+
+
+
+
+    function queryData(){
+        //创建bootstrapTable
+        $("#dataGrid3").bootstrapTable({
+            url: "../ztx/queryuser",
+            method: 'post',
+            striped: true,  					 // 斑马线效果     默认false
+            singleSelect: false,				 //只允许选中一行
+            clickToSelect: true,				 //选中行是不选中复选框或者单选按钮
+            showToggle: true,                   //是否显示详细视图和列表视图的切换按钮
+            cardView: false,                    //是否显示详细视图
+            uniqueId: "id",                 	 //每一行的唯一标识，一般为主键列
+            showColumns: true,                  //是否显示所有的列
+            showRefresh: true,                  //是否显示刷新按钮
+            minimumCountColumns: 2,     		 //  最少留两列
+            detailView: false,                  //是否显示父子表
+            toolbar: '#tabToolBar',   			 //  工具定义位置
+            sidePagination: 'server',
+            toolbar: '#toolbar',
+            pagination: true, 					 //是否展示分页
+            pageList: [2,4,6,8,10],			 //分页组件
+            pageNumber: 1,
+            pageSize: 4,						 //默认每页条数
+            searchOnEnterKey: true,			 //启动回车键做搜索功能
+            sortable: true,					 //设置为false 将禁止所有列的排序。
+            //sortName: 'eventid',					 //设置默认排序为 name,直接对应数据库的字段
+            //sortOrder: "desc",					 //定义排序方式，'asc' 或者 'desc'。
+            //设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
+            // 设置为limit可以获取limit, offset, search, sort, order
+            queryParamsType: 'undefined',
+            queryParams: function queryParams(params) { // 请求服务器数据
+                var param = {
+                    pageNumber: params.pageNumber,
+                    pageSize: params.pageSize,
+                };
+                return param;
+            },
+            columns:[
+                [
+                {field:'cz', checkbox: true},  //开启复选框
+                {field:'id',title:'用户id',width:$(this).width() * 0.2},
+                {field:'username',title:'用户名称',width:$(this).width() * 0.2},
+                {field:'baccount',title:'昵称',width:$(this).width() * 0.2},
+                {field:'phone',title:'手机号',width:$(this).width() * 0.2},
+                {field:'email',title:'邮箱',width:$(this).width() * 0.2},
+                {field:'rolename',title:'角色',width:$(this).width() * 0.2},
+                {field:'balanceid',title:'余额',width:$(this).width() * 0.2},
+                {field:'usercraetetime',title:'创建日期',width:$(this).width() * 0.2},
+                {field:'status',title:'状态',width:$(this).width() * 0.2,formatter: function(value,row,index){
+                    if(value==1){
+                        return "正常";
+                    }else{
+                        return "禁用";
+                    }
+                }},
+                {field:'cz',title:'操作',width:$(this).width() * 0.2,formatter: function(value,row,index){
+                        var a= '<button type="button" class="btn btn-Warning " onclick="editqx('+row.id+')">绑定角色</button>' +
+                            '<button type="button" class="btn btn-Warning " onclick="upduser('+row.id+')">编辑</button>'
+                        if(row.status==1){
+                            a+='<button type="button" class="btn btn-Warning " onclick="updatestatus('+row.id+','+2+')">禁用</button>'
+                        }else{
+                            a+='<button type="button" class="btn btn-Warning " onclick="updatestatus('+row.id+','+1+')">启用</button>'
+                        }
+                        return a;
+                }},
+            ]
+            ],
+        });
+    }
+
+    function updatestatus(id,state){
+        $.ajax({
+            url:"../ztx/updatestatus?id="+id+"&status="+state,
+            type:"post",
+            success:function (){
+                    $('#dataGrid3').bootstrapTable("refresh");
+            },
+            error:function (){
+                alert("后台错误，请使用debug调试");
+            }
+        });
+    }
+
+    //==================================================条件查询==========================================
+    function querytj(){
+        var arr=document.getElementsByName("role");
+        var idss="";
+        for(var i=0;i<arr.length;i++){
+            if(arr[i].checked){
+                idss+=","+arr[i].value;
+            }
+        }idss=idss.substr(1);
+        $("#dataGrid3").bootstrapTable("refresh", {
+            "query": {
+                "username": $('[name="username"]').val(),
+                "idss": idss,
+            }
+        });
+    }
+
+    //==================================================弹框=================================
+    var res;
+    function createAddContent(url) {
+        $.ajax({
+            url: url,
+            async: false,
+            success: function (data) {
+                res = data;
+            }
+        });
+        return res;
+    }
+    //============================================新增====================================
+    function adduser(){
+        //打开新增弹框
+        bootbox.dialog({
+            title: '新增用户',
+            message: createAddContent("../ztx/toadduser"),
+            closeButton: true,//是否显示关闭按钮
+            buttons: {
+                "success": {
+                    "label": "<i class='icon-ok'></i> 保存",
+                    "className": "btn-sm btn-success",
+                    "callback": function () {
+                        $.ajax({
+                            url: '../ztx/adduser',
+                            type: 'post',
+                            data: $("#addFormId").serialize(),
+                            success: function (flag) {
+                                    alert("新增成功");
+                                    $('#dataGrid3').bootstrapTable("refresh");
+                            }, error: function () {
+                                alert("新增失败");
+                            }
+                        });
+                    }
+                },
+                "cancel": {
+                    "label": "<i class='icon-info'></i> 取消",
+                    "className": "btn-sm btn-danger",
+                    "callback": function () {
+                    }
+                }
+            }
+        });
+    }
+    //============================================新增====================================
+    var roles;
+    function editrole(id){
+        roles=id;
+        $.ajax({
+            url: "../ztx/editrole?id="+id,
+            type: "post",
+            //  dataType: "json",
+            success: function (data) {
+                $("#myModal3").modal("show");
+                //查询成功回调，tree展示
+                $("#yonghu").treeview({
+                    //data属性 树节点信息 json数组
+                    data: data,
+                    //是否显示复选框
+                    showCheckbox : true,
+                    checked:true,
+                })
+            },
+            error:function(){
+                alert(555);
+            }
+        })
+    }
+
+    function  tijiao(){
+        var ids=caidanid();
+        $.ajax({
+            url:"../ztx/updaterole",
+            type:"post",
+            data:{ids:ids,id:roles},
+            success:function(){
+                $('#myModal3').modal('hide'); //成功后关闭弹框
+                $('#dataGrid3').bootstrapTable("refresh");
+            }
+        })
+    }
+
+    //获取选中id
+    function caidanid(){
+        var id=  $("#yonghu").treeview("getChecked") //获取所选中的id
+        var ids="";
+        for (var i = 0; i < id.length; i++) {
+            ids +="," + id[i].roleid;
+        }
+        var ids=ids.substr(1);
+        return  ids;  //调用此方法时返回获得id
+    }
+
+    function deleteuser(){
+        var arr = $('#dataGrid3').bootstrapTable('getSelections');
+        var ids="";
+        for(var i = 0;i<arr.length;i++){
+            ids+=","+arr[i].id;
+        }
+        ids=ids.substr(1);
+        if(ids==""){
+            alert('请选择要删除的数据！');
+        }else{
+            $.ajax({
+                url:"../ztx/deleteuser?ids="+ids,
+                type:"post",
+                success:function (){
+                    $('#dataGrid3').bootstrapTable("refresh");
+                    alert("删除成功");
+                },
+                error:function (){
+                    alert("后台错误，请使用debug调试");
+                }
+            });
+        }
+    }
+
+    function editqx(id){
+        bootbox.dialog({
+            title: '绑定角色',
+            message: createAddContent("../ztx/hxrole?id="+id),
+            closeButton: true,//是否显示关闭按钮
+            buttons: {
+                "success": {
+                    "label": "<i class='icon-ok'></i> 保存",
+                    "className": "btn-sm btn-success",
+                    "callback": function () {
+                        var ids=$("[name='role']:checked").val()
+                        $.ajax({
+                            url:"../ztx/updatero",
+                            type:"post",
+                            data:{"id":$("#uid").val(),"ids":ids},
+                            success:function(){
+                                $('#myModal3').modal('hide'); //成功后关闭弹框
+                                $('#dataGrid3').bootstrapTable("refresh");
+                            }
+                        })
+                    }
+                },
+                "cancel": {
+                    "label": "<i class='icon-info'></i> 取消",
+                    "className": "btn-sm btn-danger",
+                    "callback": function () {
+                    }
+                }
+            }
+        });
+    }
+
+    //============================================回显====================================
+    function upduser(id){
+        //打开新增弹框
+        bootbox.dialog({
+            title: '用户详细信息',
+            message: createAddContent("../ztx/upduser?id="+id),
+            closeButton: true,//是否显示关闭按钮
+            buttons: {
+                "success": {
+                    "label": "<i class='icon-ok'></i> 修改",
+                    "className": "btn-sm btn-success",
+                    "callback": function () {
+                        $.ajax({
+                            url: '../ztx/updateuser',
+                            type: 'post',
+                            data: $("#addFormId").serialize(),
+                            success: function (flag) {
+                                alert("修改成功");
+                                $('#dataGrid3').bootstrapTable("refresh");
+                            }, error: function () {
+                                alert("修改失败");
+                            }
+                        });
+                    }
+                },
+                "cancel": {
+                    "label": "<i class='icon-info'></i> 取消",
+                    "className": "btn-sm btn-danger",
+                    "callback": function () {
+                    }
+                }
+            }
+        });
+    }
+</script>
+</html>

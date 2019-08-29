@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>客户列表</title>
+
+    <!-- 引入jquery -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+
+    <!-- 引入 css  -->
+    <!-- 引入bootstrap的css -->
+    <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-treeview的css -->
+    <link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-addTabs的css -->
+    <link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
+    <!-- 引入bootstrap-table的css -->
+    <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
+    <!-- 引入fileinput的css -->
+    <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
+
+    <!-- 引入 js  -->
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/treeview/bootstrap-treeview.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/addTabs/addTabs.js"></script>
+    <!-- 引入bootstrap-table的js-->
+    <script type="text/javascript" src="../js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- 引入bootbox.js -->
+    <script type="text/javascript" src="../js/bootbox/bootbox.js"></script>
+    <!-- 引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/fileinput.min.js"></script>
+    <!--  引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
+    <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+
+</head>
+<body>
+
+<!-- 条件查询  -->
+<br>
+<form id="tjfrom" class="form-inline">
+    <div class="form-group">
+        <label>客户身份:</label>
+        <select id="hiuyuan" class="form-control">
+            <option value="5">全部</option>
+            <option value="1">会员</option>
+            <option value="0">非会员</option>
+        </select>
+
+        <label>积分:</label>
+        <input type="text" class="form-control" id="stajifen" placeholder="min">~
+        <input type="text" class="form-control" id="endjifen" placeholder="max">
+
+
+        <input type="text" class="form-control"  id="name" placeholder="输入昵称或手机号">
+    </div>
+    <button type="button" class="btn btn-success" onclick="sousuo()">搜索</button>
+    <button type="reset" class="btn btn-info">重置</button>
+
+
+</form>
+
+<br>
+<div class="form-group">
+    <button class="btn btn-info" data-toggle="modal" data-target="#myModal1">+新建分组</button>
+<select id="select1" class="form-control" onblur="sousuo()" style="width: 180px">
+         <option value="1">查全部客户</option>
+    </select>
+</div>
+
+<br>
+    <button type="button" class="btn btn-warning" onclick="yidongzu(1)">移出分组</button>
+    <select id="select2" class="form-control" onblur="yidongzu(this.value)" style="width: 180px"> </select>
+
+
+<br>
+<!-- 按扭  -->
+<div >
+    <button class="btn btn-danger btn-sm" onclick="delete1()">批量删除</button>
+
+<!-- table 数据展示  -->
+<table id="data" ></table>
+
+</div>
+
+   <!--新建分组添加框-->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- 头部 -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>  <!-- X号关闭 -->
+                <h4 class="modal-title" id="myModalLabel">新建分组</h4>
+            </div>
+
+            <!-- 中部   form内容设置  -->
+            <form id="form1">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">分组名称</label>
+                        <input  name="zuname" class="form-control"/>
+                    </div>
+
+                </div>
+
+                <!-- 尾部 （按扭）-->
+                <div class="modal-footer">
+                    <button type="button" onclick="xinzu()" class="btn btn-ok"> 保存 </button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div>
+
+
+<!--标签-->
+<div class="modal fade" id="myModalbq" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- 头部 -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>  <!-- X号关闭 -->
+                <h4 class="modal-title" id="myModalLabel2">标签更改</h4>
+            </div>
+
+            <!-- 中部   form内容设置  -->
+            <form id="formbq">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">标签名称</label>
+                        <select id="biaoqian" name="bqid">
+
+                        </select>
+                    </div>
+                    <input type="hidden" id="bqkeid" name="keid">
+                </div>
+
+                <!-- 尾部 （按扭）-->
+                <div class="modal-footer">
+                    <button type="button" onclick="biaoqiangai()" class="btn btn-ok"> 确定 </button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div>
+
+</body>
+<script>
+
+    //查询    数据展示
+    $(function () {
+        //创建bootstrapTable
+        $("#data").bootstrapTable({
+            url: "../xu/xkehulist",
+            method : 'post',
+            striped : true, // 斑马线效果     默认false
+            //只允许选中一行
+            //singleSelect : true,
+            //选中行是不选中复选框或者单选按钮
+            clickToSelect : true,
+            showToggle : true, //是否显示详细视图和列表视图的切换按钮
+            cardView : false, //是否显示详细视图
+            uniqueId : "id", //每一行的唯一标识，一般为主键列
+            showColumns : true, //是否显示所有的列
+            showRefresh : true, //是否显示刷新按钮
+            minimumCountColumns : 2, //  最少留两列
+            detailView : false, //是否显示父子表
+            toolbar : '#tabToolBar', //  工具定义位置
+            sidePagination : 'server',
+            toolbar : '#toolbar',
+            pagination : true, //是否展示分页
+            pageList : [ 2,4, 8, 10 ],//分页组件
+            pageNumber : 1,
+
+            pageSize : 2,//默认每页条数
+            //启动回车键做搜索功能
+            searchOnEnterKey : true,
+            //设置为false 将禁止所有列的排序。
+            sortable : true,
+            //设置默认排序为 name
+            sortName : 'id',
+            //定义排序方式，'asc' 或者 'desc'。
+            sortOrder : "desc",
+            //设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
+            // 设置为limit可以获取limit, offset, search, sort, order  queryParamsType:'undefined',
+            queryParamsType : 'undefined',
+            // 请求服务器数据
+            queryParams : function queryParams(params) {
+                var param = {
+                    pageNumber : params.pageNumber,
+                    pageSize : params.pageSize,
+                    sortName : params.sortName,
+                    sortOrder : params.sortOrder,
+                };
+                return param;
+            },
+            columns : [
+                { field : 'checkbox',checkbox : true }, //开启复选框
+                {field : 'keid', title : '编号', width : 300},
+                {field : 'xx', title : '客户', width : 300,
+                    formatter:function(value,row,index){
+                        var a="<img src='../upload/"+row.img+"' width='20' height='20'>";
+                        a+="<a href='javascript:xiangqing("+row.keid+")'>"+row.nickname+"</a>";
+                        return a;
+                    }
+                },
+                { field : 'phone', title : '手机号',width : 300 },
+                { field : 'rank', title : '会员级别', width : 300,
+                    formatter:function(value,row,index){
+                        var  a=value;
+                        if(row.hystatus == 2){
+                            a+="<font  color='#990000'>[已停用]</font>";
+                        }
+                        return a;
+                    }
+                },
+                { field : 'jfsum', title : '积分', width : 300 },
+                { field : 'bqname', title : '标签', width : 300 ,
+                    formatter:function(value,row,index){
+                        return "<font  color='red'>"+value+"</font>";  //value;
+                    }
+                },
+                { field : 'endtime', title : '上次登录时间', width : 300 },
+                { field : 'x', title : '操作', width : 300,
+                    formatter:function(value,row,index){
+                        var  a="<a href='javascript:xiangqing("+row.keid+")' >详情  |   </a>";
+                        a+="<a href='javascript:biaoqian("+row.keid+","+row.bqid+")' >标签</a>";
+                        return  a;
+                    }
+                }
+            ]
+        });
+    })
+
+    //条件查询     使用parameUtil工具类
+    function sousuo() {
+        $("#data").bootstrapTable("refresh", {
+            "query":{
+                "name" : $("#name").val(),
+                "hiuyuan" : $("#hiuyuan").val(),
+                "stajifen" : $("#stajifen").val(),
+                "endjifen" : $("#endjifen").val(),
+                    "zuselect1" : $("#select1").val(),
+            }
+        });
+
+    }
+
+
+    //客户详情
+    xiangqing=function(keid){
+       location.href="../xu/xkehuxiangqing1?keid="+keid;
+    }
+
+    //删除  批量删除
+    function delete1() {
+        var arr = $('#data').bootstrapTable("getSelections");//获取选中的行
+        console.log(arr);
+        if (arr.length <= 0) {
+            alert("请选择要删除的信息！");
+            return ;
+        }
+        var ids = "";
+        for (var i = 0; i < arr.length; i++) {
+            ids += arr[i].keid + ",";
+        }
+
+        ids = ids.substring(0, ids.length - 1);
+        if(confirm("确定删除这"+arr.length+"条客户信息吗，删除后将无法恢复")){
+            $.ajax({
+                url: "../xu/xdelete1",
+                data: {ids: ids},
+                type: "post",
+                success: function () {
+                    alert("删除成功");
+                    $("#data").bootstrapTable("refresh");
+
+                }, error: function () {
+                    alert("失败！");
+                }
+            })
+        }
+    }
+
+
+
+    //加载下拉方法
+    $(function(){
+        xiala();
+    })
+
+    //下拉列表框  分组
+    xiala=function(){  //b=1 是新增  2是修改
+        $.ajax({
+            url:"../xu/xxiala1",
+            success:function(data){
+                //分组条查
+                var  select1=" ";
+                for (var i = 0; i < data.length; i++) {
+                    select1+="<option value='"+data[i].zuid+"'>"+data[i].zuname+"";
+                }
+                $("#select1").html(select1);
+
+                //移动改分组
+                var  select2="<option value='0'>移动分组";
+                for (var i = 0; i < data.length; i++) {
+                    select2+="<option value='"+data[i].zuid+"'>"+data[i].zuname+"";
+                }
+                $("#select2").html(select2);
+            }
+        })
+    }
+
+
+    //移动分组改
+    yidongzu=function(a){
+
+        if (a == 0 ) {
+            return ;
+        }
+        var arr = $('#data').bootstrapTable("getSelections");//获取选中的行
+        console.log(arr);
+        if (arr.length <= 0 ) {
+            alert("未选择客户信息！");
+            return ;
+        }
+
+        var ids = "";
+        for (var i = 0; i < arr.length; i++) {
+            ids += arr[i].keid + ",";
+        }
+
+        ids = ids.substring(0, ids.length - 1);
+        if(confirm("确定移组")){
+            $.ajax({
+                url: "../xu/xupdate1",
+                data: {ids:ids,a:a},
+                type: "post",
+                success: function () {
+                    alert("OK");
+                    $("#data").bootstrapTable("refresh");
+
+                }, error: function () {
+                    alert("失败！");
+                }
+            })
+        }
+    }
+
+    //新建分组
+    xinzu=function(){
+        $.ajax({
+            url:"../xu/xaddfenzu",
+              data:$("#form1").serialize(),
+              success:function(){
+                  alert("创建成功");
+                  $('#myModal1').modal('hide'); //隐藏 (执行完关闭弹框)
+                  $("#form1")[0].reset();  //清除form表单
+                //  $('#data').bootstrapTable("refresh");  //refresh刷新当前页
+              }
+        })
+    }
+
+    //标签
+    biaoqian=function(keid,bqid){
+        $.ajax({
+            url:"../xu/xXiaLaBiaoQian",
+            success:function(data){
+                var  op="";
+                for (var i = 0; i < data.length; i++) {
+                    op +="<option value='"+data[i].bqid+"'>"+data[i].bqname+"";
+                }
+                $("#biaoqian").html(op);
+                $("#biaoqian").val(bqid);
+                $("#bqkeid").val(keid);
+                $('#myModalbq').modal('show');
+            }
+        })
+    }
+
+    //改标签
+    biaoqiangai=function(){
+        $.ajax({
+            url:"../xu/xupdateBiaoQian",
+            data:$("#formbq").serialize(),
+            success:function(){
+                $('#myModalbq').modal('hide'); //隐藏 (执行完关闭弹框)
+                $("#formbq")[0].reset();  //清除form表单
+                $('#data').bootstrapTable("refresh");  //refresh刷新当前页
+            }
+        })
+    }
+</script>
+
+</html>

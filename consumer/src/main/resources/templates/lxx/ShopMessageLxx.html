@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+
+    <script src="/js/jquery.min.js"></script>
+
+    <!-- jquery -->
+
+    <script type="text/javascript" src="/js2/easyui1.5/jquery.easyui.min.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="/js2/easyui1.5/themes/icon.css" >
+    <!-- 主题 -->
+    <link rel="stylesheet" href="/js2/easyui1.5/themes/default/easyui.css" >
+    <!-- 方言 -->
+    <script type="text/javascript" src="/js2/easyui1.5/locale/easyui-lang-zh_CN.js"></script>
+    <!-- 图片  -->
+    <script src="/js2/uploadify/jquery.uploadify.js"></script>
+    <link rel="stylesheet" href="/js2/uploadify/uploadify.css" >
+    <!-- 富文本 -->
+    <script src="/js2/kindeditor-4.1.10/kindeditor-all.js"></script>
+    <link rel="stylesheet" href="/js2/kindeditor-4.1.10/themes/default/default.css" >
+
+
+    <!--  引入上传图片的js -->
+    <script src="../js/uploadify/jquery.uploadify.min.js"></script>
+    <link rel="stylesheet" href="../js/uploadify/uploadify.css">
+    <script type="text/javascript"  src="../js/kindeditor-4.1.10/kindeditor.js" charset="utf-8"></script>
+    <script type="text/javascript"  src="../js/kindeditor-4.1.10/lang/zh_CN.js" charset="utf-8"></script>
+
+
+
+</head>
+
+<body>
+<form id="ShopMessage" method="post">
+    <div style="height:30px;background: #8c8c8c">
+        店铺信息
+    </div>
+    <p></p>
+    店铺名称&nbsp;&nbsp;<input type="text" name="dpname" size="28"  value="请输入店铺名称" onfocus="javascript:if(this.value=='请输入店铺名称')this.value='';"  ><br/>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <p></p>
+    店铺Logo&nbsp;<input type="hidden" id="burl" name="dplogo">
+    <input type="file" id="imgFileBTN" >
+    <!--  图片回显的位置 -->
+    <div id="showImgDiv" style="width: 150px;height: 200px;border‐style:solid;border‐width:1px; border‐color:black;">
+    </div>
+    <!--  进度条位置 -->
+    <div id="showBarDiv" ></div><br/>
+    <p></p>
+    联系方式&nbsp;&nbsp;<input type="text" name="dpphone" size="28"  value="请输入客户可查看的联系方式" onfocus="javascript:if(this.value=='请输入客户可查看的联系方式')this.value='';" ><br/>
+    <p></p>
+    经营地址&nbsp;
+    <input type="text" id="sheng" class="easyui-combobox" value="省" name="shengid" />
+    -
+    <input type="text" id="shi" class="easyui-combobox" value="市" name="shiid"/>
+    -
+    <input type="text" id="xian" class="easyui-combobox" value="县" name="xianid"/>
+    <br/>
+    <p></p>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="text" name="dpxxdz" size="28"  value="请输入详细地址" onfocus="javascript:if(this.value=='请输入详细地址')this.value='';"><br/>
+    <p></p>
+    店铺简介&nbsp;&nbsp;<textarea name="dpdesc" rows="4" cols="40"></textarea><br>
+
+    <p></p>
+    <input type="button" onclick="addShop()" value="保存">
+
+</form>
+<p></p>
+<div style="height: 100px;width: 400px;margin-left: 70px">
+    我声明，此页面所填写内容均真实有效，
+    特别是经营地址为店铺最新可联系到的地
+    址，同时可以作为行政机关和司法机关送
+    达法律文件的地址。如果上述地址信息有
+    误，愿意承担由此带来的平台处罚（处罚
+    细则）、行政监管和司法诉讼风险。
+</div>
+
+</body>
+<script>
+
+
+
+    //新增
+
+    function addShop(){
+                        $.ajax(
+                            {
+                            url: '/lxx/addShop',
+                            type: 'post',
+                            cache:false,
+                            data: $("#ShopMessage").serialize(),
+                            success: function (data) {
+
+                                alert("新增店铺成功");
+                                /*window.location.href="/lxx/ShopMessage";*/
+                                location.href="../lxx/DianPu";
+                            }, error: function () {
+                                alert("新增店铺失败");
+                            }
+                        }
+                        );
+    }
+
+    //地区三级
+    function initAddProvinceSelect(){
+        $("#sheng").combobox({
+            url:'/lxx/findArea?id=0',
+            textField:'areaname',
+            valueField:'id',
+            onChange:function(newValue,oldValue){
+                $("#shi").combobox({
+                    url:'/lxx/findArea?id='+newValue,
+                    textField:'areaname',
+                    valueField:'id',
+                        onChange:function(newValue,oldValue){
+                            $("#xian").combobox({
+                                    url:'/lxx/findArea?id='+newValue,
+                                    textField:'areaname',
+                                    valueField:'id'
+                                }
+                            )
+                        }
+                }
+                )
+            }
+        }
+        )
+
+    }
+    $(function(){
+        initAddProvinceSelect();
+        //文件域的id
+        uploadObj = $("#imgFileBTN").uploadify({
+            //前台请求后台的url 不可忽略的参数
+            'uploader' :"../lxx/uploadPhotoFile",
+            //插件自带 不可忽略的参数
+            'swf' : '../js/uploadify/uploadify.swf',
+            //撤销按钮的图片路径
+            'cancelImg' : '../js/uploadify/uploadify‐cancel.png',
+            //auto：如果为true 为自动上传 ；如果为false 那么需要手动点击上传按钮上传
+            'auto' : true,
+            //上传后进度条是否消失
+            'removeCompleted' : true,
+            //可以同时选择多个文件 默认为true 不可忽略
+            'multi' : true,
+            //上传文件的个数
+            'uploadLimit' : 5,
+            //给上传按钮设置文字
+            'buttonText' : '上传照片',
+            'removeTimeout' : 1,
+            //设置上传图片的类型
+            'fileTypeExts' : '*.jpg;*.jpge;*.gif;*.png',
+            //限制上传的图片的大小
+            'fileSizeLimit' : '2MB',
+            //给div的进度条加背景 不可忽略
+            'queueID' : 'showBarDiv',
+            // action中接收文件的全局变量名
+            'fileObjName' : 'artImg',
+            'onUploadSuccess' : function(file, data, response) {
+                // file 文件对象
+                // 将图片回显 data 接收到的是图片名称
+                // response – 有输出时为 true, 如果无响应为 false
+                //$("#showImg").attr("src","<%=request.getContextPath()%>"+data);
+                var str = '<img style="width:180px;height:200px;border‐style:solid;border‐width:1px; border‐color:black;"src="..'+data+'">';
+                $("#showImgDiv").html(str);
+                $("#burl").val(data);
+                // append
+            }
+        });
+    })
+
+
+
+</script>
+</html>

@@ -1,0 +1,681 @@
+
+<html>
+<head>
+    <base href="<%=basePath%>">
+    <title>标题</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="This is my page">
+
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <link  href="/js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <link  href="/js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+    <link  href="/js/addTabs/addTabs.css" rel="stylesheet" >
+    <link  href="/js/table/bootstrap-table.min.css" rel="stylesheet" >
+    <link type="text/css" rel="stylesheet" href="/js/fileinput/css/fileinput.min.css" />
+    <script type="text/javascript" src="/js/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/treeview/bootstrap-treeview.min.js"></script>
+    <script type="text/javascript" src="/js/addTabs/addTabs.js"></script>
+    <script type="text/javascript" src="/js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="/js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <script type="text/javascript" src="/js/bootbox/bootbox.js"></script>
+    <script type="text/javascript" src="/js/fileinput/js/fileinput.min.js"></script>
+    <script type="text/javascript" src="/js/fileinput/js/locales/zh.js"></script>
+    <script type="text/javascript" src="/js/fileinput/themes/fa/theme.js"></script>
+
+    <link rel="stylesheet" href="/js3/easyui/themes/bootstrap/easyui.css" />
+    <link rel="stylesheet" href="/js3/easyui/themes/icon.css" />
+    <script src="/js3/easyui/jquery.easyui.min.js"></script>
+    <script src="/js3/easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script src="/js3/easyui/util-js.js"></script>
+
+    <!--  引入上传图片的js -->
+    <script src="../js/uploadify/jquery.uploadify.min.js"></script>
+    <link rel="stylesheet" href="../js/uploadify/uploadify.css">
+    <script type="text/javascript"  src="../js/kindeditor-4.1.10/kindeditor.js" charset="utf-8"></script>
+    <script type="text/javascript"  src="../js/kindeditor-4.1.10/lang/zh_CN.js" charset="utf-8"></script>
+
+
+</head>
+<body>
+</div>
+<!--企业修改弹框-->
+<div id="dialogId2" class="easyui-dialog" data-options="title:'日志',closed:true,modal:true,iconCls:'icon-add',buttons:[{
+   text:'修改',
+   plain:true,
+   iconCls:'icon-save',
+   handler:function(){
+      saveBtn2();
+   }
+
+}]" style="width: 1000px;height: 600px">
+
+    <form id="EnterpriseMessage">
+        <div  style="height: 30px;background: #8c8c8c" >店铺认证</div>
+        <input type="hidden" value="#{id}" name="id">
+        <div>
+            <div>
+                <div style="margin-left: 20px">
+                    <h2>认证方式：企业认证</h2><br/>
+                    <h4> 组织资料</h4><br/>
+                    <p></p>
+                    <!--<div>-->
+                    <div style="width: 150px;float: left;margin-left: 70px">
+                        <div style="height: 25px">组织/企业全称 </div>
+                        <p></p>
+
+                        <div style="height: 25px">机构/社会信用代码</div>
+                        <p></p>
+
+                        <div style="height: 25px">联系方式 </div>
+                        <p></p>
+
+                        <div style="height: 25px">验证码</div>
+                        <p></p>
+
+                        <div style="height: 250px">企业证书</div>
+                        <p></p>
+
+                    </div>
+
+                    <div >
+                        <div><input type="text" value="请输入企业名称" onfocus="javascript:if(this.value=='请输入企业名称')this.value='';" name="qyname"></div>
+                        <p></p>
+                        <div><input type="text" value="机构/社会信用代码" onfocus="javascript:if(this.value=='机构/社会信用代码')this.value='';" name="qyxydm" ></div>
+                        <p></p>
+                        <div><input type="text" value="联系方式" onfocus="javascript:if(this.value=='联系方式')this.value='';" name="qyphone"></div><p></p>
+                        <p></p>
+                        <div><input type="text" value="验证码" onfocus="javascript:if(this.value=='验证码')this.value='';" ></div>
+                        <p></p>
+                        <div style="float: left;height: 250px"> <input type="hidden" id="burl" name="qyzs"><input type="file" id="imgFileBTN" >
+                            <div id="showImgDiv" ></div>
+                            <div id="showBarDiv"></div>
+                        </div>
+                        <div style="clear: both"></div>
+                        <p></p>
+                        <div style="height: 100px;margin-top: 10px;margin-left: 70px;float: left;width: 150px">提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示</div>
+                        <div>
+                            <span>社会团体上传登记证书，企业上传营业执照</span><br/>
+                            <span>若办理过三证合一的企业，请上传最新的营业执照</span><br/>
+                            <span>格式要求：原件照片、扫描件或复印件加盖企业公章后的扫描件支持jpg .jpeg .bmp .gif .png格式照片，大小不超过2M。</span>
+                        </div>
+
+                        <p></p>
+                        <div style="clear: both"></div>
+                    </div>
+                </div>
+
+                <div style="margin-left: 20px;margin-top: 30px">
+                    <h4>提现信息</h4>
+                    <div>
+                        <div style="width: 150px;float: left;margin-left: 70px">
+                            <div>提现方式</div>
+                            <p></p>
+                            <div style="height:50px">提示</div>
+                            <p></p>
+                            <div>选择银行</div>
+                            <p></p>
+                            <div>开户城市</div>
+                            <p></p>
+                            <div>开户支行名称</div>
+                            <p></p>
+                            <div>银行卡号</div>
+                            <p></p>
+
+                        </div>
+
+                        <div >
+                            <!-- 提现方式-->
+                            <div><input type="radio" value="1" name="txfs">银行卡 <input type="radio" value="2" name="txfs">微信</div><br/>
+                            <div style="width: 800px"> 1、6~8工作日到账，适合较大金额提现<br/>2、手续费0.6%，微信商户收取，平台不收取任何费用</div>
+                            <p></p>
+                            <div> <select name="yhid">
+                                <option value="1">中国工商银行</option>
+                                <option value="2">中国建设银行</option>
+                                <option value="3">中国银行</option>
+                                <option value="4">交通银行</option>
+                                <option value="5">中国农业银行</option>
+                                <option value="6">招商银行</option>
+                                <option value="7">中国邮政储蓄银行</option>
+                                <option value="8">中国光大银行</option>
+                                <option value="9">中国民生银行</option>
+                                <option value="10">平安银行</option>
+                                <option value="11">浦发银行</option>
+                                <option value="12">中信银行</option>
+                                <option value="13">兴业银行</option>
+                                <option value="14">华夏银行</option>
+                                <option value="15">广发银行</option>
+                            </select></div>
+                            <p></p>
+                            <div>
+                                <input type="text" id="shengid" class="easyui-combobox" value="省" name="khsheng" />
+                                -
+                                <input type="text" id="shiid" class="easyui-combobox" value="市" name="khshi"/>
+                                -
+                                <input type="text" id="xianid" class="easyui-combobox" value="县" name="khxian"/>
+                            </div>
+                            <p></p>
+                            <!--开户支行名称-->
+                            <div><input type="text" name="khyhxm"></div>
+                            <p></p>
+                            <!--银行账号-->
+                            <div><input type="text" name="khzh"></div>
+                            <p></p>
+                            <br/>
+                            <p></p>
+                            <div style="float: left;margin-left: 180px"></div>
+                            <p></p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<table id="dataGrid"></table>
+
+<!--个人修改弹框-->
+<div id="dialogId" class="easyui-dialog" data-options="title:'日志',closed:true,modal:true,iconCls:'icon-add',buttons:[{
+   text:'修改',
+   plain:true,
+   iconCls:'icon-save',
+   handler:function(){
+      saveBtn();
+   }
+
+}]" style="width: 1000px;height: 500px">
+    <div  style="height: 30px;background: #8c8c8c" >店铺认证</div>
+
+    <form id="IndividualMessage">
+        <input type="hidden" value="#{id}" name="id">
+    <div>
+        <div>
+            <div style="margin-left: 20px">
+                <h2>认证方式：个人认证</h2><br/>
+                <h4> 个人资料</h4><br/>
+                <p></p>
+                <!--<div>-->
+                <div style="width: 150px;float: left;margin-left: 70px">
+                    <div style="height: 25px">真实姓名 </div>
+                    <p></p>
+                    <div style="height: 25px">身份证号</div>
+                    <p></p>
+                    <div style="height: 250px">身份证正面</div>
+                    <p></p>
+
+
+                </div>
+
+                <div >
+                    <div><input type="text" value="请输入姓名" onfocus="javascript:if(this.value=='请输入姓名')this.value='';" name="gtname"></div>
+                    <p></p>
+                    <div><input type="text" value="身份证号" onfocus="javascript:if(this.value=='身份证号')this.value='';" name="gtsfzh" ></div>
+                    <p></p>
+                    <div style="float: left;height: 250px"> <input type="hidden" id="bur" name="gtsfzqian"><input type="file" id="imgFileBT" >
+                        <div id="showImgDi" ></div>
+                        <div id="showBarDi"></div>
+                    </div>
+                    <div style="clear: both"></div>
+                    <p></p>
+                    <div style="height: 250px;margin-left: 70px;float: left;width: 150px">身份证背面</div>
+
+                    <div style="float: left;height: 250px"> <input type="hidden" id="bu" name="gtsfzbei"><input type="file" id="imgFileB" >
+                        <div id="showImgD" ></div>
+                        <div id="showBarD"></div>
+                    </div>
+                    <div style="clear: both"></div>
+
+                    <div style="margin-left: 70px;width: 150px;height: 120px;float: left">提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;示</div>
+
+                    <div style="height: 120px;">
+                        <span>提线人的真实姓名和身份证必须和提现银行卡开户名为同一个人</span><br/>
+                        <span>格式要求：支持jpg .jpeg .bmp .gif .png格式，大小不超过2M。</span>
+                    </div>
+                        <p></p>
+                    <div style="margin-left: 70px;width: 150px;height: 25px;float: left">联系方式 </div>
+                    <p></p>
+                    <div><input type="text" value="联系方式" onfocus="javascript:if(this.value=='联系方式')this.value='';" name="gtphone"></div><p></p>
+                        <p></p>
+                    <div style="margin-left: 70px;width: 150px;height: 25px;float: left">验证码</div>
+                    <p></p>
+                    <div><input type="text" value="验证码" onfocus="javascript:if(this.value=='验证码')this.value='';" ></div>
+                        <p></p>
+
+
+
+
+
+
+
+                </div>
+            </div>
+
+            <div style="margin-left: 20px;margin-top: 30px">
+                <h4>提现信息</h4>
+                <div>
+                    <div style="width: 150px;float: left;margin-left: 70px">
+                        <div>提现方式</div>
+                        <p></p>
+                        <div style="height:50px">提示</div>
+                        <p></p>
+                        <div>选择银行</div>
+                        <p></p>
+                        <div>开户城市</div>
+                        <p></p>
+                        <div>开户支行名称</div>
+                        <p></p>
+                        <div>银行卡号</div>
+                        <p></p>
+                    </div>
+
+                    <div >
+                        <!-- 提现方式-->
+                        <div><input type="radio" value="1" name="txfs">银行卡 <input type="radio" value="2" name="txfs">微信</div><br/>
+                        <div style="width: 800px"> 1、6~8工作日到账，适合较大金额提现<br/>2、手续费0.6%，微信商户收取，平台不收取任何费用</div>
+                        <p></p>
+                        <div> <select name="yhid">
+                            <option value="1">中国工商银行</option>
+                            <option value="2">中国建设银行</option>
+                            <option value="3">中国银行</option>
+                            <option value="4">交通银行</option>
+                            <option value="5">中国农业银行</option>
+                            <option value="6">招商银行</option>
+                            <option value="7">中国邮政储蓄银行</option>
+                            <option value="8">中国光大银行</option>
+                            <option value="9">中国民生银行</option>
+                            <option value="10">平安银行</option>
+                            <option value="11">浦发银行</option>
+                            <option value="12">中信银行</option>
+                            <option value="13">兴业银行</option>
+                            <option value="14">华夏银行</option>
+                            <option value="15">广发银行</option>
+                        </select></div>
+                        <p></p>
+                        <div>
+                            <input type="text" id="sheng" class="easyui-combobox" value="省" name="khsheng" />
+                            -
+                            <input type="text" id="shi" class="easyui-combobox" value="市" name="khshi"/>
+                            -
+                            <input type="text" id="xian" class="easyui-combobox" value="县" name="khxian"/>
+                        </div>
+                        <p></p>
+                        <!--开户支行名称-->
+                        <div><input type="text" name="khyhxm"></div>
+                        <p></p>
+                        <!--银行账号-->
+                        <div><input type="text" name="khzh"></div>
+                        <p></p>
+                        <br/>
+                        <p></p>
+                        <div style="float: left;margin-left: 180px"></div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    </form>
+</div>
+</body>
+<script type="text/javascript">
+    $(function(){
+        $("#dialogId2").dialog('close');
+        $("#dialogId").dialog('close');
+        initDataGrid();
+    });
+    function initDataGrid() {
+        //创建bootstrapTable
+        $("#dataGrid").bootstrapTable({
+            url: "../lxx/queryDp",
+            method: 'post',
+            striped: true,  	// 斑马线效果     默认false
+            //只允许选中一行
+            singleSelect: true,
+            //选中行是不选中复选框或者单选按钮
+            clickToSelect: true,
+            showToggle: true,                    //是否显示详细视图和列表视图的切换按钮
+            cardView: false,                    //是否显示详细视图
+            uniqueId: "id",                 //每一行的唯一标识，一般为主键列
+            showColumns: true,                  //是否显示所有的列
+            showRefresh: true,                  //是否显示刷新按钮
+            minimumCountColumns: 2,     //  最少留两列
+            detailView: false,                  //是否显示父子表
+            toolbar: '#tabToolBar',   //  工具定义位置
+            sidePagination: 'server',
+            toolbar: '#toolbar',
+            pagination: true, //是否展示分页
+            pageList: [2, 4, 8, 10],//分页组件
+            pageNumber: 1,
+            pageSize: 2,//默认每页条数
+            //启动回车键做搜索功能
+            searchOnEnterKey: true,
+            //设置为false 将禁止所有列的排序。
+            sortable: true,
+            //设置默认排序为 name,直接对应数据库的字段
+            sortName: 'id',
+            //定义排序方式，'asc' 或者 'desc'。
+            sortOrder: "desc",
+            //设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
+            // 设置为limit可以获取limit, offset, search, sort, order
+            queryParamsType: 'undefined',
+            // 请求服务器数据
+            queryParams: function queryParams(params) {
+                var param = {
+                    pageNumber: params.pageNumber,
+                    pageSize: params.pageSize,
+                    sortName: params.sortName,
+                    sortOrder: params.sortOrder,
+                    /*  name: $("#name").val()  */
+
+                };
+                return param;
+            },
+            columns: [
+                {field: 'checkbox', checkbox: true},  //开启复选框
+                {field: 'id', title: 'id', width: 300},      //  列    field   代表是 后台  传过来的值
+                {field: 'dpname', title: '名字', width: 300},
+                {field: 'dpphone', title: '电话', width: 300},
+                {field: 'dpdesc', title: '介绍', width: 300},
+                {field: 'dplogo', title: '店铺图片', width: 300,formatter: function(value,row,index){
+                        return "<img width='100' src='../"+value+"'>"
+                    }},
+                {field: 'status', title: '状态', width: 300,formatter: function(value,row,index){
+                    var a = "";
+                        if (value==1){
+                            a="未认证";
+                        }else if (value==2){
+                            a="已认证";
+                        }
+                        return a;
+                    }
+                    },
+                {field: 'XXX', title: '操作', width: 300,formatter: function(value,row,index){
+
+                        if (row.status==1){
+                            var content = "    <a href='javascript:huixian(&quot;"+row.id+"&quot;)' >企业</a>";
+                            content += " |       <a href='javascript:huixian2(&quot;"+row.id+"&quot;)' >个人</a>";
+                        }
+
+                        return content;
+                    }
+                }
+
+
+            ]
+        }
+        );
+    }
+
+    //回显
+    function huixian(id){
+        $.ajax({
+            url:'../lxx/findById',
+            type:'post',
+            data:{
+                id:id
+            },
+            success:function(data){
+
+                initAddProvinceSelect2();
+                $("#EnterpriseMessage").form('load',data);
+                $("#dialogId2").dialog({
+                    title:'修改',
+                    closed:false
+
+                })
+            }
+
+        })
+    }
+    //修改
+    function saveBtn2(){
+
+        $("#EnterpriseMessage").form('submit',{
+            url:'../lxx/addEnterprise',
+            onSubmit:function(){
+                return true;
+            },
+
+            success:function(data){
+
+                $("#dialogId2").dialog('close');
+                location.href="../lxx/DianPu";
+            },error:function(){
+                $.messager.alert('提示','保存失败','error');
+
+            }
+        })
+    }
+        //   ---------------------------------------------个人
+    //回显
+    function huixian2(id){
+        $.ajax({
+            url:'../lxx/findById',
+            type:'post',
+            data:{
+                id:id
+            },
+            success:function(data){
+
+                initAddProvinceSelect();
+
+                $("#IndividualMessage").form('load',data);
+                $("#dialogId").dialog({
+                    title:'修改',
+                    closed:false
+
+                })
+            }
+
+        })
+    }
+    //修改
+    function saveBtn(){
+
+        $("#IndividualMessage").form('submit',{
+            url:'../lxx/addIndividual',
+            onSubmit:function(){
+                return true;
+            },
+
+            success:function(data){
+
+                $("#dialogId").dialog('close');
+                location.href="../lxx/DianPu";
+            },error:function(){
+                $.messager.alert('提示','保存失败','error');
+
+            }
+        })
+    }
+
+    //地区三级
+    function initAddProvinceSelect(){
+        $("#sheng").combobox({
+                url:'/lxx/findArea?id=0',
+                textField:'areaname',
+                valueField:'id',
+                onChange:function(newValue,oldValue){
+                    $("#shi").combobox({
+                            url:'/lxx/findArea?id='+newValue,
+                            textField:'areaname',
+                            valueField:'id',
+                            onChange:function(newValue,oldValue){
+                                $("#xian").combobox({
+                                        url:'/lxx/findArea?id='+newValue,
+                                        textField:'areaname',
+                                        valueField:'id'
+                                    }
+                                )
+                            }
+                        }
+                    )
+                }
+            }
+        )
+
+    }
+    //地区三级
+    function initAddProvinceSelect2(){
+        $("#shengid").combobox({
+                url:'/lxx/findArea?id=0',
+                textField:'areaname',
+                valueField:'id',
+                onChange:function(newValue,oldValue){
+                    $("#shiid").combobox({
+                            url:'/lxx/findArea?id='+newValue,
+                            textField:'areaname',
+                            valueField:'id',
+                            onChange:function(newValue,oldValue){
+                                $("#xianid").combobox({
+                                        url:'/lxx/findArea?id='+newValue,
+                                        textField:'areaname',
+                                        valueField:'id'
+                                    }
+                                )
+                            }
+                        }
+                    )
+                }
+            }
+        )
+
+    }
+
+   //企业图片
+    $(function(){
+        initAddProvinceSelect();
+        //文件域的id
+        uploadObj = $("#imgFileBTN").uploadify({
+            //前台请求后台的url 不可忽略的参数
+            'uploader' :"../lxx/uploadPhotoFile",
+            //插件自带 不可忽略的参数
+            'swf' : '../js/uploadify/uploadify.swf',
+            //撤销按钮的图片路径
+            'cancelImg' : '../js/uploadify/uploadify‐cancel.png',
+            //auto：如果为true 为自动上传 ；如果为false 那么需要手动点击上传按钮上传
+            'auto' : true,
+            //上传后进度条是否消失
+            'removeCompleted' : true,
+            //可以同时选择多个文件 默认为true 不可忽略
+            'multi' : true,
+            //上传文件的个数
+            'uploadLimit' : 5,
+            //给上传按钮设置文字
+            'buttonText' : '上传照片',
+            'removeTimeout' : 1,
+            //设置上传图片的类型
+            'fileTypeExts' : '*.jpg;*.jpge;*.gif;*.png',
+            //限制上传的图片的大小
+            'fileSizeLimit' : '2MB',
+            //给div的进度条加背景 不可忽略
+            'queueID' : 'showBarDiv',
+            // action中接收文件的全局变量名
+            'fileObjName' : 'artImg',
+            'onUploadSuccess' : function(file, data, response) {
+                // file 文件对象
+                // 将图片回显 data 接收到的是图片名称
+                // response – 有输出时为 true, 如果无响应为 false
+                //$("#showImg").attr("src","<%=request.getContextPath()%>"+data);
+                var str = '<img style="width:150px;height:150px" src="..'+data+'">';
+                $("#showImgDiv").html(str);
+                $("#burl").val(data);
+                // append
+            }
+        });
+    })
+
+    //身份证正面
+    $(function(){
+        initAddProvinceSelect();
+        //文件域的id
+        uploadObj = $("#imgFileBT").uploadify({
+            //前台请求后台的url 不可忽略的参数
+            'uploader' :"../lxx/uploadPhotoFile",
+            //插件自带 不可忽略的参数
+            'swf' : '../js/uploadify/uploadify.swf',
+            //撤销按钮的图片路径
+            'cancelImg' : '../js/uploadify/uploadify‐cancel.png',
+            //auto：如果为true 为自动上传 ；如果为false 那么需要手动点击上传按钮上传
+            'auto' : true,
+            //上传后进度条是否消失
+            'removeCompleted' : true,
+            //可以同时选择多个文件 默认为true 不可忽略
+            'multi' : true,
+            //上传文件的个数
+            'uploadLimit' : 5,
+            //给上传按钮设置文字
+            'buttonText' : '上传照片',
+            'removeTimeout' : 1,
+            //设置上传图片的类型
+            'fileTypeExts' : '*.jpg;*.jpge;*.gif;*.png',
+            //限制上传的图片的大小
+            'fileSizeLimit' : '2MB',
+            //给div的进度条加背景 不可忽略
+            'queueID' : 'showBarDi',
+            // action中接收文件的全局变量名
+            'fileObjName' : 'artImg',
+            'onUploadSuccess' : function(file, data, response) {
+                // file 文件对象
+                // 将图片回显 data 接收到的是图片名称
+                // response – 有输出时为 true, 如果无响应为 false
+                //$("#showImg").attr("src","<%=request.getContextPath()%>"+data);
+                var str = '<img style="width:150px;height:150px" src="..'+data+'">';
+                $("#showImgDi").html(str);
+                $("#bur").val(data);
+                // append
+            }
+        });
+    })
+
+    //身份证背面
+    $(function(){
+        initAddProvinceSelect();
+        //文件域的id
+        uploadObj = $("#imgFileB").uploadify({
+            //前台请求后台的url 不可忽略的参数
+            'uploader' :"../lxx/uploadPhotoFile",
+            //插件自带 不可忽略的参数
+            'swf' : '../js/uploadify/uploadify.swf',
+            //撤销按钮的图片路径
+            'cancelImg' : '../js/uploadify/uploadify‐cancel.png',
+            //auto：如果为true 为自动上传 ；如果为false 那么需要手动点击上传按钮上传
+            'auto' : true,
+            //上传后进度条是否消失
+            'removeCompleted' : true,
+            //可以同时选择多个文件 默认为true 不可忽略
+            'multi' : true,
+            //上传文件的个数
+            'uploadLimit' : 5,
+            //给上传按钮设置文字
+            'buttonText' : '上传照片',
+            'removeTimeout' : 1,
+            //设置上传图片的类型
+            'fileTypeExts' : '*.jpg;*.jpge;*.gif;*.png',
+            //限制上传的图片的大小
+            'fileSizeLimit' : '2MB',
+            //给div的进度条加背景 不可忽略
+            'queueID' : 'showBarD',
+            // action中接收文件的全局变量名
+            'fileObjName' : 'artImg',
+            'onUploadSuccess' : function(file, data, response) {
+                // file 文件对象
+                // 将图片回显 data 接收到的是图片名称
+                // response – 有输出时为 true, 如果无响应为 false
+                //$("#showImg").attr("src","<%=request.getContextPath()%>"+data);
+                var str = '<img style="width:150px;height:150px" src="..'+data+'">';
+                $("#showImgD").html(str);
+                $("#bu").val(data);
+                // append
+            }
+        });
+    })
+
+
+</script>
+</html>

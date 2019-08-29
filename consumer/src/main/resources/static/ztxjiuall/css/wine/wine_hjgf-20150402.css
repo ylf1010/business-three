@@ -1,0 +1,96 @@
+/* CSS Document */
+HTML{ word-break:break-all;text-overflow:ellipsis; }
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td,tr{ padding:0; margin:0;}
+ul,li{ list-style:none; margin:0px; padding:0px;}
+img{ border:0px;}
+a{ TEXT-DECORATION:none;}
+a:hover{ text-decoration:underline;}
+.clear{ clear:both; font-size:0; line-height:0; height:0;}
+
+.hjgf_banner{ width:100%; height:500px; min-width:1200px;}
+.hjgf_bn1{ width:100%; height:500px; background: url("../../img/wine/hjgf/head1.jpg") no-repeat scroll center top; display:block;}
+.hjgf_bn2{ width:100%; height:500px; background: url("../../img/wine/hjgf/head2.jpg") no-repeat scroll center top; display:none;}
+.hjgf_bn3{ width:100%; height:500px; background: url("../../img/wine/hjgf/head3.jpg") no-repeat scroll center top; display:none;}
+.hjgf_bn4{ width:100%; height:500px; background: url("../../img/wine/hjgf/head4.jpg") no-repeat scroll center top; display:none;}
+.hjgf_main{ width:100%; background:#000;  min-width:1200px; font-family:"微软雅黑";}
+.hjgf_nva{ width:980px; height:54px; margin:0px auto; position:relative;}
+.hjgf_nva1{ width:490px; height:54px; cursor: pointer; background:url("../../img/wine/hjgf/nav_up_01.jpg") no-repeat left top; float:left; display:block;}
+.hjgf_nva2{ width:490px; height:54px; cursor: pointer; background:url("../../img/wine/hjgf/nav_up_02.jpg") no-repeat left top; float:left; display:block;}
+.hjgf_nva3{ width:242px; height:54px; cursor: pointer; background:url("../../img/wine/hjgf/nav_up_03.jpg") no-repeat left top; float:left; display:block;}
+.hjgf_nva4{ width:248px; height:54px; cursor: pointer; background:url("../../img/wine/hjgf/nav_up_04.jpg") no-repeat left top; float:left; display:block;}
+.hjgf_nvaon1{ width:490px; height:54px; cursor: pointer; background:url("../../img/wine/hjgf/nav_down_01.jpg") no-repeat left top; float:left;}
+.hjgf_nvaon2{ width:490px; height:54px; cursor: pointer; background:url("../../img/wine/hjgf/nav_down_02.jpg") no-repeat left top; float:left;}
+.hjgf_nvaon3{ width:242px; height:55px; cursor: pointer; background:url("../../img/wine/hjgf/nav_down_03.jpg") no-repeat left top; float:left;}
+.hjgf_nvaon4{ width:248px; height:55px; cursor: pointer; background:url("../../img/wine/hjgf/nav_down_04.jpg") no-repeat left top; float:left;}
+.nva_left1{ background:url("../../img/wine/hjgf/bian_01.jpg") no-repeat; width:55px; height:15px; position: absolute;top: -15px;left: -31px; display:block; z-index:99;}
+.nva_left2{ background:url("../../img/wine/hjgf/LR_01.jpg") no-repeat; width:31px; height:56px; position: absolute;top:0;left: -31px; display:block; z-index:99;}
+.nva_right1{ background:url("../../img/wine/hjgf/bian_02.jpg") no-repeat; width:52px; height:15px; position: absolute;top: -15px;right: -28px; display:block; z-index:99;}
+.nva_right2{  background:url("../../img/wine/hjgf/LR_02.jpg") no-repeat; width:28px; height:56px;position: absolute;top: 0;right: -28px; display:block; z-index:99;}
+.hjgf_content{ width:980px; margin:0 auto; padding-bottom:50px;}
+/*hjgf_con1*/
+.hjgf_con1{ width:980px; margin:0 auto; display:block;}
+.commodity{ width:980px; background:url("../../img/wine/hjgf/bac_pic.jpg") no-repeat center 0px; padding-top:70px;}
+.commodity1{ width:890px; padding:0px 0px 0px 35px;}
+.commodity_left{ width:430px; height:402px; float:left;}
+.com_title{ width:430px; padding-left:20px; }
+.com_title p{ width:430px; height: 33px;color: #D1C0A7;font-size:24px; font-weight: bold; overflow:hidden; word-break:keep-all;}
+.com_title p a{color: #D1C0A7;}
+.com_title p a:hover{color: #D1C0A7; text-decoration:none;}
+.com_title span{ width:430px; color: #B09971; font-size: 20px; overflow:hidden; word-break:keep-all; display:block; height: 28px;}
+.com_con{width:430px; height:356px; position:relative; padding:10px 0 0;}
+.com_pic{ width:154px; height:356px; position:absolute; left:-15px; top:10px; z-index: 999;}
+.hjgf_con1 .com_detail{ padding-top:20px;}
+.com_detail{width:332px; position:absolute; top:0; left:110px;}
+.keywords{}
+.keywords span{ width:80px; height:30px; font-size:15px; font-weight:bold; color:#35312c; line-height:30px; text-align:center; background:#ad9878; margin-right:3px; display:inline-block;}
+.introduction{ height:60px;color: #F3E9CF;font-size:14px; line-height:20px; overflow:hidden; margin:10px 0; width:332px;}
+.com_detail table {border-spacing:0px;}
+.com_detail table tr{ height:28px;}
+.com_detail table tr td,.com_detail table tr th{ color:#FFFFFF; font-size:14px; height:27px; line-height:26px; text-align:center;}
+.com_detail table tr .t1{ width:175px; background:url("../../img/wine/hjgf/Tbac_01.jpg") no-repeat 0 0; }
+.com_detail table tr .t2{ width:83px; background:url("../../img/wine/hjgf/Tbac_02.jpg") no-repeat 0 0; }
+.com_detail table tr .t3{ width:70px; background:url("../../img/wine/hjgf/Tbac_03.jpg") no-repeat 0 0; }
+.price{ padding-top:10px;}
+.com_detail .m_pri{background: url("../../img/wine/hjgf/page_bac_01.jpg") no-repeat center top;color: #8E7E6B; display: block; float: left; font-size: 14px; height: 46px; line-height: 50px; overflow: hidden; text-align: center; width:130px;}
+.com_detail .nowsell{background: url("../../img/wine/hjgf/page_bac_02.jpg") repeat-x left top; float:left; height:46px; width:202px; line-height:46px; text-align:center;}
+.com_detail em{ color: #C4B5A3; font-size:16px; font-style:normal;}
+.com_detail .nowsell span{ color:#C4B5A3; font-size:12px;}
+.com_detail .nowsell b{ font-style:normal; color: #FFFFDF; font-size: 30px; font-family: Georgia;  font-weight: normal;}
+.sales{background: url("../../img/wine/hjgf/page_bac_01.jpg") no-repeat center top;color: #8E7E6B; display: block; float: left; font-size: 12px; height: 46px; overflow: hidden; width:130px; line-height:46px;}
+.sales p{ padding:5px 15px 2px; line-height:normal; float:left;}
+.sales p span{ display:block;}
+.sales .shuxian{ padding:0px; line-height:46px;}
+.cart{ background: url("../../img/wine/hjgf/page_bac_04.jpg") repeat-x center top;color: #C4B5A3; float: left; font-size: 20px; height: 46px; line-height: 45px; text-align: center; width:332px;}
+.cart a{ width:332px; height: 46px; color:#C4B5A3; text-decoration:none; display:block;}
+.cart a:hover{ text-decoration:none;}
+.commodity_right{ width:430px; height:402px; margin-left:30px; float:left;}
+.commodity_bg{ width:980px; height:133px; background:url("../../img/wine/hjgf/ban_03.png") no-repeat center top;}
+/*hjgf_con2*/
+.hjgf_con2{ width:980px; display:block; margin:0 auto;}
+.hjgf_con2 .com_detail{ padding-top:76px;}
+.com_detail ul{ width:332px;}
+.com_detail ul li{ height: 33px; width: 110px; background: url("../../img/wine/hjgf/jhf.jpg") no-repeat scroll center top; float: left;}
+.com_detail ul li span{ font-size:12px; color:#FFFFFF; width:55px; height:30px; line-height:27px; text-align:center; display:block; float:left;}
+/*hjgf_con3*/
+.hjgf_con3{ width:980px; display:none; margin:0 auto; padding-top:50px;}
+.con3c{width: 980px; padding-top:35px; margin: 0 auto;}
+.con3c1{background:#3D3328; float: left; height: 50px; width: 283px;}
+.con3c1 .c1a{ width: 263px; color: #D1C0A7; font-size: 16px; height: 30px; line-height: 30px; padding-left: 20px; overflow:hidden; word-break:keep-all;}
+.con3c1 .c1b{ width: 263px; height:18px; color: #B09971; padding-left: 20px; font-size:12px; overflow:hidden; word-break:keep-all;}
+.con3c2{width: 677px; height: 50px; color: #756757; font-size:14px; line-height: 50px; background:#28221B; padding-left: 20px; float: left;}
+.con3c3{ width:283px; height:205px; float:left;}
+.con3c4{ height: 185px; width: 657px;padding: 10px 20px; background: none repeat scroll 0 0 #655543;float: left; }
+.con3c4 p{ color: #D1C0A7; font-size:14px; text-indent:2em; line-height:18px;}
+/*hjgf_con4*/
+.hjgf_con4{ width:980px; display:none; margin:0 auto; padding-top:20px;}
+.con4t{ width:980px; height:41px; background:url("../../img/wine/hjgf/ladder_01.jpg") no-repeat right 30px; padding-top: 30px;}
+.con4tt{ width:980px; height:41px; background:url("../../img/wine/hjgf/ladder_02.jpg") no-repeat right 30px; padding-top: 30px;}
+.con4ttt{ width:980px; height:41px; background:url("../../img/wine/hjgf/ladder_03.jpg") no-repeat right 30px; padding-top: 30px;}
+.con4c{height: 223px; height:222px; }
+.con4c1{ width:283px; height:222px; float:left;}
+.con4c2{ float:left;}
+.con4c2 .c2a{ width:697px; height: 70px;}
+.con4c2 .c2a_l{width: 100px; height: 70px;font-size: 30px; color: #DECFBE; line-height: 70px; text-align: center; background:#7C1B18; float: left;}
+.con4c2 .c2a_r{ width: 597px; height: 70px; color: #8E7E6B; font-size: 20px; line-height: 70px; background:#28221B; float: left; }
+.con4c2 .c2b{ width: 677px; height: 132px; line-height: 20px; background:#655543; padding: 10px; float: left; }
+.con4c2 .c2b p{ color: #D1C0A7; font-size: 14px; text-indent: 2em;}

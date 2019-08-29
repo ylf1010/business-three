@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base href="<%=basePath%>">
+    <title>标题</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="This is my page">
+    <!--引入文件上传的css、js-->
+    <link rel="stylesheet" href="/js4/bootstrap-fileinput/css/fileinput.css">
+    <script type="text/javascript" src="/js4/bootstrap-fileinput/js/fileinput.js"></script>
+    <script type="text/javascript" src="/js4/bootstrap-fileinput/js/locales/zh.js"></script>
+    <style type="text/css">
+        .myrow{
+            margin-bottom:10px
+        }
+    </style>
+
+</head>
+<body>
+<form role="form" id="updspformId">
+    <input type="hidden" name="productid" th:value="${product.productid }">
+    <input type="hidden" name="productsxj" th:value="${product.productsxj }">
+    <div class="form-group">
+        <label for="productname">酒品(名称)</label>
+        <input type="text" class="form-control" id="name" th:value="${product.productname}" name="productname" placeholder="酒品(名称)"/>
+    </div>
+
+    <div class="form-group">
+        <label for="productprice">酒品(价格)</label>
+        <input type="text" class="form-control" id="name" th:value="${product.productprice}" name="productprice" placeholder="酒品(价格)"/>
+    </div>
+    <div class="form-group">
+        <label for="productkucun">酒品(库存)</label>
+        <input type="text" class="form-control" id="name" th:value="${product.productkucun}" name="productkucun" placeholder="酒品(库存)"/>
+    </div>
+    <div class="form-group">
+        <label for="productzxl">酒品(总销量)</label>
+        <input type="text" class="form-control" id="name" th:value="${product.productzxl}" name="productzxl" placeholder="酒品(总销量)"/>
+    </div>
+
+    <input type="hidden"  id="xgflid1" th:value="${product.productpid}" />
+    <div class="form-group">
+        <label>酒品分类:</label>
+        <select class="form-control" id="xgflid" name="productpid" >
+            <!--<option th:each="clist:${clist}" th:value="${clist.flid}" th:selected="${clist.flid==product.productpid}" ></option>-->
+        </select>
+    </div>
+    <br>
+    <!--<div class="col-sm-2">
+        <div class="form-group">
+            <label class="col-form-label" for="result">酒品分类:</label>
+            <select  class="form-control" id="status" name="productpid">
+                <option value="">全部</option>
+                <option th:each="result : ${clist}" th:value="${result.flid}" th:text="${result.flname}"></option>
+            </select>
+        </div>
+    </div><br>-->
+
+    <div class="form-group">
+        <label for="name">酒品(净含量/毫升)</label>
+        <input type="text" class="form-control" th:value="${product.winejhl}" name="winejhl" placeholder="酒品(净含量/ml)" style="width: 60%" />
+    </div>
+
+    <input type="hidden"  id="xgcdid1" th:value="${product.wineyieldlyid}" />
+    <div class="form-group">
+        <label>酒品(生产地市):</label>
+        <!--<input name="mm" type="checkbox" th:each="cdlist:${cdlist}"  th:value="${role.rid }" th:checked="${role.state==2}" th:text="${role.rname}">-->
+        <select class="form-control" id="wineyieldlyid" th:value="${product.wineyieldlyid}" name="wineyieldlyid"></select>
+    </div>
+    <br>
+    <input type="hidden"  id="xgppid1" th:value="${product.winebrandid}" />
+    <div class="form-group">
+        <label>酒品(品牌id):</label>
+        <select class="form-control" id="winebrandid" th:value="${product.winebrandid}"  name="winebrandid"></select>
+    </div>
+    <br>
+    <!--<div class="form-group">
+        <label for="email" class="col-sm-2 control-label">商品分类</label>
+        <div class="col-sm-6">
+            <select id="selectaid" name="flname" th:value="${product.flname}" ></select>
+        </div>
+    </div><br>-->
+    <div class="form-group">
+        <label for="name">酒品年份</label>
+        <input type="date" class="form-control"  name="productdate" th:value="${#dates.format(product.productdate,'yyyy-MM-dd')}" placeholder="酒品(年份)" style="width: 60%" />
+    </div>
+    <div class="form-group">
+        <label for="name">酒品(建议醒酒时间)</label>
+        <input type="text" class="form-control" th:value="${product.winexjsj}"  name="winexjsj" placeholder="酒品(建议醒酒时间)" style="width: 60%" />
+    </div>
+    <div class="form-group">
+        <label for="winemouthfeel">酒品(口感)</label>
+        <input type="text" class="form-control" id="name" th:value="${product.winemouthfeel}" name="winemouthfeel" placeholder="酒品(口感)"/>
+    </div>
+    <div class="form-group">
+        <label for="winefragrant">酒品(香味)</label>
+        <input type="text" class="form-control" id="name" th:value="${product.winefragrant}" name="winefragrant" placeholder="酒品(香味)"/>
+    </div>
+    <div class="form-group">
+        <label for="winedpms">酒品(搭配美食)</label>
+        <input type="text" class="form-control" id="name" th:value="${product.winedpms}" name="winedpms" placeholder="酒品(搭配美食)"/>
+    </div>
+    <div class="form-group">
+        <label for="wineseze">酒品(色泽)</label>
+        <input type="text" class="form-control" id="name" th:value="${product.wineseze}" name="wineseze" placeholder="酒品(色泽)"/>
+    </div>
+    <div class="form-group">
+        <label for="winedushu">酒品(度数)</label>
+        <input type="text" class="form-control" id="name" th:value="${product.winedushu}" name="winedushu" placeholder="酒品(度数)"/>
+    </div>
+    <div class="row myrow">
+        <div class="col-md-2">
+            <label for="headImg">酒品图片</label>
+        </div>
+        <div class="col-md-10" >
+            <input type="text" id="testimg"  name="productphoto"/>
+            <img  th:src="@{${product.productphoto}}"  width="150px"  height="200px">
+            <input type="file"  class="projectfile" name="imgg" id="headImg">
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="winepromotion">酒品(优惠/秒杀/促销)</label>
+        <input type="text" class="form-control" id="name" th:value="${product.winepromotion}" name="winepromotion" placeholder="酒品(优惠/秒杀/促销)"/>
+    </div>
+    <div class="form-group">
+        <label for="winehotsale">酒品(热卖/非热卖)</label>
+        <input type="text" class="form-control" id="name" th:value="${product.winehotsale}" name="winehotsale" placeholder="酒品(热卖/非热卖)"/>
+    </div>
+    <div class="form-group">
+        <label for="winegrade">酒品(评分)</label>
+        <input type="text" class="form-control" id="name" th:value="${product.winegrade}" name="winegrade" placeholder="酒品(评分)"/>
+    </div>
+    <div class="form-group">
+        <label for="winestore">酒品(储藏条件)</label>
+        <input type="text" class="form-control" id="name" th:value="${product.winestore}" name="winestore" placeholder="酒品(储藏条件)"/>
+    </div>
+
+    <!--<div class="form-group">
+        <label for="name">商品图片</label>
+        <input type="hidden" id="burl" name="productphoto" th:value="${product.productphoto}">
+        <input type="file" id="imgFileBTN" >
+        &lt;!&ndash;  图片回显的位置 &ndash;&gt;
+        <div id="showImgDiv" style="width: 150px;height: 200px;border‐style:solid;border‐width:1px; border‐color:black;">
+            <img  th:src="@{${product.productphoto}}"  width="150px"  height="200px">
+        </div>
+        &lt;!&ndash;  进度条位置 &ndash;&gt;
+        <div id="showBarDiv" ></div>
+        &lt;!&ndash;  <input type="button" onclick="uploadObj.uploadify('cancel');" value="取消">
+         <input type="button" onclick="uploadObj.uploadify('upload','*');"value="确定上传"> &ndash;&gt;
+    </div><br>-->
+    <!--<div class="form-group">
+        <label for="email" class="col-sm-2 control-label">上下架</label>
+        <div class="col-sm-6">
+            &lt;!&ndash; 样式1 &ndash;&gt;
+            <select class="form-control" name="productsxj">
+                <option value="-1">请选择</option>
+                <option value="1" th:field="*{product.productsxj}">上架</option>
+                <option value="2" th:field="*{product.productsxj}">下架</option>
+            </select>
+        </div>
+    </div><br>-->
+    <div class="form-group">
+        <label for="productdescribe">酒品(描述)</label>
+        <textarea id="editor_id" name="productdescribe" th:text="${product.productdescribe}"  style="width:500px;height:300px;"></textarea>
+    </div>
+    <!--<div class="form-group">
+        <label for="email" class="col-sm-2 control-label">所属种类</label>
+        <div class="col-sm-6">
+            &lt;!&ndash; 样式1 &ndash;&gt;
+            <select class="form-control" name="dogtype">
+                <option value="-1">请选择</option>
+                <option value="1">牧羊犬</option>
+                <option value="2">金毛</option>
+                <option value="3">罗宾犬</option>
+            </select>
+        </div>
+    </div><br>-->
+
+    <script>
+        $(function () {
+            uploadImg();
+            xiala();
+            xialacd();
+            xialapp();
+        })
+        function uploadImg(productphoto){
+            $('#headImg').fileinput({
+                language: 'zh', //设置语言
+                uploadUrl: '../lyproduct/updaloadImg', //上传的地址
+                allowedFileExtensions: ['jpg', 'gif', 'png'],//接收的文件后缀
+                showUpload: true, //是否显示上传按钮
+                showCaption: false,//是否显示标题
+                browseClass: "btn btn-primary", //按钮样式
+                dropZoneEnabled: false,//是否显示拖拽区域
+                //minImageWidth: 50, //图片的最小宽度
+                //minImageHeight: 50,//图片的最小高度
+                //maxImageWidth: 1000,//图片的最大宽度
+                //maxImageHeight: 1000,//图片的最大高度
+                //maxFileSize: 0,//单位为kb，如果为0表示不限制文件大小
+                //minFileCount: 0,
+                maxFileCount: 2, //表示允许同时上传的最大文件个数
+                enctype: 'multipart/form-data',
+                validateInitialCount:true,
+                previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+                msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+
+            }).on('fileuploaded', function(event, data, previewId, index) {
+
+                var imgval = $('#testimg').val();
+
+                if(imgval == null || imgval == "" || imgval == undefined){
+                    imgval = data.response.responseText;
+                }/*else{
+			imgval += ","+"http://<%= request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/"+data.response;
+		}*/
+                $('#testimg').val(imgval);
+            });
+        }
+       /* $(function(){
+            xiala();
+            //文件域的id
+            uploadObj = $("#imgFileBTN").uploadify({
+                //前台请求后台的url 不可忽略的参数
+                'uploader' :"../lyproduct/uploadPhotoFile",
+                //插件自带 不可忽略的参数
+                'swf' : '../js/uploadify/uploadify.swf',
+                //撤销按钮的图片路径
+                'cancelImg' : '../js/uploadify/uploadify‐cancel.png',
+
+                //auto：如果为true 为自动上传 ；如果为false 那么需要手动点击上传按钮上传
+                'auto' : true,
+
+                //上传后进度条是否消失
+                'removeCompleted' : true,
+
+                //可以同时选择多个文件 默认为true 不可忽略
+                'multi' : true,
+                //上传文件的个数
+                'uploadLimit' : 5,
+
+                //给上传按钮设置文字
+                'buttonText' : '上传照片',
+
+                'removeTimeout' : 1,
+                //设置上传图片的类型
+                'fileTypeExts' : '*.jpg;*.jpge;*.gif;*.png',
+
+                //限制上传的图片的大小
+                'fileSizeLimit' : '2MB',
+                //给div的进度条加背景 不可忽略
+                'queueID' : 'showBarDiv',
+                // action中接收文件的全局变量名
+                'fileObjName' : 'artImg',
+                'onUploadSuccess' : function(file, data, response) {
+                    // file 文件对象
+                    // 将图片回显 data 接收到的是图片名称
+                    // response – 有输出时为 true, 如果无响应为 false
+                    //$("#showImg").attr("src","<%=request.getContextPath()%>"+data);
+                    var str = '<img style="width:180px;height:200px;border‐style:solid;border‐width:1px; border‐color:black;"src="..'+data+'">';
+                    $("#showImgDiv").html(str);
+                    $("#burl").val(data);
+                    // append
+                }
+            });
+        })*/
+
+        function  xiala(){
+            $.ajax({
+                type:"post",
+                url:"../lyproduct/queryClassify",
+                success:function(data){
+                    var html='<option value="-1">--请选择--</option>'
+                    for (var i = 0; i < data.length; i++) {
+                        html+='<option value='+data[i].flid+'>'+data[i].flname+'</option>';
+                    }
+                    $("#xgflid").html(html)
+
+                    $("#xgflid").val($("#xgflid1").val());
+                }
+            })
+        }
+
+        function  xialacd(){
+            $.ajax({
+                type:"post",
+                url:"../lyproduct/queryShi",
+                success:function(data){
+                    var html='<option value="-1">--请选择--</option>'
+                    for (var i = 0; i < data.length; i++) {
+                        html+='<option value='+data[i].orignshiid+'>'+data[i].orignshiname+'</option>';
+                    }
+                    $("#wineyieldlyid").html(html)
+
+                    $("#wineyieldlyid").val($("#xgcdid1").val());
+                }
+            })
+        }
+        function  xialapp(){
+            $.ajax({
+                type:"post",
+                url:"../lyproduct/queryBrand",
+                success:function(data){
+                    var html='<option value="-1">--请选择--</option>'
+                    for (var i = 0; i < data.length; i++) {
+                        html+='<option value='+data[i].brandid+'>'+data[i].brandname+'</option>';
+                    }
+                    $("#winebrandid").html(html)
+
+                    $("#winebrandid").val($("#xgppid1").val());
+                }
+            })
+        }
+
+
+        /*var editor;
+        KindEditor.ready(function(K) {
+            editor = K.create('#editor_id', {
+                uploadJson:"../js/kindeditor-4.1.10/jsp/upload_json.jsp",
+                fileManagerJson:"../js/kindeditor-4.1.10/jsp/file_manager_json.jsp",
+                allowFileManager:true,
+                //将富文本编辑中的内容同步到表单序列化中
+                afterBlur:function(){this.sync();}
+            });
+        });*/
+
+
+
+    </script>
+
+
+</form>
+</body>
+</html>

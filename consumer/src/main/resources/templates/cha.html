@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+
+    <!-- 引入 css  -->
+    <!-- 引入bootstrap的css -->
+    <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-treeview的css -->
+    <link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-addTabs的css -->
+    <link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
+    <!-- 引入bootstrap-table的css -->
+    <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
+    <!-- 引入fileinput的css -->
+    <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
+
+    <!-- 引入 js  -->
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/treeview/bootstrap-treeview.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/addTabs/addTabs.js"></script>
+    <!-- 引入bootstrap-table的js-->
+    <script type="text/javascript" src="../js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- 引入bootbox.js -->
+    <script type="text/javascript" src="../js/bootbox/bootbox.js"></script>
+    <!-- 引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/fileinput.min.js"></script>
+    <!--  引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
+    <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+    <!--<script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <link rel="stylesheet" href="../js/table/bootstrap-table.css">
+    <link rel="stylesheet" href="../js/bootstrap/css/bootstrap.min.css">-->
+</head>
+<body>
+下单时间 <input type="date"  id="startdate"> -
+<input type="date" id="enddate" ><br>
+<select onchange="productname(this.value)" id="productname">
+    <option value="1" selected>商品名称</option>
+    <option value="2">订单号</option>
+</select>
+<input name="productname" placeholder="输入商品名称">
+<input name="ordernumber" placeholder="输入订单号" hidden="true">
+<button type="button" class="btn btn-success" onclick="queryData()">搜索</button>
+<div class="col-md-9">
+    <ul id="tabs" class="nav nav-tabs"  role="tablist">
+        <li role="presentation"  class="active">
+            <a onclick="tabka('')" aria-controls="home" role="tab" data-toggle="tab">欢迎</a>
+        </li>
+        <li role="presentation">
+            <a  onclick="tabka('待付款')" role="tab" data-toggle="tab">待付款</a>
+        </li>
+        <li>
+        <a onclick="tabka('代发货')" role="tab" data-toggle="tab">代发货</a>
+        </li>
+        <li role="presentation" >
+        <a onclick="tabka('已发货')" role="tab" data-toggle="tab">已发货</a>
+        </li>
+        <li role="presentation" >
+            <a onclick="tabka('已完成')" role="tab" data-toggle="tab">已完成</a>
+        </li>
+        <li role="presentation" >
+            <a onclick="tabka('已关闭')" role="tab" data-toggle="tab">已关闭</a>
+        </li>
+        <li role="presentation" >
+            <a onclick="tabka('退款中')" role="tab" data-toggle="tab">退款中</a>
+        </li>
+    </ul>
+</div>
+<table id="dataGrid" fit="true"></table>
+<form id="formId">
+    <input type="hidden" name="id" id="id" >
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="txt_statu">描述</label>
+                    <input type="text" name="beizhu" class="form-control" id="txt_statu" placeholder="状态">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="beizhu111()" class="btn btn-ok">保存</button>
+                <button type="button" class="btn btn-info" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+</body>
+<script>
+    $(function(){
+        initDataGrid();
+    });
+    function initDataGrid() {
+        //创建bootstrapTable
+        $("#dataGrid").bootstrapTable({
+            url: "../ysqone/cha",
+            method: 'post',
+            striped: true,  	// 斑马线效果     默认false
+            //只允许选中一行
+            singleSelect: false,
+            //选中行是不选中复选框或者单选按钮
+            clickToSelect: true,
+            showToggle: true,                    //是否显示详细视图和列表视图的切换按钮
+            cardView: false,                    //是否显示详细视图
+            uniqueId: "id",                 //每一行的唯一标识，一般为主键列
+            showColumns: true,                  //是否显示所有的列
+            showRefresh: true,                  //是否显示刷新按钮
+            minimumCountColumns: 2,     //  最少留两列
+            detailView: false,                  //是否显示父子表
+            toolbar: '#tabToolBar',   //  工具定义位置
+            sidePagination: 'server',
+            toolbar: '#toolbar',
+            pagination: true, //是否展示分页
+            pageList: [2, 4, 8, 10],//分页组件
+            pageNumber: 1,
+            pageSize: 2,//默认每页条数
+            //启动回车键做搜索功能
+            searchOnEnterKey: true,
+            //设置为false 将禁止所有列的排序。
+            sortable: true,
+            //设置默认排序为 name,直接对应数据库的字段
+            sortName: 'id',
+            //定义排序方式，'asc' 或者 'desc'。
+            sortOrder: "desc",
+            //设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
+            // 设置为limit可以获取limit, offset, search, sort, order
+            queryParamsType: 'undefined',
+            // 请求服务器数据
+            queryParams: function queryParams(params) {
+                var param = {
+                    pageNumber: params.pageNumber,
+                    pageSize: params.pageSize,
+                    sortName: params.sortName,
+                    sortOrder: params.sortOrder
+
+                };
+                return param;
+            },
+            columns: [
+                {field:'cb',checkbox:true},
+                {field: 'id', title: '用户id'},
+                {field:'ordernumber',title:'订单号'},//  列    field   代表是 后台  传过来的值
+                {field:'productname',title:'商品名称'},
+                {field:'unitprice',title:'商品单价'},
+                {field: 'ordertime', title: '下单时间'},
+                {field: 'amount', title: '商品数量'},
+                {field: 'buyer', title: '买家'},
+                {field: 'money', title: '实收金额'},
+                {field: 'state', title: '状态'},
+                {field: 'caozuo', title: '操作',
+                    formatter:function(value,row,index){
+                        return "<a href='javascript:xiangqing()'>详情</a>"
+                            + "<a href='javascript:xiu()' class='btn button'>备注</a>";
+                    }
+                    /*formatter:function(value,row){
+                        return "<button type='button' class='btn btn-Warning btn-sm' style='background-color: #00ee00' >详情</button>"
+                            + "<button type='button' class='btn btn-Warning btn-sm' style='background-color: #00ee00' onclick='xiu(row.id)'>备注</button>";
+                    }*/
+                },
+            ]
+        })
+    }
+    productname = function(num){
+        if(num==1){
+            $("input[name='ordernumber']").hide();
+            $("input[name='productname']").show();
+            return ;
+        }
+        $("input[name='ordernumber']").show();
+        $("input[name='productname']").hide();
+    }
+    function queryData(){
+        alert($("input[name='ordernumber']").val())
+        $("#dataGrid").bootstrapTable("refresh", {
+            "query": {
+                startdate: $("#startdate").val(),
+                enddate : $("#enddate_input").val(),
+                couse : $("#u2918_input").val(),
+                refundway:$("#u2963_input").val(),
+                state :$("#u2909_input").val(),
+                status:$("#u2960_input").val(),
+                ordernumber:$("input[name='ordernumber']").val(),
+                productname:$("input[name='productname']").val()
+            }
+        });
+
+    }
+    function tabka(state){
+        $("#dataGrid").bootstrapTable(("refresh"),{
+            "query":{
+                state : state
+            }
+        })
+    }
+    /*$("#xiu123").click(function(){
+        alert(1111)
+        //var arr =  $("#dataGrid").bootstrapTable("getSelections",true);
+        $('#myModal').modal('show');
+        $("#id").val(arr[0].id);
+    })*/
+    xiu = function(){
+        //alert(1111)
+        var arr =  $("#dataGrid").bootstrapTable("getSelections",true);
+        $('#myModal').modal('show');
+        $("#id").val(arr[0].id);
+    }
+    beizhu111 = function(){
+        //alert(1111)
+        $.ajax({
+            url:'../ysqone/beizhu',
+            type:'post',
+            data:$("#formId").serialize(),
+            success:function(){
+                $("#myModal").modal("hide");
+            }
+        })
+    }
+    xiangqing = function() {
+        var arr =  $("#dataGrid").bootstrapTable("getSelections",true);
+       location.href = "../ysqone/queryxiangqingbyid?id="+arr[0].id;
+    }
+</script>
+</html>

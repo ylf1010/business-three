@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" charset="utf-8" src="../jx/pushData.htm"></script><script type="text/javascript" async="" src="../jx/mv.js"></script><script type="text/javascript" async="" src="../jx/mba.js"></script><script type="text/javascript" async="" src="../jx/visittrack.min.js"></script><script type="text/javascript" async="" src="../jx/mvl.js"></script><script async="" src="../jx/productOfRecommend.htm"></script>
+
+        <meta http-equiv="pragma" content="no-cache">
+        <meta name="save" content="history">
+        <meta http-equiv="Expires" content="0">
+        <meta http-equiv="Cache-Control" content="no-cache,must-revalidate">
+        <script type="text/javascript">
+            var mobileRegex_o = "^1[3-9][0-9]{9}$";// 对象 new RegExp
+            var mobileRegex_s = /^1[3-9][0-9]{9}$/;// 字符串
+            var mobileRegex_s_star = /^1[3-9][0-9]{9}$|^([0-9]{3}\*{4}[0-9]{4})$/;
+            var mobileRegex_o_star = "^1[3-9][0-9]{9}$|^([0-9]{3}\\*{4}[0-9]{4})$";
+        </script>
+
+        <script src="../js/jquery.min.js"></script>
+        <script src="../jx/usercenter-web-pc.js" type="text/javascript"></script>
+
+
+        <title>我的酒仙网 &gt; 我的订单</title>
+        <link href="../jx/base.css" type="text/css" rel="stylesheet">
+        <link href="../jx/header.css" rel="stylesheet" type="text/css">
+        <link href="../jx/footer.css" rel="stylesheet" type="text/css">
+
+        <link href="../jx/user.css" rel="stylesheet" type="text/css">
+        <link href="../jx/user_nav.css" rel="stylesheet" type="text/css">
+
+        <script src="../jx/jquery.min.js" type="text/javascript"></script>
+        <script src="../jx/jquery.lazyload.js" type="text/javascript"></script>
+        <script src="../jx/base.js" type="text/javascript"></script>
+        <script src="../jx/region.js" type="text/javascript"></script>
+        <script src="../jx/public.js" type="text/javascript"></script>
+
+        <script src="../jx/userCenterCtrlWidth.js" type="text/javascript"></script>
+        <script src="../jx/Slider.js" type="text/javascript"></script>
+        <script src="../jx/position.js" type="text/javascript"></script>
+        <script src="../jx/turn_bottom.js" type="text/javascript"></script>
+        <script src="../jx/easing.js" type="text/javascript"></script>
+        <script src="../jx/usercenter.js" type="text/javascript"></script>
+        <script src="../jx/sidenav.js" type="text/javascript"></script>
+        <script src="../jx/alert.js" type="text/javascript"></script>
+
+
+        <!--  <script type="text/javascript" src="../jx/my_order.js"></script>
+
+          <link href="../jx/user_1200.css" id="newLink" rel="stylesheet" type="text/css">
+          &lt;!&ndash; <script src="http://misc.jiuxian.com/js/usercenter/Verification.js" type="text/javascript"></script> &ndash;&gt;
+
+          <script type="text/javascript" async="" charset="utf-8" src="../jx/ntkfstat.js"></script><script type="text/javascript" async="async" charset="utf-8" src="../jx/userinfo.php"></script><script type="text/javascript" async="async" charset="utf-8" src="../jx/zh_cn.js" data-requiremodule="lang"></script><script type="text/javascript" async="async" charset="utf-8" src="../jx/chat.in.js" data-requiremodule="chatManage"></script><script type="text/javascript" async="async" charset="utf-8" src="../jx/mqtt31.js" data-requiremodule="MQTT"></script><script type="text/javascript" async="async" charset="utf-8" src="../jx/mqtt.chat.js" data-requiremodule="Connection"></script>
+
+      -->
+    </head>
+<body><div id="nTalk_post_hiddenElement" style="left: -10px; top: -10px; visibility: hidden; display: none; width: 1px; height: 1px;"></div>
+
+<!--<script src="../jx/skipmobileweb.js"></script>
+<script type="text/javascript">isMobile();</script>-->
+
+
+<div class="user clearfix">     <div class="uBread"><a href="http://member.jiuxian.com/index.htm"><b>我的酒仙网</b></a><i>&gt;</i><a href="javascript:;">交易管理</a><i>&gt;</i><em>我的订单</em></div>
+    <!-- 左侧导航begin -->
+    <div class="sideNav"><h1><a href="http://member.jiuxian.com/index.htm"><i></i><span>我的酒仙网</span></a></h1>
+        <!-- 用户信息begin -->
+        <div class="userInfo">
+            <div class="myInfo clearfix">
+                <h3><center>订单中心</center></h3>
+                <p></p>
+                <br/>
+                &nbsp;&nbsp;&nbsp;&nbsp;在这里，你可看到您所购买<br>&nbsp;&nbsp;的商品，商品记录以及商品的状<br>&nbsp;&nbsp;态。
+            </div>
+        </div><script type="text/javascript">jQuery.ajax({type:"POST",url:"/getUserAnrecordedAmount.htm?t="+new Date().getTime(),data:{},dataType:"json",success:function(data){if(data!=null){$("#uc_unrecorded").text(data.unrecordedAmount.toFixed(2))}}});</script>
+        <!-- 用户信息begin --><!-- 侧导航列表begin -->
+        <div class="navList"><div class="func func1 clearfix"><p class="title"><i></i><span>交易管理</span></p>
+            <a class="item on" href="http://localhost:8004/lxx/queryQuan" title=""><span>我的订单</span><i></i></a>
+            <a class="item" href="http://localhost:8004/lxx/queryOffTheStocks" title=""><span>已完成</span><i></i></a>
+            <a class="item" href="http://localhost:8004/lxx/queryPaymentOnBehalfOfOthers" title=""><span>待付款</span><i></i></a>
+            <a class="item" href="http://localhost:8004/lxx/queryDropShipping" title=""><span>待发货</span><i></i></a>
+            <a class="item" href="http://localhost:8004/lxx/queryShippedOrder" title=""><span>运送中</span><i></i></a>
+            <a class="item" href="http://localhost:8004/lxx/queryClose" title=""><span>已关闭</span><i></i></a>
+            <a class="item" href="http://localhost:8004/lxx/queryRefund" title=""><span>退款中</span><i></i></a>
+        </div>
+            <div class="func func2 clearfix"><p class="title"><i></i><span>酒仙钱包</span></p>
+                <a class="item" href="http://localhost:8004/lxx/queryIntegral" title=""><span>个人中心</span><i></i></a>
+                <a class="item" href="http://member.jiuxian.com/purse/my_gold_coin-1.htm" title=""><span>我的积分</span><i></i></a>
+                <a class="item" href="http://member.jiuxian.com/purse/my_surplus-1.htm" title=""><span>我的余额</span><i></i></a>
+                <a class="item" href="http://member.jiuxian.com/purse/pro_exchange.htm" title=""><span>商品兑换通道</span><i></i></a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+
+    </script>
+    <!-- 右侧 -->
+    <div class="rightBox">
+
+        <div style="height: 20px;margin-top: 40px"></div>
+
+        <input id="pageNum" type="hidden" value="1">
+        <input type="hidden" id="currRecordSize" value="3">
+        <ul>
+            <div id="zong" style="margin-top: 20px">
+                <div  th:each="order:${jy}">
+                    <div class="list">
+                        <div class="ttt">
+                            <span th:text="'订单编号：' + ${order.ordernumber}"></span>
+                            <span th:text="'下单时间：' +${#dates.format(order.ordertime,'yyyy-MM-dd')}"></span>
+                        </div>
+                    </div>
+                    <div style="height: 205px;width:985px;background: white">
+                        <div style="height: 205px;width: 250px;float: left"><span th:text="${order.productname}"></span></div>
+                        <div style="height: 205px;width: 200px;float: left"><span th:text="${order.money}"></span></div>
+                        <div style="height: 205px;width: 250px;float: left"><span th:text="${order.buyer}"></span></div>
+                        <div style="height: 205px;width: 185px;float: left">
+                            <p th:if="${order.state==1}" th:text="'待付款'"/>
+                            <p th:if="${order.state==2}" th:text="'待发货'"/>
+                            <p th:if="${order.state==3}" th:text="'已发货'"/>
+                            <p th:if="${order.state==4}" th:text="'已完成'"/>
+                            <p th:if="${order.state==5}" th:text="'已关闭'"/>
+                            <p th:if="${order.state==6}" th:text="'退款中'"/>
+                        </div>
+                        <div style="height: 205px;float: left">
+                            <p th:if="${order.state==1}" th:text="'待付款'"/>
+                            <p th:if="${order.state==2}" th:text="'待发货'"/>
+                            <p th:if="${order.state==3}" th:text="'已发货'"/>
+                            <p th:if="${order.state==4}" th:text="'已完成'"/>
+                            <p th:if="${order.state==5}" th:text="'已关闭'"/>
+                            <p th:if="${order.state==6}" th:text="'退款中'"/>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </ul>
+        <!-- 翻页begin -->
+
+
+        <div class="uPageBox clearfix">
+            <div class="uPage clearfix">
+                <a href="javascript:void(0);" class="uPrevpage">上一页</a>
+
+
+                <a class="num on">1</a>
+
+                <a href="javascript:void(0)" class="uNnextpage">下一页</a>
+            </div>
+        </div>
+        <!-- 翻页end -->
+    </div>     <!-- 右侧 -->
+
+</div> <!--底部商品列表-->
+<div class="userBotW">
+    <div class="userBotBox clearfix">
+        <div id="_userviewhis">
+            <div class="uBotHistory"><div class="ubHisTitBox clearfix"><div class="ubHisTit">浏览记录</div>
+                <div class="ubHisPage"><a class="ubHis-Prev" href="javascript:;"></a><span><b>1</b>/<em>1</em></span><a class="ubHis-Next" href="javascript:;"></a></div></div>
+                <div class="history"><ul class="ubHisCon"><li>您还没有浏览过任何商品！</li></ul></div></div>
+
+        </div>
+        <script type="text/javascript">$("#_userviewhis").load("/getViewHisInfo.htm");</script>
+        <div id="_userguess">
+            <div class="uBotRecommend"><div class="ubRemTit">猜您喜欢</div>
+                <div class="ubRemCon clearfix"><a title="上一页" href="javascript:;" class="ubRem-Prev prev"></a>
+                    <div class="ubRemList" id="recomm_direct_101"></div>
+                    <a title="下一页" href="javascript:;" class="ubRem-Next next"></a></div></div>
+            <script type="text/javascript">var recommend_99_Args = {'pageName':'userBottom','productIds':['-']};</script>
+        </div>
+    </div>
+</div>
+<div class="popupMask" style="display:none"></div>
+
+<div class="popup cancleMoney" style="display:none">
+    <div class="title clearfix">
+        <span>提示</span>
+        <a href="javascript:;" class="popupClose"></a>
+    </div>
+    <div class="refund-pop">
+        <div class="refund-title"><i></i><strong>该订单您已支付，是否确认取消？</strong></div>
+        <div class="c-reason"><span>取消原因：</span><select name="">
+            <option value="1">请选择</option>
+            <option value="2">我不想买了</option>
+            <option value="3">重复下单</option>
+            <option value="4">价格偏高</option>
+            <option value="5">支付失败</option>
+            <option value="6">对商品不满意</option>
+            <option value="7">价格波动</option>
+            <option value="8">订单信息有误</option>
+            <option value="9">其他</option>
+        </select>
+            <p class="my_order_yzf" style="display:none;">请选择取消订单原因</p>
+        </div>
+        <div class="refund-notic">提示：该订单已付金额将在3-7个工作日按原支付方式返还</div>
+        <input type="hidden" id="rc_cancel_order" value="">
+        <div class="refund-btn yzf">
+            <div class="btnNotic">订单取消后不可恢复</div>
+            <div class="btnNoticSj">订单取消后不可恢复，商家订单需要审核后取消</div>
+            <a href="javascript:;" class="sure" onclick="cancel_order(this);">确定</a><a href="javascript:;" class="cancel">取消</a></div>
+    </div>
+</div>
+
+<div class="popup cancleOrder" style="display:none">
+    <div class="title clearfix">
+        <span>提示</span>
+        <a href="javascript:;" class="popupClose"></a>
+    </div>
+    <div class="refund-pop">
+        <div class="refund-title pl85"><i></i><strong>确认要取消订单吗？</strong></div>
+        <div class="c-reason"><span>取消原因：</span><select name="">
+            <option value="1">请选择</option>
+            <option value="2">我不想买了</option>
+            <option value="3">重复下单</option>
+            <option value="4">价格偏高</option>
+            <option value="5">支付失败</option>
+            <option value="6">对商品不满意</option>
+            <option value="7">价格波动</option>
+            <option value="8">订单信息有误</option>
+            <option value="9">其他</option>
+        </select>
+            <p class="tp35" style="display:none;">请选择取消订单原因</p>
+        </div>
+        <div class="refund-btn wzf mt50">
+            <div class="btnNotic">订单取消后不可恢复</div>
+            <div class="btnNoticSj">订单取消后不可恢复，商家订单需要审核后取消</div>
+            <a onclick="cancel_order(this);" class="sure" href="javascript:;">确定</a><a class="cancel" href="javascript:;">取消</a>
+        </div>
+    </div>
+</div>
+
+
+<div class="popup cancleSucess" style="display:none">
+    <div class="title clearfix">
+        <span>提示</span>
+        <a href="javascript:;" class="popupClose"></a>
+    </div>
+    <div class="Prompt-pop">
+        <div class="Prompt-title"><i></i><strong>取消订单成功!</strong></div>
+        <div class="Prompt-btn"><a href="javascript:;" onclick="cancleSucess();" class="sure">确定</a></div>
+    </div>
+</div>
+<script type="text/javascript">
+    NTKF_PARAM = {
+        siteid: "jx_1000",                    //企业ID，为固定值，必填
+        settingid: "",   //接待组ID，为固定值，必填
+        uid: "121942135",
+        uname: "灬挽清歌",
+        itemparam: "pc",
+        isvip: "0"
+    }
+    var xnjs = document.createElement("script");
+    xnjs.type = "text/javascript";
+    xnjs.async = true;
+    xnjs.charset = "utf-8";
+    xnjs.src = "http://dljx.jxwmanage.com/js/xn6/ntkfstat.js?siteid=jx_1000";
+    document.getElementsByTagName("head")[0].appendChild(xnjs);
+    window["_BFD"] = window["_BFD"] || {};
+    _BFD.BFD_INFO = {
+        "page_type": "order_account" //当前页面全称，请勿修改
+    };
+    if (window.loadRecommend) {
+        loadRecommend('orderAccount');
+    }
+    $(document).ready(function () {
+        try {
+            $(".shop-icon").bind('click', function () {
+                var xiaoneng_setting_id = $(this).attr("xnsettingid");
+                NTKF.im_openInPageChat(xiaoneng_setting_id);
+                return false;
+            })
+        } catch (e) {
+        }
+
+        var countdownObjs = $('p[id^=countdown_]');
+        for (var i=0;i<countdownObjs.length;i++) {
+            var time = $(countdownObjs[i]).attr("countdown");
+            if (time != '') {
+                time = parseInt(parseInt(time)/1000);
+                $(countdownObjs[i]).attr("countdown",time);
+                if (time > 0) {
+                    setInterval("countdown('"+countdownObjs[i].id+"')",1000);
+                }
+            }
+        }
+    });
+    function countdown(objId){
+        var time = $("#"+objId).attr("countdown");
+        time = time -1;
+        $("#"+objId).attr("countdown",time);
+        if (time > 0) {
+            $("#"+objId).text("剩余"+toHms(time));
+        } else {
+            $("#"+objId).text("");
+        }
+    }
+
+    function toHms(time) {
+        var result = "";
+        var d = 0,h = 0,m = 0,s = 0;
+        if (time >= 3600*24) {
+            d= parseInt(time/(3600*24));
+        }
+        time = time - d*3600*24;
+        if (time >= 3600) {
+            h = parseInt(time/3600);
+        }
+        time = time - h*3600;
+        if (time >= 60) {
+            m = parseInt(time/60);
+        }
+        s = time - m*60;
+        if (d > 0) {
+            result += d+"天";
+        }
+        if (h > 0) {
+            result += h+"小时";
+        }
+        return result+m+"分"+s+"秒";
+    }
+</script>
+
+
+
+<script>
+    //用户登录信息
+    function profileback(data) {
+        var str = window.location + "";
+        if (str.indexOf("http://cart.jiuxian.com/") != -1
+            || str.indexOf("https://pay.jiuxian.com/") != -1
+            || str.indexOf("http://order.jiuxian.com/") != -1) {
+            var _login_status_panel = $("li[name='_login_status_panel']");
+        } else {
+            var _login_status_panel = $(".topHeaderLeft[name='_new_login_status_panel']");
+        }
+        if (data.jx_user_name) {
+            var old_jx_user_name = stripscript(data.jx_user_name);
+            var jx_user_name;
+            if (old_jx_user_name != cut_str(old_jx_user_name, 10)) {
+                jx_user_name = cut_str(old_jx_user_name, 10)
+            } else {
+                jx_user_name = data.jx_user_name
+            }
+
+            if (str.indexOf("http://cart.jiuxian.com/") != -1
+                || str.indexOf("https://pay.jiuxian.com/") != -1
+                || str.indexOf("http://order.jiuxian.com/") != -1) {
+                _login_status_panel
+                    .html("<span> hi，<span class='userName' title='" + old_jx_user_name + "'>"
+                        + jx_user_name
+                        + "</span><span><a href='https://login.jiuxian.com/logout.htm' class='cartlogout'>退出</a><a class='newsNum' href='http://member.jiuxian.com/jxcircle/info_center-0.htm' target='_blank'><em>消息</em><i class='mesNum'></i></a><a class='newsNum' href='http://member.jiuxian.com/purse/my_gold_coin-1.htm' target='_blank'><em>金币</em><i class='mesNum'></i></a></span></span><i></i>")
+            } else {
+                _login_status_panel
+                    .html("<div class='clearfix'><p class='greeting'><em>hi，</em><span>"
+                        + jx_user_name
+                        + "</span></p><a class='headerExit' href='https://login.jiuxian.com/logout.htm'>退出</a><a class='newsNum' href='http://member.jiuxian.com/jxcircle/info_center-0.htm' target='_blank'><em>消息</em><i class='mesNum'></i></a><a class='newsNum' href='http://member.jiuxian.com/purse/my_gold_coin-1.htm' target='_blank'><em>金币</em><i class='mesNum'></i></a></div>");
+            }
+            showMesNum();
+
+        }
+        if (data.jx_user_id) {
+            _ozuid = data.jx_user_id
+        }
+        //购物车数量
+        if (data.jxcart_nums) {
+            if (data.jxcart_nums > 999) {
+                $(".jx_car_num").text("999+")
+                if ($("#side_goods_count") != null) {
+                    $("#side_goods_count").text("999+");
+                }
+            } else {
+                $(".jx_car_num").text(data.jxcart_nums);
+                if ($("#side_goods_count") != null) {
+                    $("#side_goods_count").text(data.jxcart_nums);
+                }
+            }
+        }
+    }
+
+    $(function() {
+        setTimeout(function() {
+            jQuery.post("/addJXCenterCookie.htm", {
+
+            }, function(d) {
+                if (d == undefined) { return; }
+                profileback(d);
+            }, "json");
+        }, 1000);
+    });
+</script>
+
+<script type="text/javascript">
+    //99click用户ID变量赋值
+    var _ozuid = getUserId();
+</script>
+<script type="text/javascript" src="../jx/recommend_99.js"></script>
+<script type="text/javascript" src="../jx/p_code.js"></script><script type="text/javascript" src="../jx/FAI84qYjQk="></script>
+<script type="text/javascript" src="../jx/o_code.js"></script>
+<!--99click(统计)-->
+<script type="text/javascript">
+    var _mvq = _mvq || [];
+    _mvq.push(["$setAccount", "m-471-1"]);
+    _mvq.push(["$logConversion"]);
+    (function() {
+        var mvl = document.createElement("script");
+        mvl.type = "text/javascript";
+        mvl.async = true;
+        mvl.src = ("https:" == document.location.protocol
+            ? "https://static-ssl.mediav.com/mvl.js"
+            : "http://static.mediav.com/mvl.js");
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(mvl, s)
+    })();
+</script>
+<!-- mediav(访客找回) -->
+<script type="text/javascript">
+
+
+    <!--
+    (function (d) {
+        window._JX_INFO = window._JX_INFO || [];
+        _JX_INFO.push(["userId",getUserId()]);
+
+    })(document);
+    //-->
+
+
+    (function (d) {
+        window._JX_INFO = window._JX_INFO || [];
+        _JX_INFO.push(["userId",getUserId()]);
+        var s = d.createElement("script");s.type = "text/javascript";s.async = true;s.src = location.protocol + "//misc.jiuxian.com/js/visittrack.min.js";
+        var s0 = d.getElementsByTagName("script")[0];s0.parentNode.insertBefore(s, s0);
+    })(document);
+
+
+
+    //BFD begin
+    /*var bfd_on = bfd_on || "true";
+    var bfd_client_id = bfd_client_id || "Ctest_jiuxian";
+    if (bfd_on == "true") {
+      window["_BFD"] = window["_BFD"] || {};
+      _BFD.client_id = bfd_client_id;
+      if (window.getWareIdByRgnId) {
+        _BFD.city = getWareIdByRgnId();
+      }
+      _BFD.script = document.createElement("script");
+      _BFD.script.type = "text/javascript";
+      _BFD.script.async = true;
+      _BFD.script.charset = "utf-8";
+      _BFD.script.src = (('https:' == document.location.protocol
+              ? 'https://ssl-static1' : 'http://static1') + '.bfdcdn.com/service/jiuxianwang/jiuxianwang.js');
+      document.getElementsByTagName("head")[0].appendChild(_BFD.script);
+    }*/
+
+    var dmt_on = dmt_on || "true";
+    if (dmt_on == "true") {
+        try {
+            var dmtTracker = _dmt.init("mfn", "S-000168-01");
+            dmtTracker._setTrack(dmtJsHost + '://mdt.dmtrck.com');
+            dmtTracker._trackSpotLight();
+        } catch (err) {
+        }
+    }
+
+    //消息数量start
+    function showMesNum() {
+        var proxy_url = "/httpProxyAccess.htm?date=" + new Date().getTime();
+        jQuery.ajax({
+            type: 'post',
+            url: proxy_url,
+            data: {
+                target: "http://member.jiuxian.com/getUserMessageNums.htm"
+            },
+            dataType: 'json',
+            success: function(data) {
+                if (data != null) {
+                    if (data.returnCode == "1") {
+                        if (data.messageNums > 0) {
+                            $('.mesNum').eq(0).text(data.messageNums);
+                        } else {
+                            $('.mesNum').eq(0).text("0");
+                        }
+                        if (data.usableGold > 0) {
+                            $('.mesNum').eq(1).text(data.usableGold);
+                        } else {
+                            $('.mesNum').eq(1).text("0");
+                        }
+                    } else {
+                        $('.mesNum').eq(0).text("0");
+                        $('.mesNum').eq(1).text("0");
+                    }
+                }
+
+            }
+        });
+    }
+    <!-- 消息数量end -->
+</script><script>
+    function addcart(goodsId){
+        var shop_cart_request_url = "/cart/addToCart.htm";
+        jQuery.post(shop_cart_request_url, {
+            "productId" : goodsId,
+        }, function(data) {
+            if (data.action_status == 1) {
+                if (data.cart_key) {
+                    setCookie("cart", data.cart_key, 7)
+                }
+                if (data.goods_count) {
+                    setCookie("cart_goods_count", data.goods_count, 7)
+                }else{
+                    var cartGoodsCount = getCookie("cart_goods_count");
+                    setCookie("cart_goods_count", parseInt(cartGoodsCount) + 1, 7);
+                    $(".jx_car_num").text(parseInt(cartGoodsCount) + 1);
+                }
+                showAddCartAlert({"content":"添加购物车成功!", "type":"success"});
+            } else {
+                alert(data.action_msgs);
+            }
+        }, "JSON")
+    }
+    function showAddCartAlert(option){
+        var popr = '<div class="pop-modal"></div><div class="pop-wrap pop-wrap1"><div class="pop-layer"><div class="pop-title"><p class="alertTitle">提示</p><i class="popIcon alertClose"></i></div><div class="pop-main"><i class="popIcon popType success"></i><i class="popIcon popType fail"></i><i class="popIcon popType alarm"></i><i class="popIcon popType confirm"></i><p><span class="alertContent">操作成功</span><em></em></p></div><div class="pop-bottom"><span class="confirm alertSure"><b>确定</b></span><span class="cancel alertCancel"><b>取消</b></span></div></div></div>';
+        $(".pop-modal").remove();
+        $(".pop-wrap").remove();
+        $("body").append(popr);
+
+        var defaults={
+            "target":$(".pop-wrap1"),   //弹窗目标对象
+            "title":"提示",            //弹窗提示title
+            "content":"操作成功",        //弹窗提示内容
+            "type":"success",                //弹窗类型  成功(success)、失败(fail)、警告(alarm)、对话（confirm）
+            "cancelShow":false,          //是否显示取消按钮  默认不显示
+            "callback":null				//添加回调函数
+        }
+        var option = $.extend(defaults,option);
+        $(".pop-modal").show();
+        option.target.show();
+        option.target.find(".popType").hide();
+        option.target.find("."+option.type).show();
+        option.target.find(".alertTitle").text(option.title);
+        option.target.find(".alertContent").text(option.content);
+        var hideAlert = function(){
+            $(".pop-modal").hide();
+            option.target.hide();
+        }
+
+        if(!option.cancelShow)
+        {
+            option.target.find(".alertCancel").hide();
+        }
+        option.target.find(".alertSure").bind("click",function(){
+            hideAlert();
+            if(option.callback&&typeof(option.callback)=="function")
+            {
+                option.callback();
+                if(option.type=="confirm")
+                {
+                    option.callback = null;
+                }
+            }
+
+        });
+
+        $(".alertClose,.alertCancel").bind("click",function(){
+            option.callback = null;
+            hideAlert();
+        });
+    }
+</script>
+
+<div class="pop-modal"></div><div class="pop-wrap pop-wrap1"><div class="pop-layer"><div class="pop-title"><p class="alertTitle">提示</p><i class="popIcon alertClose"></i></div><div class="pop-main"><i class="popIcon popType success"></i><i class="popIcon popType fail"></i><i class="popIcon popType alarm"></i><i class="popIcon popType confirm"></i><p><span class="alertContent">操作成功</span><em></em></p></div><div class="pop-bottom"><span class="confirm alertSure"><b>确定</b></span><span class="cancel alertCancel"><b>取消</b></span></div></div></div></body></html></title>
+</head>
+<body>
+
+</body>
+</html>

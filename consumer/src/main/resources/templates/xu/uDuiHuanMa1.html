@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>优惠劵</title>
+    <!-- 引入jquery -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+
+    <!-- 引入 css  -->
+    <!-- 引入bootstrap的css -->
+    <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-treeview的css -->
+    <link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-addTabs的css -->
+    <link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
+    <!-- 引入bootstrap-table的css -->
+    <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
+    <!-- 引入fileinput的css -->
+    <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
+
+    <!-- 引入 js  -->
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/treeview/bootstrap-treeview.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/addTabs/addTabs.js"></script>
+    <!-- 引入bootstrap-table的js-->
+    <script type="text/javascript" src="../js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- 引入bootbox.js -->
+    <script type="text/javascript" src="../js/bootbox/bootbox.js"></script>
+    <!-- 引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/fileinput.min.js"></script>
+    <!--  引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
+    <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+
+</head>
+<body>
+
+<br>
+<select id="selectyouhiu" class="form-control" onblur="sousuo()">
+    <option value="0">全部优惠劵</option>
+    <option value="1">已过期</option>
+    <option value="2">有效期内</option>
+</select>
+
+<button class="btn btn-info" data-toggle="modal" data-target="#myModal1">+创建优惠劵</button>
+<button class="btn btn-info" onclick="xiugai()">修改</button>
+
+<button class="btn btn-danger btn-sm" onclick="delete1()">删除</button>
+
+<!-- table 数据展示  -->
+<table id="data" ></table>
+
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- 头部 -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>  <!-- X号关闭 -->
+                <h4 class="modal-title" id="myModalLabel2">新添优惠劵</h4>
+            </div>
+
+            <form id="form1">
+                <div class="modal-body">
+    *优惠卷名称：<input type="text" name="yhname"> <br><br>
+
+    *活动商品编号：<input type="text" name="shangpinid"> <br><br>
+      *是否为会员专享劵：<input type="radio" value="1" name="member">否
+                    <input type="radio" value="2" name="member">是
+                    <br><br>
+
+    *优惠卷类型：<select name="yhtype">
+    <option value="满减劵" selected >满减劵
+    <option value="折扣劵">折扣劵
+    <option value="立减劵">立减劵
+</select>&nbsp;&nbsp;&nbsp;&nbsp;
+
+    *满：<input type="text" name="man" size=6>&nbsp;
+    *减：<input type="text" name="jian" size=5>
+    <br>
+    <br>
+
+    *发放数量：<input type="text" name="shuliang">份&nbsp;&nbsp;&nbsp;&nbsp;
+    *每人限领：<input type="text" name="xianling" size=5>次
+    <br>
+    <br>
+
+    *有效期：<input type="date" name="stadate">至<input type="date" name="enddate">
+    <br>
+    <br>
+
+    *使用说明：<textarea name="shuoming" rows="" cols=""></textarea><br><br>
+
+    *跳转商品链接：<input type="text" name="lianjie">
+
+    <!-- 尾部 （按扭）-->
+    <div class="modal-footer">
+        <button type="button" onclick="youhiuadd(1)" class="btn btn-ok"> 确定 </button>
+        <button type="button" class="btn btn-info" data-dismiss="modal">取消</button>
+    </div>
+                </div>
+</form>
+
+</div> <!-- /.modal-content -->
+</div> <!-- /.modal-dialog -->
+</div>
+
+
+
+<!--修改标签-->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- 头部 -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>  <!-- X号关闭 -->
+                <h4 class="modal-title" id="myModalLabel">标签修改</h4>
+            </div>
+
+            <!-- 中部   form内容设置  -->
+            <form id="form2">
+                <div class="modal-body">
+                    *优惠卷名称：<input type="text" id="yhname" name="yhname"> <br><br>
+
+                    *活动商品编号：<input type="text" id="shangpinid" name="shangpinid"> <br><br>
+                    *是否为会员专享劵：<input type="radio" value="1" name="member">否
+                    <input type="radio" value="2" name="member">是
+                    <br><br>
+
+                    *优惠卷类型：<select id="yhtype" name="yhtype">
+                    <option value="满减劵" selected >满减劵
+                    <option value="折扣劵">折扣劵
+                    <option value="立减劵">立减劵
+                </select>&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    *满：<input type="text" id="man" name="man" size=6>&nbsp;
+                    *减：<input type="text" id="jian" name="jian" size=5>
+                    <br>
+                    <br>
+
+                    *发放数量：<input type="text" id="shuliang" name="shuliang">份&nbsp;&nbsp;&nbsp;&nbsp;
+                    *每人限领：<input type="text" id="xianling" name="xianling" size=5>次
+                    <br>
+                    <br>
+
+                    *有效期：<input type="date" id="stadate" name="stadate">至<input type="date" id="enddate" name="enddate">
+                    <br>
+                    <br>
+
+                    *使用说明：<textarea name="shuoming" id="shuoming" rows="" cols=""></textarea><br><br>
+
+                    *跳转商品链接：<input type="text" id="lianjie" name="lianjie">
+
+
+                    <input type="hidden" id="yhid" name="yhid">
+
+                    <!-- 尾部 （按扭）-->
+                    <div class="modal-footer">
+                        <button type="button" onclick="youhiuadd(2)" class="btn btn-ok"> 确定 </button>
+                        <button type="button" class="btn btn-info" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+                <!-- 尾部 （按扭）-->
+
+            </form>
+
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div>
+
+</body>
+<script>
+
+    //查询    数据展示
+    $(function () {
+        //创建bootstrapTable
+        $("#data").bootstrapTable({
+            url: "../xu/ulistyouhiu",
+            method : 'post',
+            striped : true, // 斑马线效果     默认false
+            //只允许选中一行
+            //singleSelect : true,
+            //选中行是不选中复选框或者单选按钮
+            clickToSelect : true,
+            showToggle : true, //是否显示详细视图和列表视图的切换按钮
+            cardView : false, //是否显示详细视图
+            uniqueId : "id", //每一行的唯一标识，一般为主键列
+            showColumns : true, //是否显示所有的列
+            showRefresh : true, //是否显示刷新按钮
+            minimumCountColumns : 2, //  最少留两列
+            detailView : false, //是否显示父子表
+            toolbar : '#tabToolBar', //  工具定义位置
+            sidePagination : 'server',
+            toolbar : '#toolbar',
+          //  pagination : true, //是否展示分页
+            pageList : [ 2,4, 8, 10 ],//分页组件
+            pageNumber : 1,
+
+            pageSize : 2,//默认每页条数
+            //启动回车键做搜索功能
+            searchOnEnterKey : true,
+            //设置为false 将禁止所有列的排序。
+            sortable : true,
+            //设置默认排序为 name
+            sortName : 'id',
+            //定义排序方式，'asc' 或者 'desc'。
+            sortOrder : "desc",
+            //设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
+            // 设置为limit可以获取limit, offset, search, sort, order  queryParamsType:'undefined',
+            queryParamsType : 'undefined',
+            // 请求服务器数据
+            queryParams : function queryParams(params) {
+                var param = {
+                    pageNumber : params.pageNumber,
+                    pageSize : params.pageSize,
+                    sortName : params.sortName,
+                    sortOrder : params.sortOrder,
+                };
+                return param;
+            },
+            columns : [
+                { field : 'checkbox',checkbox : true }, //开启复选框
+                {field : 'yhid', title : '优惠劵编码', width : 300},
+                {field : 'yhname', title : '优惠劵名称', width : 300},
+                {field : 'shangpinid', title : '优惠商品编号', width : 300,},
+                { field : 'shuoming', title : '使用条件',width : 300 },
+                { field : 'yhtype', title : '优惠类型', width : 300,
+                },
+                { field : 'stadate', title : '开始时间', width : 300 },
+                { field : 'enddate', title : '结束时间', width : 300 ,
+                    formatter:function(value,row,index){
+                        return  "<font color='red'>"+value+"</font>";
+                    }
+                },
+
+                { field : 'shuliang', title : '数量剩余', width : 300 },
+                { field : 'cuangdate', title : '创建时间', width : 300 ,
+                },
+               /* { field : 'x', title : '操作', width : 300,
+                    formatter:function(value,row,index){
+                        var  a="<a href='javascript:xiangqing()' >  </a>";
+                        return  a;
+                    }
+                }*/
+            ]
+        });
+    })
+
+    //条件查询     使用parameUtil工具类
+    function sousuo() {
+        $("#data").bootstrapTable("refresh", {
+            "query":{
+                "name" : $("#selectyouhiu").val(),
+            }
+        });
+    }
+
+    //删除  批量删除
+    function delete1() {
+        var arr = $('#data').bootstrapTable("getSelections");//获取选中的行
+        console.log(arr);
+        if (arr.length <= 0) {
+            alert("请选择要删除的优惠劵！");
+            return ;
+        }
+        var ids = "";
+        for (var i = 0; i < arr.length; i++) {
+            ids += arr[i].yhid + ",";
+        }
+
+        ids = ids.substring(0, ids.length - 1);
+        if(confirm("是否确定删除")){
+            $.ajax({
+                url: "../xu/udeleteyouhiu",
+                data: {ids: ids},
+                type: "post",
+                success: function () {
+                    alert("删除成功");
+                    $("#data").bootstrapTable("refresh");
+
+                }, error: function () {
+                    alert("失败！");
+                }
+            })
+        }
+    }
+
+    //修改回显
+    xiugai=function() {
+        var array = $('#data').bootstrapTable("getSelections");//获取选中的行  数组
+        var arr = array[0];  //转化对象
+
+        if (array.length != 1) {  //判断数组长度 为一条时回显
+            alert("选择一条要修改的数据");
+        } else {
+
+            //打开弹框
+            $("#myModal2").modal("show");
+            //回显
+            $("#yhid").val(arr.yhid);
+            $("#yhname").val(arr.yhname);
+            $("#shangpinid").val(arr.shangpinid);
+            $("#yhtype").val(arr.yhtype);
+            $("#man").val(arr.man);
+            $("#jian").val(arr.jian);
+            $("#shuliang").val(arr.shuliang);
+            $("#xianling").val(arr.xianling);
+            $("#stadate").val(arr.stadate);
+            $("#enddate").val(arr.enddate);
+            $("#shuoming").val(arr.shuoming);
+            $("#lianjie").val(arr.lianjie);
+
+        }
+    }
+
+
+    //增优惠劵
+    youhiuadd=function(a){
+        $.ajax({
+            url:"../xu/uaddyouhiu",
+            data:$("#form"+a).serialize(),
+            type:"post",
+            success:function(){
+                alert("ok");
+                $('#myModal'+a).modal('hide'); //隐藏 (执行完关闭弹框)
+                $("#form"+a)[0].reset();  //清除form表单
+                 $('#data').bootstrapTable("refresh");  //refresh刷新当前页
+            }
+        })
+    }
+
+
+</script>
+</html>

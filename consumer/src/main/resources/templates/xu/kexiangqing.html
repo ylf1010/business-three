@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>客户详情</title>
+    <!-- 引入jquery -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+
+    <!-- 引入 css  -->
+    <!-- 引入bootstrap的css -->
+    <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-treeview的css -->
+    <link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-addTabs的css -->
+    <link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
+    <!-- 引入bootstrap-table的css -->
+    <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
+    <!-- 引入fileinput的css -->
+    <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
+
+    <!-- 引入 js  -->
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/treeview/bootstrap-treeview.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/addTabs/addTabs.js"></script>
+    <!-- 引入bootstrap-table的js-->
+    <script type="text/javascript" src="../js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- 引入bootbox.js -->
+    <script type="text/javascript" src="../js/bootbox/bootbox.js"></script>
+    <!-- 引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/fileinput.min.js"></script>
+    <!--  引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
+    <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+
+</head>
+<body background="xiangqing.jpg">
+<!--隐藏了一个传来的客户id  根据id查详情-->
+ <input type="hidden" id="keid" th:value="${a}">
+
+
+<h2> | 基本信息</h2>
+
+<!-- table 数据展示  -->
+<table id="data" ></table>
+
+
+  <!--编辑客户信息-->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- 头部 -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>  <!-- X号关闭 -->
+                <h4 class="modal-title" id="myModalLabel">编辑客户信息</h4>
+            </div>
+
+            <!-- 中部   form内容设置  -->
+            <form id="form2">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">昵称</label>
+                        <input id="nickname" name="nickname" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">手机号</label>
+                        <input id="phone" name="phone" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">微信号</label>
+                        <input id="weixin" name="weixin" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">来源</label>
+                        <input id="source" name="source" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">备注</label>
+                        <input id="remark" name="remark" class="form-control" size="8"/>
+                    </div>
+
+                    <input type="hidden"  id="keid2" name="keid" >
+                </div>
+
+                <!-- 尾部 （按扭）-->
+                <div class="modal-footer">
+                    <button type="button" onclick="updatekehu()" class="btn btn-info"> 保存 </button>
+                    <button type="button" class="btn  btn-ok" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div>
+
+
+
+<!--加积分-->
+<div class="modal fade" id="jifen" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- 头部 -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>  <!-- X号关闭 -->
+                <h4 class="modal-title" id="myModalLabel">加积分</h4>
+            </div>
+
+            <!-- 中部   form内容设置  -->
+            <form id="formjifen">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">当前客户</label>
+
+                        <input  disabled="none" id="nicknamejifen"  class="form-control"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">增加积分</label>
+                        <input id="jifens" name="jifen" class="form-control" size="8"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">原因</label>
+                        <input id="cause" name="cause" class="form-control" size="8"/>
+                    </div>
+
+                    <input type="hidden" id="keidjifen" name="uid" >
+                </div>
+
+                <!-- 尾部 （按扭）-->
+                <div class="modal-footer">
+                    <button type="button" onclick="updatejifen()" class="btn btn-ok"> 保存 </button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">取消</button>
+                </div>
+            </form>
+
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div>
+</body>
+<script>
+
+    //查询    数据展示
+    $(function () {
+        var keid=$("#keid").val();
+        //创建bootstrapTable
+        $("#data").bootstrapTable({
+            url: "../xu/xkehuxiangqing?keid="+keid,
+            method : 'post',
+            //选中行是不选中复选框或者单选按钮
+            clickToSelect : true,
+            cardView : true, //是否显示详细视图 为true时显示详细视图
+            sidePagination : 'server',  //数据展示不可去
+            columns : [
+               { field : 'checkbox',checkbox : true }, //开启复选框
+                {field : 'img', title : '头像', width : 300,
+                    formatter:function(value,row,index){
+                     var a="<img src='../upload/"+row.img+"' width='40' height='40'>";
+                        a+="<button onclick=\"bianji()\" class=\"btn btn-info btn-xs\"> 编辑信息 </button>"
+                        return a;
+                    }
+                },
+                { field : 'nickname', title : '昵称',width : 300 ,
+                    formatter:function(value,row,index){
+                      return "<font  color='#0066CC'>"+value+"</font>";
+
+                    }
+                },
+                { field : 'sex', title : '性别', width : 300 },
+                { field : 'phone', title : '手机号',width : 300 },
+                { field : 'rank', title : '会员', width : 300 },
+                { field : 'jfsum', title : '积分', width : 300,
+                    formatter:function(value,row,index){
+                     var  a="<font  color='#990099'>"+value+"</font>    ";
+                        var nickname=JSON.stringify(row.nickname);  //id为string长字符串 要转json传参
+                        a+="  <a  href='javascript:jiajifen("+row.keid+","+nickname+")'>   +加积分</a>"
+                        return  a;
+                    }
+                },
+                { field : 'source', title : '来源', width : 300 },
+                { field : 'weixin', title : '微信号', width : 300 },
+
+                { field : 'bqname', title : '标签', width : 300 ,
+                    formatter:function(value,row,index){
+                        return "<font  color='red'>"+value+"</font>";
+                    }
+                },
+                { field : 'statime', title : '注册时间', width : 300 },
+                { field : 'endtime', title : '上次登录时间', width : 300 },
+                { field : 'remark', title : '备注', width : 300 },
+            ]
+        });
+    })
+
+
+
+    //加积分
+    jiajifen=function(keid,nickname){
+        //打开弹框
+        $("#jifen").modal("show");
+        $("#keidjifen").val(keid);
+        $("#nicknamejifen").val(nickname);
+    }
+    //加积分
+    updatejifen=function(){
+     var    jifen=$("#jifens").val();
+
+        if(jifen !=null && jifen !=''){
+        $.ajax({
+            url: '../xu/xupdatejifen',
+            type: 'post',
+            data: $("#formjifen").serialize(),
+            success: function () {
+                $('#jifen').modal('hide'); //隐藏 (执行完关闭弹框)
+                $("#formjifen")[0].reset();
+                $('#data').bootstrapTable("refresh");  //refresh刷新当前页
+            }, error: function () {
+                alert("失败！");
+            }
+        });
+      }else{
+            alert("积分不可为空");
+        }
+    }
+
+
+
+    //编辑用户  回显客户信息
+    bianji=function(){
+        var array = $('#data').bootstrapTable("getSelections");//获取选中的行  数组
+        var  arr=array[0];  //转化对象
+        if(array.length != 1){  //判断数组长度 为一条时回显
+            return ;
+        }else {
+            //打开弹框
+            $("#myModal2").modal("show");
+            //回显
+            $("#keid2").val(arr.keid);
+            $("#nickname").val(arr.nickname);
+            $("#phone").val(arr.phone);
+            $("#weixin").val(arr.weixin);
+            $("#source").val(arr.source);
+            $("#remark").val(arr.remark);
+        }
+    }
+
+    //编辑用户  修改客户信息
+    updatekehu=function(){
+        $.ajax({
+            url: '../xu/xupdatekehu',
+            type: 'post',
+            data: $("#form2").serialize(),
+            success: function () {
+                $('#myModal2').modal('hide'); //隐藏 (执行完关闭弹框)
+                $('#data').bootstrapTable("refresh");  //refresh刷新当前页
+            }, error: function () {
+                alert("失败！");
+            }
+        });
+    }
+
+
+
+</script>
+</html>

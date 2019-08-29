@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.ZtxShiMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.ZtxShi" >
+    <id column="orignshiid" property="orignshiid" jdbcType="INTEGER" />
+    <result column="orignshiname" property="orignshiname" jdbcType="VARCHAR" />
+    <result column="orignshengid" property="orignshengid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    orignshiid, orignshiname, orignshengid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ly_orignshi
+    where orignshiid = #{orignshiid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ly_orignshi
+    where orignshiid = #{orignshiid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jk.model.ZtxShi" >
+    insert into ly_orignshi (orignshiid, orignshiname, orignshengid
+      )
+    values (#{orignshiid,jdbcType=INTEGER}, #{orignshiname,jdbcType=VARCHAR}, #{orignshengid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jk.model.ZtxShi" >
+    insert into ly_orignshi
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orignshiid != null" >
+        orignshiid,
+      </if>
+      <if test="orignshiname != null" >
+        orignshiname,
+      </if>
+      <if test="orignshengid != null" >
+        orignshengid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orignshiid != null" >
+        #{orignshiid,jdbcType=INTEGER},
+      </if>
+      <if test="orignshiname != null" >
+        #{orignshiname,jdbcType=VARCHAR},
+      </if>
+      <if test="orignshengid != null" >
+        #{orignshengid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jk.model.ZtxShi" >
+    update ly_orignshi
+    <set >
+      <if test="orignshiname != null" >
+        orignshiname = #{orignshiname,jdbcType=VARCHAR},
+      </if>
+      <if test="orignshengid != null" >
+        orignshengid = #{orignshengid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where orignshiid = #{orignshiid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jk.model.ZtxShi" >
+    update ly_orignshi
+    set orignshiname = #{orignshiname,jdbcType=VARCHAR},
+      orignshengid = #{orignshengid,jdbcType=INTEGER}
+    where orignshiid = #{orignshiid,jdbcType=INTEGER}
+  </update>
+</mapper>

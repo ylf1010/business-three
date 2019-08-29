@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+<form id="addFormId" class="form-inline">
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <label>用户名称 :</label>
+            </td>
+            <td>
+                <input type="text" class="form-control" name="username" style="width:200"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>用户密码 :</label>
+            </td>
+            <td>
+                <input type="password" class="form-control"  name="password" style="width:200"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>昵称 :</label>
+            </td>
+            <td>
+                <input type="text" class="form-control"  name="baccount" style="width:200"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>电话 :</label>
+            </td>
+            <td>
+                <input type="text" class="form-control"  name="phone" style="width:200">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>邮箱 :</label>
+            </td>
+            <td>
+                <input type="text" class="form-control"  name="email" style="width:200">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>角色 :</label>
+            </td>
+            <td>
+                <select class="form-control" id="leagid1" name="roleid"></select>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<script>
+    $(function(){
+        showleag();
+    });
+
+    function showleag(){
+        $.ajax({
+            url:"../ztx/querytype",
+            type:"post",
+            success:function(data){
+                var thtml='<option value="-1">--请选择--</option>';
+                for (var i = 0; i < data.length; i++) {
+                    thtml+='<option value="'+data[i].roleid+'">'+data[i].rolename+'</option>';
+                }
+                $("#leagid1").html(thtml);
+            },
+            error:function(){
+                alert("后台错误，请使用debug调试");
+            }
+        })
+    }
+</script>
+</body>
+</html>

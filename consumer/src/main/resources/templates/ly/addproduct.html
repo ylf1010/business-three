@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<!--<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>-->
+<script src="../js/uploadify/jquery.uploadify.js"></script>
+<script type="text/javascript"  src="../js/kindeditor-4.1.10/kindeditor.js" charset="utf-8"></script>
+<script type="text/javascript"  src="../js/kindeditor-4.1.10/lang/zh_CN.js" charset="utf-8"></script>
+
+<body>
+<form class="form-horizontal" role="form">
+    <div class="form-group">
+        <label for="productname" class="col-sm-2 control-label">商品名称：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="productname" placeholder="请输入名称">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="productprice" class="col-sm-2 control-label">商品价格：</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="productprice" placeholder="请输入价格">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default" onclick="addArt()">提交</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    $(function(){
+        $('#fldd').combobox({
+            url:'../lyproduct/queryClassify',
+            valueField:'flid',
+            textField:'flname'
+        });
+
+    })
+
+    var editor;
+
+    KindEditor.ready(function(K) {
+        editor = K.create('#editor_id', {
+            uploadJson:  "../js/kindeditor-4.1.10/jsp/upload_json.jsp",
+            fileManagerJson:  "../js/kindeditor-4.1.10/jsp/file_manager_json.jsp",
+            allowFileManager : true,
+            //将富文本编辑中的内容同步到表单序列化中
+            afterBlur:function(){this.sync();}
+        });
+    });
+
+    /*$("#uploadImg").uploadify({
+        //插件自带  不可忽略的参数flash插件
+        'swf': '../js/uploadify/uploadify.swf',
+        //前台请求后台的url 不可忽略的参数 ******
+        'uploader': '../art/upFile',
+        //给div的进度条加背景 不可忽略******
+        'queueID': 'show_file',
+        //上传文件文件名 跟file标签 name值 保持一致******
+        'fileObjName' : 'upImg',
+        //给上传按钮设置文字
+        'buttonText': '上传',
+        //设置文件是否自动上传
+        'auto': true,
+        //可以同时选择多个文件 默认为true  不可忽略
+        'multi': true,
+        //上传后队列是否消失
+        'removeCompleted': true,
+        //队列消失时间
+        'removeTimeout' : 1,
+        //上传文件的个数，项目中一共可以上传文件的个数
+        'uploadLimit':  -1,
+        //上传文件的类型
+        'fileTypeExts': '*.*',
+        //成功回调函数 file：文件对象。data后台输出数据
+        'onUploadSuccess':function(file,data,response){
+            /!*data = eval("("+data+")");*!/
+            //alert(file.name+" 路径："+data.imagePath)
+            //图片回显， 预览
+            $("#show_img").attr("src","../"+data)
+            // 文本框 回填
+            $("[name='tminjpg']").val(data);
+        }
+
+    });
+
+    $("#uploadImg2").uploadify({
+        //插件自带  不可忽略的参数flash插件
+        'swf': '../js/uploadify/uploadify.swf',
+        //前台请求后台的url 不可忽略的参数 ******
+        'uploader': '../art/upFile',
+        //给div的进度条加背景 不可忽略******
+        'queueID': 'show_file2',
+        //上传文件文件名 跟file标签 name值 保持一致******
+        'fileObjName' : 'upImg',
+        //给上传按钮设置文字
+        'buttonText': '上传',
+        //设置文件是否自动上传
+        'auto': true,
+        //可以同时选择多个文件 默认为true  不可忽略
+        'multi': true,
+        //上传后队列是否消失
+        'removeCompleted': true,
+        //队列消失时间
+        'removeTimeout' : 1,
+        //上传文件的个数，项目中一共可以上传文件的个数
+        'uploadLimit':  -1,
+        //上传文件的类型
+        'fileTypeExts': '*.*',
+        //成功回调函数 file：文件对象。data后台输出数据
+        'onUploadSuccess':function(file,data,response){
+            /!*data = eval("("+data+")");*!/
+            //alert(file.name+" 路径："+data.imagePath)
+            //图片回显， 预览
+            $("#show_img2").attr("src","../"+data)
+            // 文本框 回填
+            $("[name='tmaxjpg']").val(data);
+        }
+
+    });*/
+
+
+    function addArt(){
+        $('#proForm').form('submit', {
+            url:"../lyproduct/addProduct",
+            onSubmit: function(){
+                return $('#proForm').form('validate')
+            },
+            success:function(data){
+                $.messager.alert('提示','添加成功');
+                $('#tab-art').datagrid('reload');
+                $('#proForm').form('clear');
+            }
+        });
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.ZtxRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.ZtxRole" >
+    <id column="roleid" property="roleid" jdbcType="INTEGER" />
+    <result column="rolename" property="rolename" jdbcType="VARCHAR" />
+    <result column="checked" property="checked" jdbcType="VARCHAR" />
+    <result column="text" property="text" jdbcType="VARCHAR" />
+    <result column="rolecount" property="rolecount" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="DATE" />
+  </resultMap>
+
+  <select id="queryrole" resultMap="BaseResultMap">
+    select * from y_role
+    <where>
+      <if test="p.rolename!=null">
+        and rolename like '%${p.rolename}%'
+      </if>
+    </where>
+    limit #{papa},#{pageSize}
+  </select>
+
+  <select id="queryuser" resultType="HashMap">
+    select a.*,c.rolename rolename from user a,y_user_role b,y_role c where a.id=b.userid and b.roleid=c.roleid
+      <if test="p.username!=null">
+        and a.username like '%${p.username}%'
+      </if>
+      <if test="p.idss!=null and p.idss!=''">
+        and b.roleid in (${p.idss})
+      </if>
+    limit #{papa},#{pageSize}
+  </select>
+  <select id="queryusercount" resultType="long">
+    select count(*) from user
+    <where>
+      <if test="p.username!=null">
+        and username like '%${p.username}%'
+      </if>
+    </where>
+  </select>
+
+  <select id="queryrolecount" resultType="long">
+    select count(*) from y_role
+    <where>
+      <if test="p.rolename!=null">
+        and rolename like '%${p.rolename}%'
+      </if>
+    </where>
+  </select>
+
+  <select id="querydsh" resultMap="BaseResultMap">
+    select * from ly_product where productsxj=2
+    limit #{papa},#{pageSize}
+  </select>
+ <!-- <select id="querydsh" resultType="HashMap">
+    SELECT sp.*,fl.flname producttype  FROM ly_product sp,ly_classify fl WHERE  sp.productpid=fl.flid and sp.productsxj=2
+      limit #{papa},#{pageSize}
+  </select>
+
+  <select id="querydshcount" resultType="long">
+    select count(*) from ly_product where productsxj=2
+  </select>-->
+</mapper>

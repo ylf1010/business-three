@@ -1,0 +1,28 @@
+@charset "utf-8";
+/* CSS Document */
+
+.clubHead,.clubMain,.proList,.clubChangeList,.saleTopFocus,.topHeaderCon{ width:1200px;}
+.proList li,.clubChangeList li{ width:240px;}
+.proList li .frameB{ width:230px;}
+.proList li .frameA{ width:232px;}
+.memRightBox{ width:990px;}
+.mStaPic{ padding: 0 35px 0 50px;}
+.mStaDetail{ padding: 4px 20px;}
+.recordTab-goods .recordTab-pic{ width:240px;}
+.saleTopFocus img{ margin-left:0px;}
+.brandS .frameR,.situationS .situ{ width:1083px;}
+.zpProArea .zpRightInfo{ width:656px;}
+.goldFil_fixed{ width:988px;}
+.goldFil_fixed.fixed2{ width:1198px;}
+.xssGoldCon ul{ margin:20px 1px 10px;}/*0728*/
+.xssGoldCon ul li{ width:239px;}
+.xssGoldCon .xssgBox{ width:237px;}
+.zpSpecial{ padding:15px;}
+.zpService{ padding-left:15px;}
+.levelHead li,.levelBody li{ width:161px;}
+.levelHead li.first,.levelItem li{ width:139px;}
+.levelBody ul{ width:162px;}
+.levelBody .levelItem{ width:140px;}
+.zpProShowInt li{ width:470px;}
+.zpProShowInt li span{ width:470px;}
+.levelDetial .itemTick{ background-position:-447px -87px;}

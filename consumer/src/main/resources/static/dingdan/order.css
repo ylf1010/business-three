@@ -1,0 +1,520 @@
+﻿/*购物车头部*/
+.bayProcess .proPic{background-position:0 -30px;}
+.bayProcess .proTex .on2{  color:#666;}
+
+.orderWrap input::-webkit-input-placeholder,.orderWrap textarea::-webkit-input-placeholder {　color: #666;}
+.orderWrap input:-moz-placeholder,.orderWrap textarea:-moz-placeholder {　color:#666;}
+.orderWrap input::-moz-placeholder,.orderWrap textarea::-moz-placeholder {color:#666;}
+.orderWrap input:-ms-input-placeholder,.orderWrap textarea:-ms-input-placeholder {color:#666;}
+.orderIcon{ background:url(../images/orderIcon.png) no-repeat 0 0;}
+.orderWrap{ background:#fff; width:100%; font-family:"微软雅黑";}
+.orderBody{ width:1000px; margin:0 auto; padding-top:44px;}
+.pubWrap{ margin-bottom:40px;}
+.pubTitle{ height:32px; border-bottom:1px solid #e8e8e8; position:relative; z-index:1;}
+.pubTitle h3{ line-height:1; font-size:14px; color:#333333; float:left;}
+.addressList{ height:180px; width:1000px; overflow:hidden; margin-top:20px; _position:relative;}
+.addressList ul{ width:1100px;}
+.addressList li{ width:292px; height:158px; border:1px solid #dddddd; padding:0 13px; float:left; margin:0 20px 20px 0; cursor:pointer; position:relative; z-index:1;}
+.addressList li.liHover{ background:#fffbfb; border:1px solid #e6393d;}
+.addressList li.default .orderIcon{ display:block;}
+.addressList li .defaultText,.addressList li .defaultText:hover{ display:block; text-decoration:none; color:#333333;}
+.addressList li.default .defaultText{ display:block;}
+.addressList li.liHover .setDefault{ display:block;}
+.addressList li .orderIcon{ background-position:0 0; width:320px; height:160px; position:absolute; left:-1px; top:-1px; display:none; z-index:1;}
+.addressListTop{ height:42px; line-height:42px; border-bottom:1px solid #e8e8e8; position: relative; z-index:20;}
+.addressListTop span{ float:left; color:#333333; margin-right:10px;}
+.addressListTop a{ font-style:normal; float:right;}
+.addressListTop .setDefault{ color:#a0341f; cursor:pointer; display:none;}
+.addressListTop .setDefault:hover{ color:#e6393d; text-decoration:none;}
+.addressListBottom{ height:105px; padding-top:10px; position:relative; z-index:1;}
+.address{ line-height:22px; max-height:44px; overflow:hidden; color:#666666;}
+.phoneNum{ line-height:24px; margin-top:5px; color:#666;}
+.operatingBtn{ line-height:1; left:0; position:absolute; z-index:1; bottom:15px; display:none;}
+.operatingBtn a{ color:#a0341f; text-decoration:none; margin-right:15px;}
+.operatingBtn a:hover{ color:#e6393d; text-decoration:none;}
+.addressMoreBox{ height:30px;}
+.addressMore{ font-size:0; line-height:30px; height:30px; float:left; text-align:center; margin-right:20px; cursor:pointer;}
+.addressMore a{ display:block; width:100%; height:30px;}
+.addressAdd{ font-size:0; height:30px; float:left; width:124px; text-align:center; cursor:pointer;}
+.addressAdd a{ display:block; border:1px solid #dddddd; width:122px; height:28px; line-height:28px;}
+.addressMore span,.addressMore i,.addressAdd span,.addressAdd i{ display:inline-block; vertical-align:middle;}
+.addressMore a span{ font-size:14px; color:#e43a3d;}
+.addressMore a:hover span{  color:#f94146;}
+.addressMore a i{ background-position:-324px 0; width:10px; height:5px; margin-left:6px;}
+.addressMore a i.on{ background-position:-324px -6px;}
+.addressAdd a span{ font-size:14px; color:#666666;}
+.addressAdd a:hover{ border:1px solid #e6393d;}
+.addressAdd a:hover span{ color:#e6393d;}
+.addressAdd a i{ background-position:-338px 0; width:12px; height:12px; margin-right:6px; position:relative; top:1px;}
+.addressAdd a:hover i{ background-position:-323px -33px;}
+.payMent{ height:30px; margin-top:30px;}
+.payMent .item{ float:left; width:118px; height:28px; border:1px solid #dddddd; color:#666666; font-size:14px; text-align:center; line-height:28px; cursor:pointer; margin-right:10px; position:relative; z-index:1;}
+.payMent .item i{ display:none; position:absolute; background-position:-353px 0; width:16px; height:16px; top:7px; right:10px;}
+.payPrompt{ position:absolute; width:auto; height:30px; line-height:30px; background:#fff; border:1px solid #dedede; padding:0 10px; color:#666; white-space:nowrap; font-size:12px; box-shadow:0 0 3px #d9d9d9; left:84px; top:28px; display:none; z-index:10;}
+.payPrompt em{ position:absolute; top:-7px; left:10px; background-position:-382px -43px; width:11px; height:7px; display:block; overflow:hidden;}
+.payMent .item.onHover i{ display:block;}
+.payMent .item.onHover{ border:1px solid #e6393d;}
+.payMent .item.cur{ border:2px solid #e6393d; width:116px; height:26px; line-height:26px;}
+.payMent .item s{ display:none; background-position:-321px -12px; width:16px; height:16px; position:absolute; bottom:-2px; right:-2px;}
+.payMent .item.cur s{ display:block;}
+.payMent .item.noSelect{ background:#f3f3f3; color:#c1c0c0; border:1px solid #f3f3f3; cursor:default;}
+.payMent .item.noSelect.onHover{ background:#f3f3f3; color:#c1c0c0; border:1px solid #f3f3f3;}
+.payMent .item.noSelect.onHover i{ display:block;}
+.payMent .item.noSelect i{ display:none; background-position:-370px 0;}
+.payMent .item.cur i{ top:6px; right:9px;}
+.confirmRemind{ font-size:0; float:left; position:relative; top:1px; height:14px; line-height:14px; margin-left:18px;}
+.confirmRemind i,.confirmRemind span{ display:inline-block; vertical-align:middle;}
+.confirmRemind i{ background-position:-342px -14px; width:10px; height:14px;}
+.confirmRemind span{ font-size:12px; color:#666666; font-weight:normal; margin-left:6px;}
+.orderTable{ width:100%;}
+.tHead{ height:40px; border-bottom:2px solid #b5c2cf;}
+.tHead .oTd{ float:left; text-align:center; color:#999999; height:40px; line-height:40px;}
+.tHead .item-1{ width:358px;}
+.tHead .item-2{ width:178px;}
+.tHead .item-3{ width:118px;}
+.tHead .item-4{ width:172px;}
+.tHead .item-5{ width:174px;}
+.tBody{ margin-top:6px;}
+.shopTitle{ height:44px; font-size:0; line-height:44px;}
+.shopTitle i,.shopTitle span{ display:inline-block; vertical-align:middle;}
+.shopTitle i.jxzy{ background-position:-356px -20px; width:16px; height:16px;}
+.shopTitle i.shop{ background-position:-376px -20px; width:16px; height:15px;}
+.shopTitle span{ font-size:12px; color:#252525; margin-left:5px;}
+.tMain{ border-top:1px solid #e8e8e8; width:100%;}
+.tMain .oTr{ border-left:1px solid #e8e8e8; border-right:1px solid #e8e8e8; border-bottom:1px solid #e8e8e8; padding:20px 0 20px 20px;}
+.mainProduct{ height:60px;}
+.mainProduct .oTd{ float:left; height:60px; color:#333333; text-align:center;}
+.mainProduct .item-1{ width:337px;}
+.mainProduct .item-2{ width:178px; line-height:30px;}
+.mainProduct .item-3{ width:118px; line-height:30px;}
+.mainProduct .item-4{ width:172px; line-height:30px;}
+.mainProduct .item-5{ width:173px; line-height:30px; color:#e43a3d;}
+.mainProduct .item-1 .img{ float:left; width:60px; height:60px; position:relative; z-index:1;}
+.mainProduct .item-1 .img span{ width:100%; display:block; height:20px; line-height:20px; position:absolute; color:#fff; background:rgba(0,0,0,0.5); text-align:center; left:0; bottom:0;}
+.mainProduct .item-1 .name{ margin-left:80px; height:60px;}
+.mainProduct .item-1 .name a{ color:#333333; width:100%; display:block; text-decoration:none; height:30px; line-height:30px;text-overflow: ellipsis;overflow: hidden; white-space: nowrap;}
+.mainProduct .item-1 .name a:hover{ color:#e43a3d;}
+.mainProduct .item-1 .name a .zhenxuan{ float:left; width:72px; height:16px; margin: 7px 5px 0 0;}
+.special .item-1 .img img,.special .item-1 .name a,.special .item-2,.special .item-3,.special .item-5{ -webkit-opacity:0.4; opacity:0.4;}
+.special .item-4{ color:#e6393d;}
+.pubFloat{ height:30px; float:left; line-height:30px; font-size:0; padding:0 10px; background:#fff; border:1px solid #d9d9d9; position:relative; z-index:1; left:15px; top:-8px; box-shadow:0 0 3px #d9d9d9;}
+.pubFloat i,.pubFloat span{ display:inline-block; vertical-align:middle;}
+.pubFloat i{ background-position:-342px -14px; width:10px; height:14px;}
+.pubFloat span{ font-size:12px; color:#666666; margin-left:6px;}
+.pubFloat em{ background-position:-343px -42px; width:8px; height:16px; position:absolute; left:-8px; top:8px;}
+.f-Prompt{ height:34px; line-height:34px; font-size:0; background:#fffcf8; border:1px solid #ffdeb0; padding:0 20px; margin-bottom:20px;}
+.f-Prompt i,.f-Prompt span{ display:inline-block; vertical-align:middle;}
+.f-Prompt i{ background-position:-387px 0px; width:13px; height:18px; margin-right:10px;}
+.f-Prompt span{ font-size:12px; color:#666666;}
+.redioBox{ height:14px; margin-top:30px; padding-left:20px;}
+.redioBox label{ font-size:0; line-height:14px; float:left; margin-right:30px;}
+.redioBox label i,.redioBox label span{ display:inline-block; vertical-align:middle;}
+.redioBox label i{ background-position:-322px -72px; width:14px; height:14px; overflow:hidden;}
+.redioBox label.selected i{ background-position:-338px -72px;}
+.redioBox label.unSelect i{ background-position:-387px -115px;}
+.redioBox label.unSelect span{ color:#999;}
+.redioBox label span{ font-size:12px; color:#666666; margin-left:13px;}
+.redioHidden{ height:14px; line-height:14px; margin-top:20px; padding-left:47px; display:none;}
+.invoiceField{ float:left; line-height:14px; color:#666666;}
+.invoiceField span{ margin-right:10px;}
+.modify{ float:left; color:#0066cc; line-height:14px; margin-left:8px;}
+.modify:hover{ text-decoration:none; color:#e6393d;}
+.giftField{ float:left; line-height:14px; color:#666666;}
+.giftField span{ margin-right:30px;}
+.settlementWrap{ border:1px solid #e8e8e8;}
+.settlementBox{ padding:30px 20px 0;}
+.settlementTitle{ height:14px; line-height:14px; font-size:0; cursor:pointer;}
+.settlementTitle.cur i{ background-position:-371px -72px;}
+.settlementTitle i,.settlementTitle span{ display:inline-block; vertical-align: middle;}
+.settlementTitle span{ font-size:12px; color:#666666;}
+.settlementTitle i{ background-position:-356px -72px; width:14px; height:14px; overflow:hidden; margin-left:10px;}
+.giftCardWrap{ width:100%; display:none; margin-top:20px;}
+.settlementCon li{ height:30px; line-height:30px; border-bottom:none; padding:0; padding-left:20px;}
+.settlementCon li .settlementRule{ float:left;}
+.giftCardWrap .giftCardTitleWrap{ width:100%; height:27px;}
+.giftCardWrap .giftCardTitle{ cursor:pointer; display:inline-block; background:#fbfbfb; width:120px; text-align:center; height:26px; line-height:26px; margin-bottom:-1px; border:1px solid #ddd; margin-right:8px; float:left; position:relative;}
+.giftCardWrap .giftCardTitle.gctitOn{ color:#ff9933; border-bottom:1px solid #FBFBFB;}
+.giftCardWrap .giftCardTitle b{ color:#ff9933;}
+.giftCardWrap .giftCardCon{ width:100%;}
+.giftCardWrap .giftCardBox{ background-color:#fbfbfb; border:1px solid #ddd; border-bottom:none; padding:5px 0 0 0;}
+.giftCardWrap .giftCardBox p{ height:26px; line-height:26px; color:#666;}
+.giftCardWrap .giftCardBox .giftCardTit{ color:#666;}
+.giftCardWrap .giftCardBox .giftCardRule span{ color:#cc0000;}
+.giftCardWrap .giftCardBox .giftCardRule a,.giftCardBox .giftCardRule a:hover,.giftCardBox .giftCardW a,.giftCardBox .giftCardW a:hover,.giftCardBox .giftCardStqTit a,.giftCardBox .giftCardStqTit a:hover{ color:#0066cc; padding-left:10px;}
+.giftCardWrap .giftCardBox .giftCardW{ color:#666; border-bottom:1px dotted #ccc; height:36px; line-height:36px; margin:0 25px; position:relative;}
+.giftCardWrap .giftCardBox .giftCard{ padding:12px 0; height:130px;  overflow:hidden; position:relative;}  
+.giftCardWrap .giftCardBox .open{position:absolute; right:0; top:0; display:inline-block; height:36px; line-height:36px; color:#666; text-decoration:none; font-size:0; display:none;}
+.giftCardWrap .giftCardBox .open:hover{ color:#666;}
+.giftCardWrap .giftCardBox .open span{ font-size:12px;}
+.giftCardWrap .giftCardBox .giftCard span{ display:block; padding:0 25px;}
+.giftCardWrap .giftCardBox .giftCard span.cur{ background:#fff3e8;}
+.giftCardWrap .giftCardBox .giftCard span input{ width:13px; height:13px; overflow:hidden; margin-top:6px;}
+.giftCardWrap .giftCardBox .giftCard span b{ vertical-align:middle; padding-top:1px;}
+.giftCardWrap .giftCardBox .giftCard span font{ color: #CC0000; font-size:12px; padding:0 2px 0 10px;}
+.giftCardWrap .giftCardBox .giftCard span em{ font-style:normal; padding-left:50px; vertical-align:middle; display:inline-block;}
+.giftCardWrap .giftCardBox .giftCard span .ggname{ display:inline-block; width:350px; height:26px; line-height:26px; overflow:hidden;}
+.giftCardWrap .giftCardBox .giftCard span .redJine{ width:50px; color:#ff9933; padding-left:20px;}
+.giftCardWrap .giftCardBox .giftCard span .redName{ width:100px; color:#ff9933; padding-left:20px;}
+.giftCardWrap .giftCardBox .giftCard span .endTime{ width:200px;}
+.checkboxA{ height:26px; line-height:26px;}
+.checkboxA input,.checkboxA em{ display:block; float:left; height:26px;}
+.giftCardWrap .giftCardBox .giftCardStqTit{ padding:10px 0 5px; margin:0 25px;}
+.giftCardWrap .giftCardBox .giftCardStq{ margin:0 25px; height:30px; line-height:30px; padding-bottom:15px; display:none;}
+.giftCardWrap .giftCardBox .giftCardStq p{ font-style:normal; margin-right:10px; float:left; height:30px; font-size:0; line-height:30px;}
+.giftCardWrap .giftCardBox .giftCardStq p span{ font-size:12px; display:inline-block; vertical-align:middle;}
+.giftCardWrap .giftCardBox .giftCardStq p input{background:#FFFFFF; border: 1px solid #DDDDDD; width:180px; height:28px; line-height:28px; padding:0 5px; display:inline-block; vertical-align:middle;}
+.giftCardWrap .giftCardBox .giftCardStq .useBtn { display:block; height:28px; line-height:28px; border:1px solid #ccc; background:#f2f2f2; padding:0 10px; margin:0 10px;}
+.giftCardWrap .giftCardBox .giftCardStq .useBtn a{ color:#666; text-decoration:none;}
+.giftCardWrap .giftCardBox .giftCardPwIn{ padding-top:5px; border-top:1px dotted #ccc;}
+.giftCardWrap .giftCardBox .giftCardPwIn b{ font-weight:normal; color:#cc0000; padding:0 3px;}
+.giftCardWrap .giftCardBox .giftCardStq em .InputBorder1{background:#FFFFFF; border: 1px solid #DDDDDD; width:65px; height: 28px; line-height: 28px; padding:0 5px; float:none;}
+.giftCardWrap .giftCardBox .giftCardStq .yzmBox{ width:58px; height:28px; border:1px solid #c0c0b8; position:relative; z-index:1; overflow:hidden;}
+.giftCardStq img{ position:absolute; width:80px; height:40px; top:50%; left:50%; margin:-17px 0 0 -32px;}
+.giftCardStq a,.giftCardWrap .giftCardBox .giftCardStq .orderSubPro{ font-size:12px;}
+.giftCardWrap .giftCardBox .orderSubPro{ color:#cc0000; line-height:30px;}
+.giftCardStq a.change{ color:#666;}
+.giftCardWrap .giftCardBox .orderLine{ height:0; margin:0 25px; overflow:hidden; border-bottom:1px dotted #ccc;}
+.giftCardWrap .giftCardBox .open i,.giftCardWrap .giftCardBox .open span{ display:inline-block; vertical-align:middle;}
+.giftCardWrap .giftCardBox .open i{ background-position:-322px -92px; width:15px; height:8px; margin-left:5px; overflow:hidden;}
+.giftCardWrap .giftCardBox .open.packUp i{ background-position:-322px -108px;}
+.giftCardWrap .giftCardBox .disabled span em,.giftCardWrap .giftCardBox .disabled span .redJine,.giftCardWrap .giftCardBox .disabled span .redName{ color:#bbbbbb;}
+.giftCardWrap .giftCardBox .giftCard span .freeze{ background:#d0d0d0; height:16px; line-height:16px; color:#fff; width:31px; text-align:center; padding-left:0; margin-left:20px; margin-top:5px;}
+.recBottom{ background:#f3f6f9; border-left:1px solid #ddd; border-bottom:1px solid #ddd; border-right:1px solid #ddd; height:40px; line-height:40px; padding:0 24px; overflow:hidden;}
+.recBottom p{ float:left; font-family:"微软雅黑"; color:#666666; margin-right:40px;}
+.recBottom p span{ color:#ff9933; font-size:12px;}
+.recBottom p span em{ font-style:normal; font-size:16px;}
+.messageBox{ height:28px; display:none; margin-top:20px;}
+.messageInput{ height:28px; position:relative; z-index:1; float:left;}
+.messageInput input{ height:26px; line-height:26px; font-family:"微软雅黑"; font-size:12px; color:#333; border:1px solid #dbdbdb; width:655px; padding-left:5px; position:relative; z-index:2; background:none; outline:none;}
+
+.messageBox .maxText{ float:left; height:28px; line-height:28px; margin-left:10px;}
+.comTotalBox{ float:right; text-align:right; padding-bottom:20px;}
+.comTotalBox .totalList{ height:26px; line-height:26px; text-align:right;}
+.comTotalBox .totalList span{ display:inline-block; padding-left:15px;}
+.comTotalBox .totalList span em{ font-style:normal; color:#e43a3d; margin-right:5px;}
+.comTotalBox .totalList .comTotalSum{ width:100px; font-family:"微软雅黑";}
+.comTotalBox .totalList .comTotalSum.yunfei{ color:#e43a3d;}
+.yf_div{ position:relative;}
+.shopPop{ background-position:-321px -50px; width:17px; height:17px; display:inline-block; position:absolute; right:95px; top:4px; z-index:1; cursor:pointer;}
+.freightPad{ width:314px; height:366px;  position:absolute; padding-bottom:30px; background:none; left:-19px; top:-375px; display:none;}
+.freightPop{width:314px; height:351px; padding-bottom:15px;  border:1px solid #e8e8e8; box-shadow:0 0 6px #f4f4f4; background:#fff;}
+.freightPop .cor{ background-position:-343px -92px; position:absolute; width:13px; height:8px; display:block; top:367px; left:20px;}
+.freightCon{ height:303px; overflow-y:auto;}
+.freightBox{ padding:0 15px; height:303px; overflow:hidden; overflow-y:auto; position:relative;}
+.freightTitle{ height:47px; line-height:47px; font-size:12px; color:#666666; text-align:center; border-bottom:1px solid #eff1f8;}
+.freightItem{ border-bottom:1px solid #f2f2f2; padding-bottom:20px;}
+.freightItem:last-child{ border-bottom:none;}
+.freightItem .title{ height:46px; line-height:46px; color:#666;}
+.freightItem .title .left{ float:left; height:46px; line-height:46px; margin-right:0;}
+.freightItem .title .right{ float:right; height:46px; line-height:46px; margin-right:0;}
+.freightItem .title .right span{ padding-left:0;}
+.silderBar{ width:100%; height:50px; overflow:hidden; position:relative;}
+.silderBar .orderIcon{ position:absolute; top:15px; width:10px; height:19px; display:block;}
+.silderBar .recLeft{ background-position:-363px -92px; left:0;}
+.silderBar .recRight{ background-position:-374px -92px; right:0;}
+.recNavBox{ width:221px; margin:0 auto; height:50px; overflow:hidden;}
+.recNavBox ul{ height:50px;}
+.recNavBox li{ width:48px; height:48px; float:left; border:1px solid #f2f2f2; margin-right:7px; _display:inline;}
+.settlementBg{ background:#f6f7f8; padding-bottom:30px;}
+.settlementAmount{ width:100%; margin-bottom:20px;}
+.settlementAmount p{ line-height:30px; height:30px; text-align:right;}
+.settlementAmount p span{ font-size:12px; color:#333333; font-weight:bolder;}
+.settlementAmount p em{ font-style:normal; color:#666666;}
+.settlementAmount p .totleNum{ font-size:18px; color:#e43a3d; font-weight:bolder;}
+.settlementAmount p em.phoneNunber{ margin-left:20px;}
+.submitBtnBox{ height:40px; font-size:0; text-align:right;}
+.submitBtnBox a{ line-height:40px; color:#0066cc; text-decoration:none; font-size:12px; display:inline-block; vertical-align:middle;}
+/*.submitBtnBox a:hover{ color:#e6393d; text-decoration:none;}*/
+.submitBtnBox .submitBtn{ width:120px; height:40px; background:#e43a3d; color:#fff; text-align:center; line-height:40px; font-size:16px; border-radius:2px; margin-left:24px;}
+/*.submitBtnBox .submitBtn:hover{ background:#fa4147; color:#fff;}*/
+/*选择地区*/
+.addrSelect{ height:37px;}
+.areaBox{ position:relative; height:37px; float:left; z-index:10;}
+.areaBox .selectArea{ float:left; color:#666; position:relative; line-height:35px; height:35px; font-size:12px; border:1px solid #cacaca; display:inline-block; background:#fff; padding-left:10px; z-index:112; padding-right:17px;}
+.areaBox .selectArea.on{ border:1px solid #cacaca; border-bottom:none;}
+.areaBox .selectArea:hover{ color:#666; text-decoration:none;}
+.areaBox .selectArea:hover i{ background-position:-387px -79px;}
+.areaBox .selectArea b{ float:left; font-weight:normal; padding-right:6px; color:#666;}
+.areaBox .selectArea i{ position:absolute; display:inline-block; width:7px; height:4px; background-position:-387px -73px; top:15px; right:10px;}
+.areaDetail{ padding:10px; width:340px; position:absolute; left:0; top:35px; border:1px solid #cacaca; box-shadow:0 0 5px -1px #ccc; background:#fff; z-index:111; display:none;}
+.selectedBox{ font-size:100%; height:26px; font-weight:normal; position:relative; z-index:22; overflow:hidden;}
+.selectedBox a{ float:left; display:inline-block; color:#666; height:25px; line-height:25px; padding:0 10px; background-color:#fff; cursor:pointer;}
+.selectedBox a:hover{ color:#666; text-decoration:none;}
+.selectedBox a em{ font-style:normal; float:left; display:inline-block;}
+
+.selectedBox a.on{ border:1px solid #f94146; height:24px; line-height:24px; border-bottom:1px solid #fff;}
+.areaList{ padding:5px; overflow:hidden; zoom:1; position:relative; z-index:20; margin-top:-1px;  border-top:1px solid #f94146; display: none;}
+.areaList li{ float:left; line-height:24px; width:82px;}
+.areaList li a{ display:inline-block; padding:0 7px;}
+.areaList li a:hover{ background:#c00; color:#fff; text-decoration:none;}
+.defaultAddrBox{ margin-top:30px;}
+.defaultAddr{ width:100%;}
+.d-item{ margin-bottom:15px;}
+.d-item:last-child{ margin-bottom:0;}
+.d-item .title{ float:left; width:72px; height:37px; line-height:37px; text-align:right;}
+.d-item .title em{ font-style:normal; color:#e43a3d; margin-right:5px; position:relative;top:2px;}
+.d-item .title span{ font-size:12px; color:#333333;}
+.d-item-right{ margin-left:95px; position:relative;}
+.pubPrompt{ height:16px; line-height:16px; font-size:0; margin-top:6px; display:none;}
+.pubPrompt i,.pubPrompt span{ display:inline-block; vertical-align:middle;}
+.pubPrompt i{ background-position:-343px -108px; width:16px; height:16px;}
+.pubPrompt span{ color:#e43a3d; font-size:12px; margin-left:6px;}
+.d-item-right input,.d-item-right textarea{ border:1px solid #cacaca; font-family:"微软雅黑"; font-size:12px; color:#333; position:relative; z-index:2; background:none;outline:none;}
+.d-item-right input{ padding-left:10px; line-height:35px; height:35px;}
+.d-item-right.wrong textarea,.d-item-right.wrong input,.d-item-right.wrong .areaBox .selectArea{ border:1px solid #e43a3d;}
+.form-2{ width:447px; height:45px; padding:10px; resize:none;}
+.form-1{ width:457px;}
+.form-3{ width:110px; display:inline-block; vertical-align:middle;}
+.form-4{ width:310px; display:inline-block; vertical-align:middle;}
+.addrBtn{ padding-left:95px; height:30px; margin-top:20px;}
+.addrBtn a{ display:block; width:80px; height:30px; line-height:30px; color:#fff; text-align:center; background:#e64346;}
+.addrBtn a:hover{ background:#f94146; text-decoration:none;}
+.d-item-right .bor{ font-style:normal; font-family:"宋体"; font-size:14px; padding:0 9px; line-height:37px; width: 7px; overflow: hidden; display:inline-block; vertical-align:middle;}
+.maskLayer{ background:#000; -webkit-opacity:0.2; opacity:0.2; position:fixed; width:100%; height:100%; left:0; top:0; z-index:1000; display:none;filter:Alpha(opacity=50);}
+.pubPop{ width:664px; position:fixed; left:50%; top:50%; background:rgba(0,0,0,0.1); -webkit-border-radius:5px; border-radius:5px; margin: -235px -332px; z-index:1001; padding:4px; display:none;}
+.pubInside{ width:100%; background: #fff; -webkit-border-radius:3px; border-radius:3px; overflow:hidden;}
+.pubInsideTitle{ height:38px; background:#f2f2f2; position:relative; z-index:1;}
+.pubInsideTitle span{ float:left; padding-left:14px; line-height:38px; color:#666666; font-size:14px;}
+.pubInsideTitle span a{color:#e6393d; text-decoration:none; margin:0 3px;}
+.pubInsideTitle .pubClose{ background-position:-387px -56px; width:12px; height:12px; display:block; position: absolute; top:13px; right:20px; cursor:pointer;}
+.pubInsideBody{ background:#fff; padding:40px 50px 60px;}
+.pubPop .addrBtn{ padding-left:0; font-size:0; text-align:center;}
+.pubPop .addrBtn a{ font-size:12px; margin:0 10px; display:inline-block;}
+.pubPop .cancel{ width:78px; height:28px; line-height:28px; border:1px solid #cccccc; background:#f7f7f7; color:#666666;}
+.pubPop .cancel:hover{ background:#fff;}
+.invoiceTab{ height:37px;}
+.invoiceTab .item{ float:left; height:35px; width:124px; border:1px solid #cacaca; font-size:12px; color:#666666; text-align:center; line-height:35px; margin-right:15px; cursor:pointer; position:relative; z-index:10;}
+.invoiceTab .item span{ display:block; height:35px; line-height:35px;}
+.invoiceTab .item.onHover{ border:1px solid #e6393d;}
+.invoiceTab .item i{ display:none; position: absolute;background-position: -353px 0;width: 16px;height: 16px;top: 9px;right: 10px;}
+.invoiceTab .item s{ background-position: -321px -12px; width: 16px; height: 16px; position: absolute; bottom: -2px; right: -2px; display:none}
+.invoiceTab .item.onHover i{ display:block;} 
+.invoiceTab .item.cur{ border:2px solid #e6393d; width:122px; height:33px; line-height:33px;}
+.invoiceTab .item.cur i{ top:8px; right:9px;}
+.invoiceTab .item.cur span{ height:33px; line-height:33px;}
+.invoiceTab .item.cur s{ display:block;}
+.invoiceTab .item.noSelect{ width:126px; height:37px; line-height:37px; border:none; background:#f3f3f3;}
+.invoiceTab .item.noSelect span{ line-height:37px; height:37px;}
+.invoiceTab .item.noSelect i{ background-position:-370px 0;}
+.invoiceTab .payPrompt{ top:35px; left:90px;}
+.invTitleBox{ width:467px; position:absolute; background:#fff; top:37px; left:0; border-bottom:1px solid #cacaca; border-left:1px solid #cacaca; border-right:1px solid #cacaca; display:none;}
+.invTitleBox ul{ overflow-x: hidden; overflow-y: auto;}
+.invTitleBox li{ height:34px; line-height:34px; padding:0 10px; overflow:hidden; color:#666666; white-space:nowrap;text-overflow:ellipsis; border-bottom:1px solid #e8e8e8; cursor:pointer;}
+.invTitleBox li:last-child{ border-bottom:0;}
+.warmProp{ color:#ffa800; line-height:18px; padding-left:20px; margin-top:15px;}
+.description{ font-size:0; height:14px; line-height:14px; padding-left:20px; margin-top:15px;}
+.description i,.description span,.description a{ display:inline-block; vertical-align:middle;}
+.description i{ background-position:-342px -14px; width:10px; height:14px;}
+.description span{ font-size:12px; color:#666666; margin-left:10px;}
+.description a{ color:#0066cc; text-decoration:none; margin-left:15px; font-size:12px;}
+.description a:hover{ color:#e6393d; text-decoration:none;}
+.pop-4{ width:400px;}
+.pop-4 .pubInsideBody{ padding:34px 0 40px;}
+.pop-4 .addrBtn{ margin-top:30px;}
+.pop-4 .addrBtn a{ width:60px;}
+.pop-4 .addrBtn a.cancel{ width:58px;}
+.warningText{ font-size:0; text-align:center; height:20px; line-height:20px;}
+.warningText i,.warningText span{ display:inline-block; vertical-align:middle;}
+.warningText i{ background-position:-321px -124px; width:20px; height:20px;}
+.warningText span{ font-size:18px; color:#000000; margin-left:10px;}
+#dzfp{ z-index:11;}
+
+.specialPop .pubInsideTitle{ height:65px; padding-left:30px; background:#fff; border-bottom:1px dotted #e8e8e8;}
+.specialPop .pubInsideTitle .title1{ line-height:65px; height:65px;}
+.specialPop .pubInsideTitle .title1 span,.specialPop .pubInsideTitle .title1 i{ float:left;}
+.specialPop .pubInsideTitle .title1 i{ background-position:-345px -128px; width:16px; height:16px; display:block; margin-top:24px;}
+.specialPop .pubInsideTitle .title1 span{ line-height:65px; padding-left:10px;}
+.specialPop .pubInsideTitle .pubClose{ top:28px; right:20px;}
+.pubProBox{ padding-left:30px; height:301px;overflow-x:hidden; overflow-y:auto;}
+.pubProList{ width:100%;}
+.pubProList li{ height:60px; padding:20px 20px 20px 0; border-bottom:1px solid #f2f2f2;}
+.pubProList li:last-child{ border-bottom:none;}
+.pubProList li .img{ width:60px; height:60px; position:relative; float:left; z-index:1; font-size:0;}
+.pubProList li .img span{ position:absolute; font-size:12px; background:rgba(0,0,0,0.5); width:100%; height:20px; display:block; line-height:20px; text-align:center; color:#fff; bottom:0; left:0;}
+.pubProList li .nameRight{ margin-left:80px; height:60px;}
+.pubProList li .nameRight .proName{ height:32px; line-height:32px; color:#333333; text-overflow: ellipsis;overflow: hidden; white-space: nowrap;}
+.pubProList li .nameRight .proBottom{ height:28px; line-height:28px; color:#e6393d;}
+.pubBottom{ height:70px; border-top:1px solid #e8e8e8;}
+.pubBottomBtn{ font-size:0; height:30px; text-align:center; margin-top:20px;}
+.pubBottomBtn a{ display:inline-block; vertical-align:bottom; text-align:center; margin:0 10px; font-size:12px; overflow:hidden;}
+.pubBottomBtn a.redBtn{ width:100px; height:30px; line-height:30px; color:#fff; background:#e64346;}
+.pubBottomBtn a.redBtn:hover{ background:#fa4147; text-decoration:none; color:#fff;}
+.pubBottomBtn a.cancel{ width:98px; height:28px; line-height:28px; border:1px solid #cccccc; color:#666666; background:#f7f7f7;}
+.pubBottomBtn a.cancel:hover{ background:#fff; color:#666; text-decoration:none;}
+.pop-6 .pubBottomBtn .backCart{ width:80px;}
+.specialPop .pubInsideTitle .title2{ height:40px; padding:13px 0 12px 0;}
+.specialPop .pubInsideTitle .title2 span,.specialPop .pubInsideTitle .title2 i{ float:left;}
+.specialPop .pubInsideTitle .title2 i{ background-position:-345px -128px; width:16px; height:16px; display:block; margin-top:1px;}
+.specialPop .pubInsideTitle .title2 span{ line-height:20px; padding-left:10px;}
+
+/*修改礼品卡、余额返现*/
+.tabOpen{ cursor:pointer; border-bottom:0; display:inline-block;}
+.tabOpen i{ background-position:-322px -92px; width:14px; height:7px; float:left; display:block; margin:5px 0 0 8px;}
+.tabUp i{ background-position:-322px -105px; }
+.message{ float:left; height:37px;}
+.message span{ float:left; line-height:37px; color:#666666; display:block;}
+.form-5{ margin-left:14px; float:left; height:35px; line-height:35px; color:#333; padding-left:10px; border:1px solid #cacaca; width:390px; font-size:12px; font-family:"微软雅黑";}
+.deliveryPop{ height:32px; text-align:right; position:relative; z-index:1; margin-bottom:6px;}
+.deliveryPop span{ background:#fff; height:30px; display:inline-block; border:1px solid #d9d9d9; padding:0 10px; color:#666666; line-height:30px;-webkit-box-shadow:0 0 3px #d9d9d9;box-shadow:0 0 3px #d9d9d9;}
+.deliveryPop i{ position:absolute; background-position:-343px -92px; display: block; width:13px; height:7px; bottom:-6px; right:21px;}
+.tabWrap{ display:none; border:1px solid #e8e8e8;}
+.tabNav{ height:38px; background:#f8f8f8;}
+.tabNav a{ display:block; float:left; width:120px; height:38px; line-height:38px; text-align:center;}
+.tabNav a.cur{ background:#fff;}
+.tabNav a.cur span{ color:#e6393d;}
+.tabNav a span{ display: inline-block; position:relative; z-index:1; text-decoration:none; color:#666666;}
+.tabNav a:hover{ text-decoration:none;}
+.tabNav a:hover span{ color:#e6393d;}
+.tabNav a i{ display:block; width:6px; height:6px; background:#f94146; overflow:hidden; -webkit-border-radius:50%; border-radius:50%; overflow:hidden; position:absolute; right:-10px; top:10px;}
+.couponsUsed{ background:#f8f8f8; height:38px; padding-left:30px;}
+.couponsUsed .item{ float:left; height:16px; padding:11px 0; color:#666666; margin-right:15px;}
+.couponsUsed .item p{ float:left; height:16px; color:#666666; border-right:1px solid #e0e0e0; padding:0 15px;}
+.couponsUsed .item p:last-child{ border-right:none;}
+.red{ color:#e6393d; font-style:normal;}
+.yellow{ color:#ff9933;}
+.tabCon{ width:100%;}
+.tabItem{ width:100%; padding:15px 0 20px 0;}
+.tabItemNav{ height:24px; margin-bottom:15px;}
+.tabItemNav a{ display:block; float:left; width:120px; height:24px; text-align:center;}
+.tabItemNav a span{ display:inline-block; color:#666666; border-bottom:2px solid #fff; height:22px; line-height:22px;}
+.tabItemNav a:hover span{ color:#ff9933;}
+.tabItemNav a.cur span{ border-bottom:2px solid #ff9933; color:#ff9933;}
+.couponsList{ width:100%; height:auto; max-height:125px; overflow:hidden; overflow-y:auto;}
+.item-list{ height:25px; padding:0 30px; overflow:hidden;}
+.item-list div{ float:left; height:25px; line-height:25px;_display:inline;}
+.list-1{ width:90px; overflow:hidden; margin-right:20px;}
+.list-1 label{ display: inline-block; height:25px; font-size:0; line-height:25px;}
+.list-1 label i,.list-1 label span{ display:inline-block; vertical-align:middle;}
+.list-1 label.optional i{ background-position:-322px -72px; width:14px; height:14px;}
+.list-1 label span{ font-size:12px; color:#ff9933; margin-left:10px;}
+.list-1 label.selecte i{ background-position:-338px -72px;}
+.list-2{ width:120px; overflow:hidden; color:#ff9933; margin-right:30px;}
+.list-3{ width:400px;overflow:hidden; margin-right:50px; color:#666;}
+.list-4{ width:208px;overflow:hidden; color:#666;}
+.item-list.selected{ background:#fff3e8;}
+.unavailable .list-1 i{ background-position:-387px -114px; width:14px; height:14px;}
+.unavailable .list-1 span,.unavailable .list-2,.unavailable .list-3,.unavailable .list-4{ color:#b2b2b2;}
+.couponsNum{ height:36px; padding-left:30px;}
+.couponsNum span{ float:left; line-height:36px; color:#666;}
+.form-6{ float:left; width:288px; height:34px; border:1px solid #cacaca; line-height:34px; padding-left:10px; font-size:12px; color:#333; font-family:"微软雅黑";}
+.sureBtn{ color:#fff; text-decoration:none; background:#e64346; width:80px; height:36px; line-height:36px; text-align:center; margin-left:12px; display:block; float:left;}
+.sureBtn:hover{ color:#fff; text-decoration:none; background:#fa4147;}
+.errorPrompt{ float:left; height:36px; line-height:36px; font-size:0; margin-left:14px;}
+.errorPrompt i,.errorPrompt span{ display:inline-block; vertical-align:middle;}
+.errorPrompt i{ background-position:-343px -108px; width:16px; height:16px;}
+.errorPrompt span{ float:none; font-size:12px; color:#e6393d; margin-left:6px;}
+.noCoupons{ height:35px; line-height:35px; text-align:center; color:#999; padding-top:20px;}
+.balanceWrap{ padding:0 30px;}
+.balanceTitle{ width:100%; margin-bottom:20px;}
+.balanceTitle span{ color:#666666;}
+.balanceTitle a{ margin-left:20px; color:#0066cc;}
+.balanceTitle a:hover{ color:#e6393d; text-decoration:none;}
+.uesBalance{ height:14px;}
+.uesBalance label{ height:14px; line-height:14px; display:inline-block; font-size:0; cursor:pointer;}
+.uesBalance label i,.uesBalance label span{ display:inline-block; vertical-align:middle;}
+.uesBalance label i{ background-position:-322px -72px; width:14px; height:14px; }
+.uesBalance label.selected i{ background-position:-338px -72px;}
+.uesBalance label span{ font-size:12px; margin-left:12px; color:#666666; line-height:14px;}
+.uesBalance label em{ font-style:normal; color:#e6393d;}
+.uesBalance label.unavailable{ cursor: default;}
+.uesBalance label.unavailable i{ background-position:-387px -114px;}
+.uesBalance label.unavailable span{ color:#b2b2b2;}
+.uesBalance label.unavailable .red{ color:#f29c9e;}
+.pressSum{ height:36px; margin-top:20px;}
+.pressSum input{ height:34px; width:98px; text-align:center; border:1px solid #cacaca; font-size:12px; color:#333;}
+.pressSum span{ margin-left:12px; color:#666; line-height:36px;}
+.giftCardBox{ width:100%;}
+.giftCardBox .item{ height:36px; margin-bottom:20px;}
+.giftCardBox .item:last:child{ margin-bottom:0;}
+.giftCardBox .item span{ float:left; width:108px; text-align:left; line-height:36px; height:36px; color:#666666;}
+.giftCardBox .item .itemRight{ float:left; height:36px;}
+.giftCardBox .item .itemRight em{ float:left; font-style:normal; color:#999999; display:block; line-height:36px; margin:0 8px;}
+.giftCardBox .item .errorPrompt span{ float:none;}
+.form-7{ float:left; height:34px; width:98px; border:1px solid #cacaca; text-align:center; color:#333; line-height:34px; font-size:12px; font-family:"微软雅黑";}
+.giftWrap{ padding:0 30px; margin-bottom:10px;}
+.giftWrap:last-child{ margin-bottom:0;}
+.giftTitle{ margin-bottom:20px; height:24px;}
+.giftTitle span{ border-bottom:2px solid #ff9933; display:inline-block; height:22px; line-height:22px; color:#ff9933;}
+.giftTable{ border:1px solid #f1f1f1;}
+.gHead{ height:30px; background:#fbfbfb; overflow:hidden;}
+.gHead-1,.gHead-2,.gHead-3,.gHead-4,.gHead-5{ height:30px; text-align:center; color:#999999; line-height:30px; float:left;}
+.gHead-1,.gTr-1{ width:210px;}
+.gHead-2,.gTr-2{ width:140px;}
+.gHead-3,.gTr-3{ width:140px;}
+.gHead-4,.gTr-4{ width:166px;}
+.gHead-5,.gTr-5{ width:280px;}
+.gBody{ padding:10px 0;}
+.gTr{ height:28px; text-align:center; overflow:hidden;}
+.gTr-1,.gTr-2,.gTr-3,.gTr-4,.gTr-5{ height:28px; line-height:28px; float:left;}
+.gTr-1 label{ font-size:0; display:inline-block; line-height:28px; cursor:pointer;}
+.gTr-1 label i,.gTr-1 label span{ display:inline-block; vertical-align:middle;}
+.gTr-1 label i{ background-position:-322px -72px; width:14px; height:14px;}
+.gTr-1 label.selected i{ background-position:-338px -72px;}
+.gTr-1 label span{ font-size:12px; color:#666666; margin-left:20px;}
+.gTr-3,.gTr-4{ color:#ff9933;}
+.mb20{ margin-bottom:20px;}
+.pop-9,.pop-10,.pop-11,.pop-12{ width:400px;}
+.pop-9 .pubInsideBody{ padding:40px 0 40px;}
+.successText i{ background-position:-363px -115px;}
+.failureText i{ background-position:-363px -138px;}
+.pubText{ margin-top:15px; line-height:1; text-align:center; color:#999999;}
+.pop-10{ display:block;}
+.pop-10 .pubInsideBody{ padding:40px 35px 40px;}
+.pop-11 .pubInsideBody{ padding:40px 0 40px;}
+.pop-12 .pubInsideBody{ padding:40px 0 40px;}
+.virtualText{ color:#666666; line-height:1; margin-bottom:20px;}
+.virtualInput{ height:34px; border:1px solid #cacaca;}
+.virtualInput input{ width:318px; display:block; height:34px; line-height:34px; padding-left:10px; border:none; font-family:"微软雅黑"; font-size:12px; color:#333;}
+.virtualPrompt{ font-size:0; line-height:16px; height:16px; margin-top:6px; display:none;}
+.virtualPrompt i,.virtualPrompt span{ display:inline-block; vertical-align:middle;}
+.virtualPrompt i{ background-position:-343px -108px; width:16px; height:16px;}
+.virtualPrompt span{ font-size:12px; color:#e43a3d; margin-left:6px;}
+.virtualInput.errorStyle{ border:1px solid #e43a3d;}
+.forgetPassword{ text-align:right; padding-right:39px; line-height:1; margin-top:15px;}
+.forgetPassword a{ color:#0066cc; text-decoration:underline;}
+.forgetPassword a:hover{ color:#e6393d; text-decoration:underline;}
+.accountTitle{ height:14px;padding-bottom: 24px}
+.cashbackTitle{ height:14px;padding-bottom: 24px}
+
+.promptBox{ height:18px; text-align:left;}
+.unStand{ font-size:0; height:18px; margin-right:15px; line-height:18px; float:left;}
+.unStand i,.unStand span{ display:inline-block; vertical-align:middle;}
+.unStand i{ background-position:-321px -148px; width:12px; height:12px;}
+.unStand span{ color:#e33a3c; font-size:12px; margin-left:3px;}
+.unUsed{ font-size:0; height:18px; margin-right:15px; line-height:18px; float:left;}
+.unUsed i,.unUsed span{ display:inline-block; vertical-align:middle;}
+.unUsed i{ background-position:-337px -149px; width:14px; height:11px;}
+.unUsed span{ color:#999999; font-size:12px; margin-left:3px;}
+.promptBox div:last-child{ margin-right:0;}
+
+/*新增津贴2019.02.20*/
+.allowance{ color:#999; margin: 15px 0 0 26px;}
+.allowance span{ color:#e6393d;}
+
+/* 预售 */
+.tailPhone{ height:22px; margin-top: 15px;}
+.tailPhoneBox{ height:22px;}
+.tailPhoneBox > div{ float:left; line-height: 22px; font-size: 14px;}
+.tailPhoneText{ color:#666666;}
+.tailPhoneModify{ color:#e6393d; margin-left: 20px; cursor: pointer;}
+.tailPhoneBox .tailPhoneVerifi{ color:#e6393d; font-size: 12px; margin-left: 20px; display: none;}
+.tailPhoneInput{ display: none; height: 22px;}
+.tailPhoneInput input{ height:20px; border:1px solid #e8e8e8; font-size: 14px; color: #666666; width: 95px; padding-left: 5px;}
+.mainProduct .item-1 .name a span{ color:#d0010e;}
+.presaleDeposit{ height: 30px; line-height: 30px; font-size: 0; text-align: center;}
+.presaleDeposit span,.presaleDeposit em{ display:inline-block; vertical-align: middle; font-size: 12px;}
+.presaleDeposit span{ height:18px; line-height: 18px; background: #d0010e; padding: 0 3px; color: #fff;}
+.presaleDeposit em{ font-size:12px; color: #e53a3d; margin-left: 5px; font-style: normal;}
+.presaleTail{ color:#666;}
+.comTotalSum.red{ color:#e43a3d;}
+.payTailTime{ color:#999; height: 26px; line-height: 26px;}
+.presaleAgree{ height: 26px; line-height: 26px; font-size:0; text-align: right;}
+.presaleAgree i,.presaleAgree span{ display:inline-block; vertical-align: middle;}
+.presaleAgree i{ background-position:-388px -131px; width: 12px; height: 12px;}
+.presaleAgree span{ font-size:12px; color: #666; margin-left: 5px;}
+.presaleAgree label{ display:inline-block;}
+.presaleAgree label.cur i{ background-position:-388px -144px;}
+
+.pop-13{ display:none;  width: 360px;}
+.pop-13 .pubInsideBody{ padding: 30px 0;}
+.pop-13 .virtualText{ text-align:center; margin-bottom: 40px;}

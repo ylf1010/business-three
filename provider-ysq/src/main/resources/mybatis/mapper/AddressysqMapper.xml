@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.AddressDao" >
+  <!--<insert id="addJiaoYi" parameterType="com.jk.model.Addressysq">
+    insert into jiaoyi_ysq(ordernumber,productname,unitprice,amount,ordertime,buyer,money,xu_userid,state)
+    values(#{ordernumber},#{productname},#{unitprice},#{amount},now(),#{buyer},#{money},1,2)
+  </insert>-->
+  <select id="addJiaoYi" resultType="com.jk.model.Product">
+    select * from ly_product where productid=3
+  </select>
+  <select id="chaAddress" resultType="com.jk.model.Addressysq">
+    select * from address_ysq where keid=1
+  </select>
+  <update id="updateJiaoYiState">
+     update jiaoyi_ysq set state=1 where ordernumber=#{0}
+  </update>
+  <select id="chaJiaoYi" resultType="com.jk.model.Product">
+    select * from ly_product where productid = #{0}
+  </select>
+  <insert id="addressDiZhi" parameterType="com.jk.model.Addressysq">
+    insert into address_ysq(address,consignee,phone,particular,keid)
+    values(#{address},#{consignee},#{phone},#{particular},1)
+  </insert>
+  <delete id="deleteAddress">
+    delete * from address_ysq where id=#{0}
+  </delete>
+  <update id="addressDiZhiXiuGai" parameterType="com.jk.model.Addressysq">
+    update address_ysq set address=#{address},consignee=#{consignee},phone=#{phone},particular=#{particular}
+    where id=#{id}
+  </update>
+  <select id="queryProductById" resultType="com.jk.model.Product">
+        select * from ly_product where productid = #{0}
+  </select>
+  <insert id="addDingDan" parameterType="com.jk.model.YsqJiaoYi">
+    insert into jiaoyi_ysq (ordernumber,productname,money,amount,ordertime,xu_userid,state,unitprice)
+    values (#{ordernumber},#{productname},#{money},#{amount},now(),#{xu_userid},#{state},#{unitprice})
+  </insert>
+  <select id="chaShopping" parameterType="int" resultType="com.jk.model.Product">
+    select * from  ly_product where productid in
+    <foreach collection="array" open="(" close=")" item="id" separator=",">
+      #{id}
+    </foreach>
+  </select>
+  <select id="queryProductByIdAll" resultType="com.jk.model.Product" parameterType="int">
+    select * from ly_product where productid in
+    <foreach collection="array" separator="," item="id" close=")" open="(">
+      #{id}
+    </foreach>
+  </select>
+  <insert id="addDingDan1" parameterType="com.jk.model.YsqJiaoYi">
+    insert into jiaoyi_ysq(ordernumber,productname,unitprice,amount,state,xu_userid,ordertime,paymenttime,img,money,addressid)
+    values <foreach collection="list" separator="," item="jiaoyi">
+        (#{jiaoyi.ordernumber},#{jiaoyi.productname},#{jiaoyi.unitprice},#{jiaoyi.amount},2,
+      #{jiaoyi.xu_userid},#{jiaoyi.ordertime},now(),#{jiaoyi.img},#{jiaoyi.money},#{jiaoyi.addressid})
+    </foreach>
+  </insert>
+  <update id="updateProduct" >
+    update ly_product set productkucun=productkucun-#{1},productzxl=productzxl+#{1} where productid=#{0}
+  </update>
+</mapper>

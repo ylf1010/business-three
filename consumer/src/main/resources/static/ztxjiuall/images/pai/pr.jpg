@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="REFRESH" content="3;url=http://www.jiuxian.com">
+<link href="themes/jiuxian/style.css" rel="stylesheet" type="text/css">
+<title>酒仙网 - 404页面</title> 
+
+<style type="text/css">
+body {
+	font-size:12px;
+	font-family:"宋体", Verdana, Arial;
+	margin:0;
+	padding:0;
+	color:#222222;
+}
+div {
+	margin:0px auto;
+	padding:0px;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td {
+	margin: 0;
+	padding: 0;
+}
+ul, li {
+	list-style: none outside none;
+	margin: 0;
+	padding: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-size:12px;
+}
+img {
+	border: medium none;
+	margin: 0;
+	padding: 0;
+}
+.left {
+	float:left;
+	width:700px;
+}
+.right {
+	float:right;
+	width:260px;
+}
+.fl {
+	float:left;
+}
+.fr {
+	float:right;
+}
+.tl {
+	text-align:left;
+}
+.tc {
+	text-align:center;
+}
+.tr {
+	text-align:right;
+}
+.cl {
+	clear: both;
+}
+.pb10 {
+	padding-bottom:10px;
+}
+#header {
+    background: url("http://www.jiuxian.com/images/logo.gif") no-repeat scroll 0 0 #FFFFFF;
+    height: 63px;
+    width: 109px;
+	}
+#main {
+    background: url("http://www.jiuxian.com/images/hl_flash.gif") no-repeat scroll center bottom #FFFFFF;
+    height: 448px;
+    text-align: center;
+    width: 100%;
+	}
+#footer {
+    background: url("http://www.jiuxian.com/images/ink.jpg") no-repeat scroll center top #FFFFFF;
+    bottom: 0;
+    height: 80px;
+    position: absolute;
+    width: 100%;
+	}
+#loading {
+    line-height: 24px;
+    margin: 0 auto;
+    text-align: left;
+    width: 650px;
+	}
+#loading h2 {
+	font-size:16px;
+	}
+#loading p {color:#666;}
+h2 { font-size: 16px; color:#CC0000;}
+h3 { font-size: 14px;}
+h3 a { color:#cc0000;}
+h3 a:hover { text-decoration: underline;}
+</style>
+</head>
+<body>
+<div id="header"></div>
+<div id="loading">
+    <h2>404 - 错误</h2>
+    <h3>页面没有找到</h3>
+    <h3>酒仙网已升级为2011版，服务器没有找到您所要的页面，点击此处返回<a href="http://www.jiuxian.com">酒仙网</a>首页</h3>
+   	<br/>
+    <h2>404 - Error</h2>
+    <h3>Not Found</h3>
+    <h3>The requested URL was not found on this server. Click here return <a href="http://www.jiuxian.com">jiuxian.com</a></h3>
+</div>
+<div id="main"></div>
+<div id="footer" style="color:#FFF;"><script src="http://s11.cnzz.com/stat.php?id=2935127&web_id=2935127" language="JavaScript"></script></div>
+</body>
+</html>

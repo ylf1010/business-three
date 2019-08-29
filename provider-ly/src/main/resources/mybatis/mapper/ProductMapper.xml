@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.Product" >
+    <id column="productid" property="productid" jdbcType="INTEGER" />
+    <result column="productphoto" property="productphoto" jdbcType="VARCHAR" />
+    <result column="productname" property="productname" jdbcType="VARCHAR" />
+    <result column="productpid" property="productpid" jdbcType="INTEGER" />
+    <result column="productprice" property="productprice" jdbcType="DOUBLE" />
+    <result column="productkucun" property="productkucun" jdbcType="INTEGER" />
+    <result column="productzxl" property="productzxl" jdbcType="INTEGER" />
+    <result column="productdate" property="productdate" jdbcType="DATE" />
+    <result column="productdescribe" property="productdescribe" jdbcType="VARCHAR" />
+    <result column="productsxj" property="productsxj" jdbcType="INTEGER" />
+    <result column="winejhl" property="winejhl" jdbcType="INTEGER" />
+    <result column="wineyieldlyid" property="wineyieldlyid" jdbcType="INTEGER" />
+    <result column="winebrandid" property="winebrandid" jdbcType="INTEGER" />
+    <result column="winexjsj" property="winexjsj" jdbcType="VARCHAR" />
+    <result column="winemouthfeel" property="winemouthfeel" jdbcType="VARCHAR" />
+    <result column="winefragrant" property="winefragrant" jdbcType="VARCHAR" />
+    <result column="winedpms" property="winedpms" jdbcType="VARCHAR" />
+    <result column="wineseze" property="wineseze" jdbcType="VARCHAR" />
+    <result column="winedushu" property="winedushu" jdbcType="INTEGER" />
+    <result column="winegrade" property="winegrade" jdbcType="DOUBLE" />
+    <result column="winepromotion" property="winepromotion" jdbcType="INTEGER" />
+    <result column="winehotsale" property="winehotsale" jdbcType="INTEGER" />
+    <result column="winestore" property="winestore" jdbcType="VARCHAR" />
+
+
+
+  </resultMap>
+  <sql id="Base_Column_List" >
+    productid, productphoto, productname, productpid, productprice, productkucun, productzxl, 
+    productdate, productdescribe, productsxj, winejhl, wineyieldlyid,  winebrandid, winexjsj, winemouthfeel, winefragrant,
+    winedpms, wineseze, winedushu, winegrade, winepromotion, winehotsale, winestore
+  </sql>
+  <select id="querylyProduct" resultType="HashMap">
+    SELECT sp.*,fl.flname producttype ,pp.brandname ppname ,cd1.orignshiname cdname FROM ly_product sp,ly_classify fl,ly_brand pp,ly_orignshi cd1 WHERE
+    sp.productpid=fl.flid  AND sp.winebrandid= pp.brandid AND sp.wineyieldlyid= cd1.orignshiid
+    /*SELECT sp.*,fl.flname producttype ,pp.brandname ppname ,cd1.orignname cdname FROM ly_product sp,ly_classify fl,ly_brand pp,ly_orignsheng cd1 WHERE
+    sp.productpid=fl.flid  AND sp.winebrandid= pp.brandid AND sp.wineyieldlyid= cd1.orignid*/
+    /*SELECT sp.*,fl.flname producttype  FROM ly_product sp,ly_classify fl WHERE  sp.productpid=fl.flid*/
+   <if test="productname !=null and productname !=''">
+     and sp.productname like '%${productname}%'
+   </if>
+    <if test="flid !=null and flid != -1">
+      and fl.flid =#{flid}
+    </if>
+    <if test="brandid !=null and brandid != -1">
+      and pp.brandid =#{brandid}
+    </if>
+
+
+  </select>
+  <update id="updateproductzt">
+    update  ly_product
+    <set>
+      <if test="zt==1">
+        productsxj=2,
+      </if>
+      <if test="zt==2">
+        productsxj=1,
+      </if>
+    </set>
+    where  productid=#{productid}
+
+  </update>
+  <insert id="addProduct">
+    insert into ly_product (productphoto, productname,
+                            productpid, productprice, productkucun,
+                            productzxl, productdate, productdescribe , productsxj, winejhl, wineyieldlyid,  winebrandid, winexjsj, winemouthfeel, winefragrant,
+                            winedpms, wineseze, winedushu, winegrade, winepromotion, winehotsale, winestore
+    )
+    values (#{productphoto,jdbcType=VARCHAR}, #{productname,jdbcType=VARCHAR},
+            #{productpid,jdbcType=INTEGER}, #{productprice,jdbcType=DOUBLE}, #{productkucun,jdbcType=INTEGER},
+            #{productzxl,jdbcType=INTEGER}, #{productdate,jdbcType=DATE}, #{productdescribe,jdbcType=VARCHAR}, #{productsxj,jdbcType=INTEGER},
+            #{winejhl,jdbcType=INTEGER},#{wineyieldlyid,jdbcType=INTEGER},#{winebrandid,jdbcType=INTEGER},#{winexjsj,jdbcType=VARCHAR},#{winemouthfeel,jdbcType=VARCHAR},
+            #{winefragrant,jdbcType=VARCHAR},#{winedpms,jdbcType=VARCHAR},#{wineseze,jdbcType=VARCHAR},#{winedushu,jdbcType=INTEGER},#{winegrade,jdbcType=DOUBLE},
+            #{winepromotion,jdbcType=INTEGER},#{winehotsale,jdbcType=INTEGER},#{winestore,jdbcType=VARCHAR}
+           )
+
+  </insert>
+    <delete id="delProduct">
+        delete from  ly_product where productid in (${dids})
+    </delete>
+  <select id="queryProductPage" resultMap="BaseResultMap">
+    select  * from  ly_product  where  productid=#{productid}
+  </select>
+  <select id="queryMiaosha" resultMap="BaseResultMap">
+    select  * from  ly_product  where  productid=#{productid}
+  </select>
+
+
+
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ly_product
+    where productid = #{productid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ly_product
+    where productid = #{productid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jk.model.Product" >
+    insert into ly_product (productid, productphoto, productname, 
+      productpid, productprice, productkucun, 
+      productzxl, productdate, productdescribe ,productsxj
+      )
+    values (#{productid,jdbcType=INTEGER}, #{productphoto,jdbcType=VARCHAR}, #{productname,jdbcType=VARCHAR}, 
+      #{productpid,jdbcType=INTEGER}, #{productprice,jdbcType=DOUBLE}, #{productkucun,jdbcType=INTEGER},
+      #{productzxl,jdbcType=INTEGER}, #{productdate,jdbcType=DATE}, #{productdescribe,jdbcType=VARCHAR},
+      #{productsxj,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jk.model.Product" >
+    insert into ly_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="productid != null" >
+        productid,
+      </if>
+      <if test="productphoto != null" >
+        productphoto,
+      </if>
+      <if test="productname != null" >
+        productname,
+      </if>
+      <if test="productpid != null" >
+        productpid,
+      </if>
+      <if test="productprice != null" >
+        productprice,
+      </if>
+      <if test="productkucun != null" >
+        productkucun,
+      </if>
+      <if test="productzxl != null" >
+        productzxl,
+      </if>
+      <if test="productdate != null" >
+        productdate,
+      </if>
+      <if test="productdescribe != null" >
+        productdescribe,
+      </if>
+      <if test="productsxj != null" >
+        productsxj,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="productid != null" >
+        #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="productphoto != null" >
+        #{productphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="productname != null" >
+        #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="productpid != null" >
+        #{productpid,jdbcType=INTEGER},
+      </if>
+      <if test="productprice != null" >
+        #{productprice,jdbcType=DOUBLE},
+      </if>
+      <if test="productkucun != null" >
+        #{productkucun,jdbcType=INTEGER},
+      </if>
+      <if test="productzxl != null" >
+        #{productzxl,jdbcType=INTEGER},
+      </if>
+      <if test="productdate != null" >
+        #{productdate,jdbcType=DATE},
+      </if>
+      <if test="productdescribe != null" >
+        #{productdescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="productsxj != null" >
+        #{productsxj,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jk.model.Product" >
+    update ly_product
+    <set >
+      <if test="productphoto != null" >
+        productphoto = #{productphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="productname != null" >
+        productname = #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="productpid != null" >
+        productpid = #{productpid,jdbcType=INTEGER},
+      </if>
+      <if test="productprice != null" >
+        productprice = #{productprice,jdbcType=DOUBLE},
+      </if>
+      <if test="productkucun != null" >
+        productkucun = #{productkucun,jdbcType=INTEGER},
+      </if>
+      <if test="productzxl != null" >
+        productzxl = #{productzxl,jdbcType=INTEGER},
+      </if>
+      <if test="productdate != null" >
+        productdate = #{productdate,jdbcType=DATE},
+      </if>
+      <if test="productdescribe != null" >
+        productdescribe = #{productdescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="productsxj != null" >
+        productsxj = #{productsxj,jdbcType=INTEGER},
+      </if>
+    </set>
+    where productid = #{productid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jk.model.Product" >
+    update ly_product
+    set productphoto = #{productphoto,jdbcType=VARCHAR},
+      productname = #{productname,jdbcType=VARCHAR},
+      productpid = #{productpid,jdbcType=INTEGER},
+      productprice = #{productprice,jdbcType=DOUBLE},
+      productkucun = #{productkucun,jdbcType=INTEGER},
+      productzxl = #{productzxl,jdbcType=INTEGER},
+      productdate = #{productdate,jdbcType=DATE},
+      productdescribe = #{productdescribe,jdbcType=VARCHAR},
+      productsxj = #{productsxj,jdbcType=INTEGER},
+      winejhl = #{winejhl,jdbcType=INTEGER},
+      wineyieldlyid = #{wineyieldlyid,jdbcType=INTEGER},
+      winebrandid =  #{winebrandid,jdbcType=INTEGER},
+      winexjsj =   #{winexjsj,jdbcType=VARCHAR},
+      winemouthfeel =   #{winemouthfeel,jdbcType=VARCHAR},
+      winefragrant =  #{winefragrant,jdbcType=VARCHAR},
+      winedpms =  #{winedpms,jdbcType=VARCHAR},
+      wineseze =  #{wineseze,jdbcType=VARCHAR},
+      winedushu =  #{winedushu,jdbcType=INTEGER},
+      winegrade =   #{winegrade,jdbcType=DOUBLE},
+      winepromotion = #{winepromotion,jdbcType=INTEGER},
+      winehotsale  =  #{winehotsale,jdbcType=INTEGER},
+      winestore =  #{winestore,jdbcType=VARCHAR}
+
+    where productid = #{productid,jdbcType=INTEGER}
+
+  </update>
+</mapper>

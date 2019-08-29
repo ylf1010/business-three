@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base href="<%=basePath%>">
+    <title>标题</title>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="This is my page">
+    <!-- 引入jquery -->
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <!-- 引入bootstrap的css -->
+    <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-treeview的css -->
+    <link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-addTabs的css -->
+    <link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
+    <!-- 引入bootstrap-table的css -->
+    <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
+    <!-- 引入fileinput的css -->
+    <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
+    <!-- 引入my97 -->
+    <script type="text/javascript" src="../js/my97/WdatePicker.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/treeview/bootstrap-treeview.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/addTabs/addTabs.js"></script>
+    <!-- 引入bootstrap-table的js-->
+    <script type="text/javascript" src="../js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- 引入bootbox.js -->
+    <script type="text/javascript" src="../js/bootbox/bootbox.js"></script>
+    <!-- 引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/fileinput.min.js"></script>
+    <!--  引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
+    <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+    <!--  引入上传图片的js -->
+    <!--<script src="../js/uploadify/jquery.uploadify.min.js"></script>
+    <link rel="stylesheet" href="../js/uploadify/uploadify.css">
+    <script type="text/javascript"  src="../js/kindeditor-4.1.10/kindeditor.js" charset="utf-8"></script>
+    <script type="text/javascript"  src="../js/kindeditor-4.1.10/lang/zh_CN.js" charset="utf-8"></script>-->
+
+
+</head>
+<body>
+<form id="pro_from" class="form-inline">
+    <div class="form-group">
+        <label>商品(名称):</label>
+        <input type="text" class="form-control" name = "productname" id="productname" placeholder="商品(名称)">
+    </div>
+    <div class="form-group">
+        <label>分类:</label>
+            <select class="form-control" id="flid" name="flname"></select>
+    </div>
+    <div class="form-group">
+        <label>品牌:</label>
+        <select class="form-control" id="brandid" name="brandname"></select>
+    </div><br>
+
+    <button type="button" class="btn btn-success" onclick="queryData()">搜索</button>
+</form>
+<button type="button" class="btn btn-Warning btn-lg" onclick="addSP()">新增</button>
+<!--<button type="button"  class="btn btn-info btn-lg" onclick="deleteproductById()">批量删除</button>-->
+<button type="button" class="btn btn-Warning btn-lg" onclick="updproductId()">修改</button>
+<!--  表格 -->
+<table id="product-table"></table>
+<button type="button"  class="btn btn-info btn-lg" onclick="deleteproductById()">批量删除</button>
+</body>
+<script type="text/javascript">
+    $(function(){
+
+        initDataGrid();
+
+    });
+    function initDataGrid() {
+        //创建bootstrapTable
+
+
+        $("#product-table").bootstrapTable({
+            url: "../lyproduct/querylyProduct",
+            method: 'post',
+            striped: true,  	// 斑马线效果     默认false
+            //只允许选中一行
+            singleSelect: false,
+            //选中行是不选中复选框或者单选按钮
+            clickToSelect: true,
+            showToggle: true,                    //是否显示详细视图和列表视图的切换按钮
+            cardView: false,                    //是否显示详细视图
+            uniqueId: "id",                 //每一行的唯一标识，一般为主键列
+            showColumns: true,                  //是否显示所有的列
+            showRefresh: true,                  //是否显示刷新按钮
+            minimumCountColumns: 2,     //  最少留两列
+            detailView: false,                  //是否显示父子表
+            toolbar: '#tabToolBar',   //  工具定义位置
+            sidePagination: 'server',
+            toolbar: '#toolbar',
+            pagination: true, //是否展示分页
+            pageList: [2, 4, 8, 10],//分页组件
+            pageNumber: 1,
+            pageSize: 2,//默认每页条数
+            //启动回车键做搜索功能
+            searchOnEnterKey: true,
+            //设置为false 将禁止所有列的排序。
+            sortable: true,
+            //设置默认排序为 name,直接对应数据库的字段
+            sortName: 'id',
+            //定义排序方式，'asc' 或者 'desc'。
+            sortOrder: "desc",
+            //设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
+            // 设置为limit可以获取limit, offset, search, sort, order
+            queryParamsType: 'undefined',
+            // 请求服务器数据
+            queryParams: function queryParams(params) {
+                var param = {
+                    pageNumber: params.pageNumber,
+                    pageSize: params.pageSize,
+                    sortName: params.sortName,
+                    sortOrder: params.sortOrder,
+                    //productname: $("#productname").val()
+
+                };
+                return param;
+            },
+            columns: [
+                [
+                {field: 'checkbox', checkbox: true},  //开启复选框
+                {field: 'productid', title: '酒品(编号)', width: 300},      //  列    field   代表是 后台  传过来的值
+                {field: 'productname', title: '酒品(名称)', width: 300},
+                {field: 'productphoto', title: '酒品(展示图片)', width: 300,
+                    formatter: function(value,row,index){
+                    return "<img width='100' src='"+value+"'>";
+                       // return "<img width='100' src='../"+value+"'>"
+                    }
+
+                },
+                {field: 'producttype', title: '酒品(分类)', width: 300},
+                /*formatter: function(value,row,index){//单元格格式化器（字段值，行对象，行索引）
+                        var lx="";
+                        if(value==1){
+                            lx="牧羊犬"
+                        }else if(value==2){
+                            lx="金毛"
+                        }else if(value==3){
+                            lx="罗宾犬"
+                        }
+                        return lx;
+                    }
+
+                },*/
+
+                {field: 'productprice', title: '酒品(价格)', width: 300,
+                    formatter: function(value,row,index){
+                        return "￥"+value;
+                        // return "<img width='100' src='../"+value+"'>"
+                    }
+
+                },
+                {field: 'productkucun', title: '酒品(库存)', width: 300},
+                {field: 'productzxl', title: '酒品(总销量)', width: 300,
+                    formatter: function(value,row,index){
+                        return value+"瓶";
+                        // return "<img width='100' src='../"+value+"'>"
+                    }
+                },
+                {field: 'productdate', title: '酒品(年份)', width: 300},
+                 {field: 'winejhl', title: '酒品(净含量/毫升)', width: 300,
+                     formatter: function(value,row,index){
+                         return value+"ml";
+                         // return "<img width='100' src='../"+value+"'>"
+                     }
+                 },
+                   // {field: 'wineyieldlyid', title: '酒品(生产地)', width: 300},
+                    //{field: 'winebrandid', title: '酒品(品牌id)', width: 300},
+                    {field: 'cdname', title: '酒品(生产地市)', width: 300},
+                    {field: 'ppname', title: '酒品(品牌id)', width: 300},
+                    {field: 'winexjsj', title: '酒品(建议醒酒时间)', width: 300},
+                    {field: 'winemouthfeel', title: '酒品(口感)', width: 300},
+                    {field: 'winefragrant', title: '酒品(香味)', width: 300},
+                    {field: 'winedpms', title: '酒品(搭配美食)', width: 300},
+                    {field: 'wineseze', title: '酒品(色泽)', width: 300},
+                    {field: 'winedushu', title: '酒品(度数)', width: 300,
+                        formatter: function(value,row,index){
+                            return value+"°";
+                            // return "<img width='100' src='../"+value+"'>"
+                        }
+                    },
+                    {field: 'winegrade', title: '酒品(评分)', width: 300,
+                        formatter: function(value,row,index){
+                            return value+"分";
+                            // return "<img width='100' src='../"+value+"'>"
+                        }
+                    },
+
+                    {field: 'winehotsale', title: '酒品(热卖/非热卖)', width: 300,
+                        formatter: function(value,row,index) {
+                            var rmfrm = "";
+                            if (value == 1) {
+                                rmfrm = "热卖"
+                            } else if (value == 2) {
+                                rmfrm = "非热卖"
+                            }
+                            return rmfrm;
+                        }
+                    },
+                    {field: 'winestore', title: '酒品(储藏条件)', width: 300},
+                    /*{field: 'winestore', title: '酒品(储藏条件)', width: 300},
+                    {field: 'winestore', title: '酒品(储藏条件)', width: 300},*/
+
+
+                    {field: 'productdescribe', title: '酒品(描述)', width: 300},
+                {field: 'productsxj', title: '酒品状态', width: 300,
+                    formatter: function (value, row, index) {//单元格格式化器（字段值，行对象，行索引）
+                        if (value == 1) {
+                            return "未审核"
+                        } else if (value == 2) {
+                            return "审核中"
+                        }else if (value == 3) {
+                            return "已通过"
+                        }else if (value == 4) {
+                            return "已拒绝"
+                        }else if (value == 5) {
+                            return "已上架"
+                        }else if (value == 6) {
+                            return "已下架"
+                        }
+                    }
+
+                },
+                {field:'act',title:'操作',width:300,
+                    formatter: function(value,row,index){//单元格格式化器（字段值，行对象，行索引）
+                        if(row.productsxj==1){
+                            return "<input type='button' value='提交审核' bgcolor='red' onclick='edituser("+row.productid+","+2+")'></input>";
+                        }else if(row.productsxj==3){
+                            return "<input type='button' value='上架' bgcolor='red' onclick='edituser("+row.productid+","+5+")'></input>";
+                        }else if(row.productsxj==4){
+                            return "<input type='button' value='重新审核' bgcolor='red' onclick='edituser("+row.productid+","+2+")'></input>" +
+                                "<input type='button' value='下架' bgcolor='red' onclick='edituser("+row.productid+","+6+")'></input>";
+                        }else if(row.productsxj==5){
+                            return "<input type='button' value='下架' bgcolor='red' onclick='edituser("+row.productid+","+6+")'></input>" +
+                                "<input type='button' value='秒杀' bgcolor='red' onclick='miaosha("+row.productid+")'></input>";
+                        }
+
+                    }
+                },
+
+      ]
+            ]
+        });
+
+    }
+    function queryData(){
+        $("#product-table").bootstrapTable("refresh", {
+            "query": {
+                "productname": $("#productname").val(),
+                "flid": $("[name='flname']").val(),
+                "brandid": $("[name='brandname']").val()
+              /*  "flid":$("#flid").val*/
+            }
+        });
+
+    }
+    /*获取下拉菜单*/
+    $(function(){
+        $.ajax({
+            type:"post",
+            url:"../lyproduct/queryClassify",
+            success:function(data){
+                var html='<option value="-1">--请选择--</option>'
+                for (var i = 0; i < data.length; i++) {
+                    html+='<option value='+data[i].flid+'>'+data[i].flname+'</option>';
+                }
+                $("#flid").html(html)
+            }
+        })
+
+    })
+    $(function(){
+        $.ajax({
+            type:"post",
+            url:"../lyproduct/queryBrand",
+            success:function(data){
+                var html='<option value="-1">--请选择--</option>'
+                for (var i = 0; i < data.length; i++) {
+                    html+='<option value='+data[i].brandid+'>'+data[i].brandname+'</option>';
+                }
+                $("#brandid").html(html)
+            }
+        })
+
+    })
+    //修改状态
+    function edituser(productid,state){
+       /* alert(productid);
+        alert(zt);*/
+        $.ajax({
+            type:"post",
+            url:"../ztx/updateproduct",
+            data:{
+                productid:productid,
+                state:state
+            },
+            success:function(){
+                alert("提交成功")
+                $('#product-table').bootstrapTable("refresh");
+            }
+        })
+    }
+    var res;
+
+    function createAddContent(url) {
+        //alert(url);
+        $.ajax({
+            url: url,
+            async: false,
+            success: function (data) {
+                res = data;
+            }
+        });
+        return res;
+    }
+    //新增
+
+    function addSP(){
+       /* alert("11111111")*/
+        //打开新增弹框
+        bootbox.dialog({
+            title: '新增商品',
+            message: createAddContent("../lyproduct/toadd"),
+            closeButton: true,//是否显示关闭按钮
+            buttons: {
+                "success": {
+                    "label": "<i class='icon-ok'></i> 保存",
+                    "className": "btn-sm btn-success",
+                    "callback": function () {
+
+                        $.ajax({
+                            url: '../lyproduct/addProduct',
+                            type: 'post',
+                            data: $("#addformId").serialize(),
+                            success: function () {
+                                alert("新增成功");
+                                $('#product-table').bootstrapTable("refresh");
+                                //刷新表格
+                            }, error: function () {
+                                alert("新增失败");
+                            }
+                        });
+                    }
+                },
+                "cancel": {
+                    "label": "<i class='icon-info'></i> 取消",
+                    "className": "btn-sm btn-danger",
+                    "callback": function () {
+
+                    }
+                }
+            }
+
+        });
+    }
+    //批量删除
+    function deleteproductById(){
+        var arr=$("#product-table").bootstrapTable('getSelections');
+        if(arr.length>0){
+            var ids="";
+            for (var i = 0; i < arr.length; i++) {
+                ids+=","+arr[i].productid;
+            }
+
+            ids=ids.substr(1);
+            $.ajax({
+                type:"post",
+                url:"../lyproduct/delProduct?dids="+ids,
+                success:function(){
+                    alert("删除成功")
+                    $('#product-table').bootstrapTable("refresh");
+//		    							重新加载列表
+
+                }
+            })
+        }else{
+//		    		 		如果没有选中的复选框    提示警告
+            alert('警告！请至少选择一项进行删除');
+        }
+
+    }
+    function updproductId(){
+
+
+        var arr=$("#product-table").bootstrapTable('getSelections');
+        if(arr.length==0 || arr.length > 1){
+            alert("警告！只能修改单条数据")
+        }else{
+
+            bootbox.dialog({
+                title: '修改商品',
+                message: createAddContent("../lyproduct/queryProductPage?productid="+arr[0].productid),
+                closeButton:true,//是否显示关闭按钮
+                buttons: {
+                    "success": {
+                        "label": "<i class='icon-ok'></i> 保存",
+                        "className": "btn-sm btn-success",
+                        "callback": function () {
+
+                            $.ajax({
+                                url: '../lyproduct/updateProduct',
+                                type: 'post',
+                                data: $("#updspformId").serialize(),
+                                success: function () {
+                                    alert("修改成功");
+                                    $('#product-table').bootstrapTable("refresh");
+                                    //刷新表格
+                                }, error: function () {
+                                    alert("修改失败");
+                                }
+                            });
+                        }
+
+                    },
+                    "cancel": {
+                        "label": "<i class='icon-info'></i> 取消",
+                        "className": "btn-sm btn-danger",
+                        "callback": function () {
+
+                        }
+                    }
+                }
+
+            });
+
+        }
+
+
+    }
+    miaosha();
+    function miaosha(productid){
+        /* alert("11111111")*/
+        //打开新增弹框
+        bootbox.dialog({
+            title: '秒杀商品',
+            message: createAddContent("../lyproduct/queryMiaosha?productid="+productid),
+            closeButton: true,//是否显示关闭按钮
+            buttons: {
+                "success": {
+                    "label": "<i class='icon-ok'></i> 保存",
+                    "className": "btn-sm btn-success",
+                    "callback": function () {
+
+                        $.ajax({
+                            url: '../lyproduct/Msredis',
+                            type: 'post',
+                            data: $("#updspformId").serialize(),
+                            success: function () {
+                                alert("提交成功");
+                                $('#product-table').bootstrapTable("refresh");
+                                //刷新表格
+                            }, error: function () {
+                                alert("提交失败");
+                            }
+                        });
+                    }
+                },
+                "cancel": {
+                    "label": "<i class='icon-info'></i> 取消",
+                    "className": "btn-sm btn-danger",
+                    "callback": function () {
+
+                    }
+                }
+            }
+
+        });
+    }
+
+
+</script>
+</html>

@@ -1,0 +1,188 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: #fff none repeat scroll 0 0;
+    color: #000;
+    font-family: "SimSun",Arial;
+    font-size: 12px;
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    border: 0 none;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+input, button, select, textarea {
+    outline: medium none;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+select, label, textarea, input {
+    font-family: "lucida grande",tahoma,verdana,arial,STHeiTi,simsun,sans-serif;
+    outline: medium none;
+    resize: none;
+}
+table {
+    border-collapse: collapse;
+}
+ul, li {
+    list-style: outside none none;
+}
+strong, em, i, b {
+    font-style: normal;
+    font-weight: normal;
+}
+img {
+    border: 0 none;
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+}
+.clear {
+    clear: both;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    margin-top: 0 !important;
+    visibility: hidden;
+    width: 1px;
+}
+.clearFix::after {
+    clear: both;
+    content: "";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+.clearFix {
+}
+a {
+    color: #000;
+    cursor: pointer;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+.popBjJinBi {
+    background-color: #000;
+    height: 100%;
+    left: 0;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999999;
+}
+.popJinBox {
+    background-color: #fff;
+    border: 2px solid #ccc;
+    height: 240px;
+    left: 50%;
+    margin-left: -190px;
+    margin-top: -120px;
+    overflow: hidden;
+    position: fixed;
+    top: 50%;
+    width: 380px;
+    z-index: 9999999;
+}
+.popJinMain {
+    height: 240px;
+    position: relative;
+    width: 380px;
+}
+.popJinMain .closeBtn {
+    background: rgba(0, 0, 0, 0) url("../../img/clubImg/close.jpg") no-repeat scroll 0 0;
+    cursor: pointer;
+    display: block;
+    height: 27px;
+    position: absolute;
+    right: 0;
+    text-indent: -9999px;
+    top: 0;
+    width: 27px;
+    z-index: 99;
+}
+.popJinMain .setTip {
+    color: #666;
+    font-family: "Microsoft YaHei";
+    font-size: 14px;
+    line-height: 25px;
+    padding: 80px 0 10px;
+    text-align: center;
+}
+.popJinMain .gotoSet {
+    text-align: center;
+}
+.popJinMain .gotoSet a {
+    color: #3366cc;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.popJinMain .popPass {
+    color: #666;
+    font-size: 14px;
+    height: 100px;
+    line-height: 25px;
+    overflow: hidden;
+    padding: 60px 0 0 70px;
+}
+.popJinMain .popPass p em {
+    color: #cc0000;
+    font-weight: bold;
+}
+.popJinMain .popPass .passBd {
+    padding-top: 10px;
+}
+.popJinMain .popPass .passBd input {
+    border: 1px solid #ccc;
+    font-size: 12px;
+    height: 18px;
+    line-height: 18px;
+    padding: 3px 4px;
+    width: 160px;
+}
+.popJinMain .popPass .passBd .possTip {
+    color: #cc0000;
+    display: none;
+    font-size: 12px;
+    height: 18px;
+    line-height: 18px;
+    padding-left: 70px;
+}
+.popJinMain .popPassBtn {
+    height: 30px;
+    padding-left: 90px;
+}
+.popJinMain .popPassBtn a {
+    background-color: #cc0000;
+    color: #fff;
+    display: block;
+    float: left;
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: 76px;
+}
+.popJinMain .popPassBtn a.sty {
+    background-color: #ccc;
+    color: #333;
+    margin-left: 48px;
+}
+.popJinMain .setTip a {
+    color: #0066cc;
+    margin-left: 10px;
+}
+.popJinMain .setTip a:hover {
+    color: #0066cc;
+}
+.popJinMain .popPassBtn a.forgetPassword{ margin-left: 5px; background: none;color: #999;}

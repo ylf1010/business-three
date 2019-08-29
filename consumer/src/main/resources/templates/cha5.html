@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+
+    <!-- 引入 css  -->
+    <!-- 引入bootstrap的css -->
+    <link  href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-treeview的css -->
+    <link  href="../js/treeview/bootstrap-treeview.min.css" rel="stylesheet" >
+    <!-- 引入bootstrap-addTabs的css -->
+    <link  href="../js/addTabs/addTabs.css" rel="stylesheet" >
+    <!-- 引入bootstrap-table的css -->
+    <link  href="../js/table/bootstrap-table.min.css" rel="stylesheet" >
+    <!-- 引入fileinput的css -->
+    <link type="text/css" rel="stylesheet" href="../js/fileinput/css/fileinput.min.css" />
+
+    <!-- 引入 js  -->
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/treeview/bootstrap-treeview.min.js"></script>
+    <!-- 引入bootstrap的js-->
+    <script type="text/javascript" src="../js/addTabs/addTabs.js"></script>
+    <!-- 引入bootstrap-table的js-->
+    <script type="text/javascript" src="../js/table/bootstrap-table.min.js"></script>
+    <script type="text/javascript" src="../js/table/locale/bootstrap-table-zh-CN.min.js"></script>
+    <!-- 引入bootbox.js -->
+    <script type="text/javascript" src="../js/bootbox/bootbox.js"></script>
+    <!-- 引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/fileinput.min.js"></script>
+    <!--  引入fileinput的js -->
+    <script type="text/javascript" src="../js/fileinput/js/locales/zh.js"></script>
+    <script type="text/javascript" src="../js/fileinput/themes/fa/theme.js"></script>
+    <script src="../dingdan/jsAddress.js"></script>
+    <link href="../dingdan/footer.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../dingdan/order.css">
+    <!--<link href="../dingdan/base.css" rel="stylesheet" type="text/css">
+    <link href="../dingdan/header_cart_new.css" rel="stylesheet" type="text/css">-->
+    <!--<script type="text/javascript" async="" src="../dingdan/mv.js"></script>
+    <script type="text/javascript" async="" src="../dingdan/mba.js"></script>
+    <script type="text/javascript" async="" src="../dingdan/visittrack.min.js"></script>
+    <script type="text/javascript" async="" src="../dingdan/mvl.js"></script>
+    <script src="../dingdan/jquery.lazyload.js" type="text/javascript"></script>
+    <script src="../dingdan/base.js" type="text/javascript"></script>
+    <script src="../dingdan/public.js" type="text/javascript"></script>-->
+
+    <!--<script src="../dingdan/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="../dingdan/slider_1.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="../dingdan/base(1).css">-->
+</head>
+<!--地址三级联动-->
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        addressInit('cmbProvince', 'cmbCity', 'cmbArea');
+
+    });
+
+</script>
+<body style="align-content: center">
+<!-- 网页顶部导航信息 -->
+<!--导航条  最上头放置以下内容的黑框-->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+
+    <!-- 容器 以下内容为 顶部信息   -->
+    <div class="container-fluid">
+
+        <!-- 此段为窗口小化时用’三‘来代替隐藏所有导航信息 -->
+        <button type="button" class="navbar-toggle collapsed"
+                data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span> <span
+                class="icon-bar"></span> <span class="icon-bar"></span> <span
+                class="icon-bar"></span>
+        </button>
+        <!-- Brand and toggle get grouped for better mobile display -->
+
+        <!-- 头部信息 -->
+        <div class="navbar-header">
+            <a class="navbar-brand glyphicon glyphicon-globe"
+               href="javascript:dialogRedis()" id="menu-toggle"> 三组酒圣网 </a>
+        </div>
+
+        <!-- 左边 信息 -->
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse"
+             id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav">
+                <li class="active "><a href="#"
+                                       class="glyphicon glyphicon-shopping-cart">&nbsp我的购物车&nbsp&nbsp <span
+                        class="sr-only">(current)</span></a></li>
+
+                <li><a href="#" class="glyphicon ">&nbsp&nbsp首页&nbsp&nbsp&nbsp&nbsp</a></li>
+                <li><a href="../xu1/shoucang1" class="glyphicon glyphicon-grain">&nbsp&nbsp收藏夹&nbsp&nbsp&nbsp&nbsp</a></li>
+
+
+                <!-- 右边的    导航 按钮样式 -->
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li><a href="#"> &nbsp登录</a></li>
+                    <li><a href="#">&nbsp免费注册 </a></li>
+                    <li><a href="#">&nbsp&nbsp 注销</a></li>
+                </ul>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<br><br><br>
+<input type="hidden" id="productid" th:value="${ids}">
+<!--<input type="hidden" id="productid" value="37,49,46">-->
+<!--<input type="hidden" id="number" th:value="${ordernumber.getProductkucun()}">-->
+<form id="formId">
+    <input type="hidden" name="id" id="id" >
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="txt_statu">地址</label>
+                        <select class="form-control" id="cmbProvince" name="cmbProvince" ></select>
+
+                        <select class="form-control" id="cmbCity" name="cmbCity" ></select>
+
+                        <select class="form-control" id="cmbArea" name="cmbArea" ></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_statu">详细地址</label>
+                        <input type="text" name="particular" class="form-control" id="txt_statu" placeholder="状态">
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_statu">收货人</label>
+                        <input type="text" name="consignee" class="form-control" id="txt_statu" placeholder="状态">
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_statu">联系电话</label>
+                        <input type="text" name="phone" class="form-control"  id="txt_statu" placeholder="状态">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="addressdizhi()" class="btn btn-ok">保存</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+    <!--<div style="height: 100px;width: 80%;" >-->
+        <div style="margin-right: 10%;margin-left: 10%">
+            <b>确认收货地址</b>   <button class="btn btn-group-sm" type="button" onclick="xinzengalert()">新增地址</button>
+            <hr style="background-color: black" size="3">
+            <!--订单 信息   -->
+            <table id="addresstable"></table>
+        </div>
+        <!--<b>确认订单信息</b>
+        <hr size="3" style="background-color: black">
+        <table id="dataGrid"></table>-->
+        <!-- 商品信息 -->
+        <div class="pubWrap" style="margin-left: 10%;margin-right: 10%">
+            <div class="pubTitle">
+                <!--<h3>确认订单信息</h3>-->
+                <div class="confirmRemind"><i class="orderIcon"></i><span>若商品来自不同商家和仓库，将按照仓库最优进行配送</span></div>
+            </div>
+            <div class="orderTable">
+                <div class="tHead">
+                    <div class="oTd item-1">商品信息</div>
+                    <div class="oTd item-2">单价</div>
+                    <div class="oTd item-3">数量</div>
+                    <div class="oTd item-4">状态</div>
+                    <div class="oTd item-5">小计</div>
+                </div>
+                <div id="shopInfos">
+                    <div class="tBody">
+                        <div class="shopTitle"><a><i class="orderIcon jxzy"></i><span>酒仙配送</span></a></div>
+                        <div class="tMain">
+
+                        </div></div></div>
+            </div>
+        </div>
+        <div style="margin-right: 10%;margin-left: 80%">
+            <b>实付款：</b>￥<font color="red" size="15px"><span id="money"></span></font>
+            <input onclick="jiesuan()" type="button" class="btn btn-group-xs" style="background-color: #d43f3a;size: B5" value="结算">
+        </div>
+    <!--</div>-->
+<div class="footer">
+    <div class="footerTopBox">
+        <div class="footerTop">
+            <div class="footerContact">
+                <i class="publicIcon"></i><b>400-617-9999</b><span>客服热线</span><span>9:00-23:00</span><span>贴心服务</span>
+            </div>
+            <div class="footerTopRight">
+                <div class="ftRight-tit">优惠促销早知道</div>
+                <div class="ftRight-form">
+                    <input id="subscribe_email" type="text" value="" name=""><span>请输入您的邮箱地址</span><i class="publicIcon" id="subscribe_but"></i>
+                </div>
+            </div>
+        </div>
+        <div class="footerServices">
+            <ul class="clearfix">
+                <li class="servicesItme01">
+                    <h3>
+                        <i class="publicIcon"></i><span>新手入门</span>
+                    </h3>
+                    <p>
+                        <a href="http://special.jiuxian.com/topic/zpbz/zhengpin.html" target="_blank" rel="nofollow">购物保障</a>
+                    </p>
+                    <p>
+                        <a href="http://help.jiuxian.com/view-1-112.htm" target="_blank" rel="nofollow">服务协议</a>
+                    </p>
+                    <p>
+                        <a href="http://help.jiuxian.com/view-1-113.htm" target="_blank" rel="nofollow">发票说明</a>
+                    </p>
+                </li>
+                <li class="servicesItme02">
+                    <h3>
+                        <i class="publicIcon"></i><span>常见问题</span>
+                    </h3>
+                    <p>
+                        <a href="http://help.jiuxian.com/view-2-114.htm" target="_blank" rel="nofollow">红包使用</a>
+                    </p>
+                    <p>
+                        <a href="http://help.jiuxian.com/view-2-115.htm" target="_blank" rel="nofollow">返现使用</a>
+                    </p>
+                    <p>
+                        <a href="http://help.jiuxian.com/view-2-116.htm" target="_blank" rel="nofollow">兑换码</a>
+                    </p>
+                </li>
+                <li class="servicesItme03">
+                    <h3>
+                        <i class="publicIcon"></i><span>配送说明</span>
+                    </h3>
+                    <p>
+                        <a href="http://help.jiuxian.com/view-3-118.htm#delivery_02" target="_blank" rel="nofollow">配送时间</a>
+                    </p>
+                    <p>
+                        <a href="http://help.jiuxian.com/view-3-119.htm#delivery_03" target="_blank" rel="nofollow">配送费用</a>
+                    </p>
+                    <p>
+                        <a href="http://help.jiuxian.com/view-3-117.htm#delivery_01" target="_blank" rel="nofollow">配送范围</a>
+                    </p>
+                </li>
+                <li class="servicesItme04">
+                    <h3>
+                        <i class="publicIcon"></i><span>支付方式</span>
+                    </h3>
+                    <p>
+                        <a href="http://help.jiuxian.com/view-4-120.htm#pay_1" target="_blank" rel="nofollow">货到付款</a>
+                    </p>
+                    <p>
+                        <a href="http://help.jiuxian.com/view-4-121.htm#pay_2" target="_blank" rel="nofollow">在线支付</a>
+                    </p>
+                    <p>
+                        <a href="http://help.jiuxian.com/view-4-122.htm#pay_3" target="_blank" rel="nofollow">线下支付</a>
+                    </p>
+                </li>
+                <li class="servicesItme05">
+                    <h3>
+                        <i class="publicIcon"></i><span>售后服务</span>
+                    </h3>
+                    <p>
+                        <a href="http://help.jiuxian.com/view-5-123.htm#bz_1" target="_blank" rel="nofollow">品质保证</a>
+                    </p>
+                    <p>
+                        <a href="http://help.jiuxian.com/view-5-124.htm#bz_2" target="_blank" rel="nofollow">退换货政策</a>
+                    </p>
+                    <p>
+                        <a href="http://help.jiuxian.com/view-5-125.htm#bz_3" target="_blank" rel="nofollow">退换货流程</a>
+                    </p>
+                </li>
+                <li class="servicesItme06">
+                    <h3>
+                        <i class="publicIcon"></i><span>特色服务</span>
+                    </h3>
+                    <p>
+                        <a href="http://jifen.jiuxian.com/club_index.htm" target="_blank">会员俱乐部</a>
+                    </p>
+                    <p>
+                        <a href="http://member.jiuxian.com/company.htm" target="_blank" rel="nofollow">企业客户</a>
+                    </p>
+                    <p>
+                        <a target="_blank" href="http://forum.jiuxian.com/">酒仙社区</a>
+                    </p>
+                </li>
+                <li class="jxMicroblogging">
+                    <div class="item sinaMb">
+                        <div class="sinaMbCom clearfix">
+                            <a href="http://weibo.com/jiuxianwang?sudaref=www.so.com" target="_blank" rel="nofollow"><i class="publicIcon"></i></a><a href="http://weibo.com/jiuxianwang?sudaref=www.so.com" target="_blank" rel="nofollow">酒仙新浪微博</a>
+                        </div>
+                    </div>
+                    <div class="item weixin">
+                        <div class="weixinCon clearfix">
+                            <i class="publicIcon"></i><a id="jxWeixin" falg="hide" href="javascript:;" target="_blank" rel="nofollow">酒仙微信</a>
+                        </div>
+                        <div class="weixinCode" id="weixinCode">
+                            <img src="./订单结算-酒仙网_files/weixin-code.jpg">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="footerBotBox">
+        <div class="footerBot clearfix">
+            <div class="footerBotLeft">
+                <p class="footerInfo">
+                    <a href="http://help.jiuxian.com/view-0-105.htm" target="_blank" rel="nofollow">公司简介<i></i></a> <a href="http://help.jiuxian.com/view-0-106.htm" target="_blank" rel="nofollow">管理团队<i></i></a>
+                    <a href="http://help.jiuxian.com/view-0-109.htm" target="_blank" rel="nofollow">媒体报道<i></i></a> <a href="http://help.jiuxian.com/view-0-110.htm" target="_blank" rel="nofollow">联系我们<i></i></a>
+                    <a href="http://www.jiuxian.com/sitemap.htm" target="_blank">网站地图<i></i></a> <a href="http://www.jiuxian.com/allbrands.htm" target="_blank">品牌大全<i></i></a>
+                </p>
+                <p class="copyright">
+                    北京酒仙网络科技有限公司&nbsp;&nbsp;©&nbsp;&nbsp;酒仙网&nbsp;&nbsp;&nbsp;2011&nbsp;&nbsp;jiuxian.com&nbsp;&nbsp;All&nbsp;&nbsp;&nbsp;Rights&nbsp;Reserved&nbsp;&nbsp;&nbsp;<a href="http://www.beian.miit.gov.cn/" target="_blank" rel="nofollow">京ICP备17043395号</a>&nbsp;&nbsp;&nbsp;京公网安备1101050188221
+                </p>
+                <p class="footerAddr" style="color: #999; line-height: 22px; padding-top: 5px;">
+                    <span>统一社会信用代码&nbsp;&nbsp;91110302306646672B&nbsp;&nbsp;&nbsp;食品流通许可证编号&nbsp;&nbsp;JY11131010328793&nbsp;&nbsp;&nbsp;京食药网食备201910019&nbsp;&nbsp;&nbsp;</span>
+                </p>
+                <p class="footerAddr" style="color: #999; line-height: 22px; padding-bottom: 7px;">
+                    <span>地址：北京市北京经济技术开发区经海五路58号院8幢4层</span>
+                </p>
+                <p class="copybot">
+                    <script type="text/javascript" src="./订单结算-酒仙网_files/seallogo.dll.下载"></script><script id="kx_script" async="" cid="kx_verify" src="./订单结算-酒仙网_files/icon3.js.下载" size="0"></script><span id="kx_verify" style="float: left; padding-right: 6px; display: inline-block; position: relative; width: 128px; height: 47px;"><a id="kx_verify_link" href="https://ss.knet.cn/verifyseal.dll?sn=2011040600100007749&amp;a=1&amp;pa=0.8059843341994277" tabindex="-1" target="_blank" kx_type="图标式" rel="nofollow"><img src="./订单结算-酒仙网_files/cnnic.png" style="border:0; position: absolute; top: 0px; left: 0px;" w="128" h="47" width="128" height="47" oncontextmenu="return false;" alt="可信网站"></a></span>
+                    <script type="text/javascript">
+                        (function() {
+                            var _kxs = document.createElement('script');
+                            _kxs.id = 'kx_script';
+                            _kxs.async = true;
+                            _kxs.setAttribute('cid', 'kx_verify');
+                            _kxs.src = ('https:' == document.location.protocol
+                                ? 'https://ss.knet.cn' : 'http://rr.knet.cn')
+                                + '/static/js/icon3.js?sn=2011040600100007749&tp=icon3';
+                            _kxs.setAttribute('size', 0);
+                            var _kx = document.getElementById('kx_verify');
+                            _kx.parentNode.insertBefore(_kxs, _kx);
+                        })();
+                    </script>
+                    <a href="http://img01.jiuxian.com/img1/nsy/icp01.jpg" target="_blank" rel="nofollow"><img src="./订单结算-酒仙网_files/copyBot03.jpg" width="128" height="47"></a>
+
+                </p>
+                <p class="footerPro" style="padding: 8px 0 6px;">购买前请确认达到法定饮酒年龄！酒仙网不销售任何含酒精产品给18岁以下人士！</p>
+            </div>
+            <div class="footerBotCode">
+                <div class="jxPho-code">
+                    <p class="codePic">
+                        <img alt="手机酒仙网" src="./订单结算-酒仙网_files/jxPho-code.jpg" width="80" height="80">
+                    </p>
+                    <p class="codeText">手机酒仙网</p>
+                </div>
+                <div class="jkd-code">
+                    <p class="codePic">
+                        <img alt="微信公众号" src="./订单结算-酒仙网_files/jx-wxgzh.png" width="80" height="80">
+                    </p>
+                    <p class="codeText">微信公众号</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<style type="text/css">
+    .footerBotLeft .footerInfo {
+        margin-left: -8px;
+    }
+
+    .footerBotLeft p {
+        font-family: Arial, Helvetica, sans-serif, "宋体";
+    }
+
+    .footerBotLeft .footerInfo a {
+        color: #666;
+    }
+
+    .footerBotLeft .copyright {
+        color: #666;
+    }
+</style>
+<script>
+    $(function(){
+        queryaddress();
+        //initDataGrid();
+        $.ajax({
+            url:'../ysqthree/chashoppingceshi?productid='+$("#productid").val(),
+            success:function (data) {
+                var obj = "";
+                var num = 0;
+                var id = "";
+                for(var i=0;i<data.length;i++){
+                    id += ","+data[i].productid;
+                    num += data[i].productprice*data[i].productcount;
+                    obj += "<div class=\"oTr\">\n" +
+                        "<div class=\"mainProduct\">\n" +
+                        "<div class=\"oTd item-1\">\n" +
+                        "<div class=\"img\"><a href=\"http://www.jiuxian.com/goods-84101.html\" target=\"_blank\"><img src=\""+data[i].productphoto+"\" width=\"60\" height=\"60\"></a></div>\n" +
+                        "<div class=\"name\"><a href=\"http://www.jiuxian.com/goods-84101.html\" target=\"_blank\" style=\"text-align: left;\">"+data[i].productname+"</a><div class=\"promptBox\"><div class=\"unUsed\"><i class=\"orderIcon\"></i><span>此商品不能使用优惠券</span></div></div></div></div>\n" +
+                        "<div class=\"oTd item-2\">"+data[i].productprice+"</div>\n" +
+                        "<div class=\"oTd item-3\">x"+data[i].productcount+"</div>\n" +
+                        "<div class=\"oTd item-4\">有货</div>\n" +
+                        "<div class=\"oTd item-5\">￥"+data[i].productprice*data[i].productcount+"</div></div></div>"
+                }
+                var id = id.substr(1);
+
+                $(".tMain").html(obj);
+                //$("#totalPriceInfo").html("￥"+num);
+                $("#money").html(num);
+            }
+        })
+    });
+    function initDataGrid() {
+        //创建bootstrapTable
+        $("#dataGrid").bootstrapTable({
+            url: "../ysqthree/chashopping?productid="+$("#productid").val(),
+            method: 'post',
+            striped: true,  	// 斑马线效果     默认false
+            //只允许选中一行
+            singleSelect: false,
+            border : '0px',
+            //选中行是不选中复选框或者单选按钮
+            clickToSelect: true,
+            // showToggle: true,                    //是否显示详细视图和列表视图的切换按钮
+            // cardView: false,                    //是否显示详细视图
+            uniqueId: "id",                 //每一行的唯一标识，一般为主键列
+            // showColumns: true,                  //是否显示所有的列
+            // showRefresh: true,                  //是否显示刷新按钮
+            minimumCountColumns: 2,     //  最少留两列
+            detailView: false,                  //是否显示父子表
+            toolbar: '#tabToolBar',   //  工具定义位置
+            sidePagination: 'server',
+            toolbar: '#toolbar',
+            //pagination: true, //是否展示分页
+            pageList: [2, 4, 8, 10],//分页组件
+            pageNumber: 1,
+            pageSize: 2,//默认每页条数
+            //启动回车键做搜索功能
+            searchOnEnterKey: true,
+            //设置为false 将禁止所有列的排序。
+            sortable: true,
+            //设置默认排序为 name,直接对应数据库的字段
+            sortName: 'id',
+            //定义排序方式，'asc' 或者 'desc'。
+            sortOrder: "desc",
+            //设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
+            // 设置为limit可以获取limit, offset, search, sort, order
+            queryParamsType: 'undefined',
+
+            // 请求服务器数据
+            queryParams: function queryParams(params) {
+                var param = {
+                    pageNumber: params.pageNumber,
+                    pageSize: params.pageSize,
+                    sortName: params.sortName,
+                    sortOrder: params.sortOrder
+
+                };
+                return param;
+            },
+            columns: [
+                //{field:'productid',title:'订单号'},//  列    field   代表是 后台  传过来的值
+                {field:'productname',title:'商品名称',
+                formatter:function (value,row,index) {
+                    return value+"<img src='"+row.productphoto+"' width='30px' height='30px'>";
+                }
+                },
+                {field:'productprice',title:'商品单价'},
+                {field:'winedushu',title:'度数'},
+                {field:'winejhl',title:'毫升'},
+                {field: 'productcount', title: '商品数量',
+                    formatter:function (value,row,index) {
+                    return value;
+                        /*return "<input id='addBtnmin' onclick='jian("+row.unitprice+")' type='button' value='-' />\n" +
+                            "<input id='join-money' style='width: 30px;' type='text' value="+value+">\n" +
+                            "<input id='addBtnadd' onclick='add("+row.unitprice+")' type=\"button\" value=\"+\" />";*/
+                    }
+                }
+            ],
+            onLoadSuccess:function () {
+                var bootstrapTable = $("#dataGrid").bootstrapTable("getData");
+                var number = 0;
+                for (var i=0;i<bootstrapTable.length;i++){
+                    number +=  bootstrapTable[i].productprice*bootstrapTable[i].productcount;
+                }
+                alert(number)
+                $("#money").html(number);
+            }
+        })
+    }
+    queryaddress = function(){
+        $("#addresstable").bootstrapTable({
+            url: "../ysqthree/chaaddress",
+            method: 'post',
+            striped: true,  	// 斑马线效果     默认false
+            //只允许选中一行
+            singleSelect: true,
+            //选中行是不选中复选框或者单选按钮
+            clickToSelect: true,
+            //showToggle: true,                    //是否显示详细视图和列表视图的切换按钮
+            //cardView: false,                    //是否显示详细视图
+            uniqueId: "id",                 //每一行的唯一标识，一般为主键列
+            //showColumns: true,                  //是否显示所有的列
+            // showRefresh: true,                  //是否显示刷新按钮
+            minimumCountColumns: 2,     //  最少留两列
+            detailView: false,                  //是否显示父子表
+            //toolbar: '#tabToolBar',   //  工具定义位置
+            sidePagination: 'server',
+            toolbar: '#toolbar',
+            //pagination: true, //是否展示分页
+            pageList: [2, 4, 8, 10],//分页组件
+            pageNumber: 1,
+            pageSize: 2,//默认每页条数
+            //启动回车键做搜索功能
+            searchOnEnterKey: true,
+            //设置为false 将禁止所有列的排序。
+            sortable: true,
+            //设置默认排序为 name,直接对应数据库的字段
+            sortName: 'id',
+            //定义排序方式，'asc' 或者 'desc'。
+            sortOrder: "desc",
+            //设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
+            // 设置为limit可以获取limit, offset, search, sort, order
+            queryParamsType: 'undefined',
+            // 请求服务器数据
+            queryParams: function queryParams(params) {
+                var param = {
+                    pageNumber: params.pageNumber,
+                    pageSize: params.pageSize,
+                    sortName: params.sortName,
+                    sortOrder: params.sortOrder
+
+                };
+                return param;
+            },
+            columns: [
+                {field:'cb',checkbox:true},
+                //{field: 'id', title: '用户id'},
+                {field:'address',title:'地址'},//  列    field   代表是 后台  传过来的值
+                {field:'consignee',title:'收货人'},
+                {field:'phone',title:'联系电话'},
+                {field: 'caozuo', title: '操作',
+                    formatter:function(value,row,index){
+                        return "<a href='javascript:deleteaddress("+row.id+")' class='btn btn-group-sm'>删除</a>"
+                            + "<a href='javascript:xiugai()' class='btn btn-group-sm'>修改</a>";
+                    }
+                },
+            ]
+        })
+    }
+    deleteaddress = function(id){
+        var b = confirm("您确认删除这条数据么？");
+        if(!b){
+            return;
+        }
+        $.ajax({
+            url:'../ysqthree/deleteaddress',
+            type:'post',
+            data:{id:id},
+            success:function(){
+                //记得刷新页面
+                $('#myModal').modal('hide');
+                //刷新表单
+                $("#formId")[0].reset();
+            }
+        })
+    }
+    xinzengalert = function(){
+        $("#formId")[0].reset();
+        $('#myModal').modal('show');
+    }
+    addressdizhi = function(){
+        $.ajax({
+            url:'../ysqthree/addressdizhi',
+            type:'post',
+            data:$("#formId").serialize(),
+            success:function () {
+                //刷新页面
+            }
+        })
+    }
+    xiugai = function(){
+        var arr = $("#addresstable").bootstrapTable("getSelections","true");
+        //address   particular  consignee phone
+        $("input[name='address']").val(arr[0].address);
+        $("input[name='particular']").val(arr[0].particular);
+        $("input[name='consignee']").val(arr[0].consignee);
+        $("input[name='phone']").val(arr[0].phone);
+        $("#id").val(arr[0].id);
+        $("#myModal").modal('show');
+    }
+    /*//减
+    function jian(price){
+        var count = $("#join-money").val() <= 0 ? 0 : $("#join-money").val()-1;
+        $("#join-money").val(count);
+        changeMonry(price);
+    }
+
+    //加
+    function add(price){
+        var count = $("#join-money").val();
+        count = Number(count);
+        $("#join-money").val(count+1);
+        changeMonry(price);
+    }
+    //综合
+    function changeMonry(price){
+        var count = $("#join-money").val();
+        var sumPrice = count*price;
+        $("#money").html(sumPrice);
+    }*/
+    jiesuan = function(){
+        var arr = $("#addresstable").bootstrapTable("getSelections","true");
+        if(arr.length!=1){
+            alert("请选择地址");
+            return ;
+        }
+        alert(arr[0].id)
+        $.ajax({
+            url:'../ysqthree/adddingdanall?productid='+$("#productid").val(),
+            type:'post',
+            data:{userid:arr[0].id},
+            success:function (s) {
+                /*$.ajax({
+                    url:'../goAlipay?price='+$("#money").text()+"&ordernumber="+s,
+                    async:false,
+                    success:function(){
+                        //alert("1111111111111111111111111111111111111----------------------------------------------------ss")
+                    }
+                })*/
+                location.href='../goAlipay?price='+$("#money").text()+"&ordernumber="+s;
+            }
+        })
+        //goAlipay
+    }
+</script>
+</html>

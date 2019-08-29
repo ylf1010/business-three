@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.ZtxRoleTreeMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.ZtxRoleTree" >
+    <id column="rtid" property="rtid" jdbcType="INTEGER" />
+    <result column="roleid" property="roleid" jdbcType="INTEGER" />
+    <result column="treeid" property="treeid" jdbcType="INTEGER" />
+  </resultMap>
+
+  <select id="querytreebyid" resultType="java.lang.String">
+    SELECT treeid FROM  y_role_tree where roleid = #{roleid}
+  </select>
+
+  <select id="querytiaojian" resultType="HashMap">
+    SELECT sp.*,fl.flname producttype ,pp.brandname ppname ,cd1.orignshiname cdname FROM ly_product sp,ly_classify fl,ly_brand pp,ly_orignshi cd1 WHERE
+    sp.productpid=fl.flid  AND sp.winebrandid= pp.brandid AND sp.wineyieldlyid= cd1.orignshiid and sp.productsxj=5
+        <if test="p.productname!=null and p.productname!=''">
+          and sp.productname like '%${p.productname}%'
+        </if>
+        <if test="p.winebrandid!=null ">
+          and sp.winebrandid =#{p.winebrandid}
+        </if>
+        <if test="p.productpid!=null ">
+          and sp.productpid =#{p.productpid}
+        </if>
+        <if test="p.wineyieldlyid!=null ">
+          and sp.wineyieldlyid =#{p.wineyieldlyid}
+        </if>
+        <if test="p.mindushu!=null and p.maxdushu!=null">
+          and sp.winedushu &gt; #{p.mindushu} and sp.winedushu &lt; #{p.maxdushu}
+        </if>
+        <if test="p.minprice!=null and p.maxprice!=null">
+          and sp.productprice &gt; #{p.minprice} and sp.productprice &lt; #{p.maxprice}
+        </if>
+        <if test="p.minjhl!=null and p.maxjhl!=null">
+          and sp.winejhl &gt; #{p.minjhl} and sp.winejhl &lt; #{p.maxjhl}
+        </if>
+        <if test="p.productprice!=null">
+          order by  sp.productprice
+        </if>
+        <if test="p.productzxl!=null">
+          order by  sp.productzxl desc
+        </if>
+        <if test="p.winegrade!=null">
+          order by  sp.winegrade desc
+        </if>
+  </select>
+
+</mapper>

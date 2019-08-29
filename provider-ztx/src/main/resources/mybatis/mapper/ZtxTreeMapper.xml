@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.ZtxTreeMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.ZtxTree" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="text" property="text" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="querytree" resultType="com.jk.model.ZtxTree"  >
+    SELECT  tp.*  FROM  user tu , y_user_role ur ,y_role tr , y_role_tree rp ,y_tree tp
+    WHERE  tu.id= ur.userid
+      AND    ur.roleid = tr.roleid
+      AND    tr.roleid= rp.roleid
+      AND    rp.treeid = tp.id
+      AND   tu.id= #{id}
+    GROUP BY tp.name
+  </select>
+
+  <select id="querytreeall" resultMap="BaseResultMap">
+    select * from y_tree
+  </select>
+
+  <select id="queryOrgAll3" resultMap="BaseResultMap" >
+    select * from y_tree where pid = #{pid}
+  </select>
+
+  <select id="queryOrgAll2" resultMap="BaseResultMap" >
+    select
+      *
+    from y_tree t,y_role_tree rt
+    where t.id= rt.treeid and rt.roleid=#{id} and t.pid=#{pid}
+  </select>
+
+  <select id="querydsh" resultType="HashMap">
+    SELECT sp.*,fl.flname producttype  FROM ly_product sp,ly_classify fl WHERE  sp.productpid=fl.flid and sp.productsxj=2
+      limit #{papa},#{pageSize}
+  </select>
+
+  <select id="querydshcount" resultType="long">
+    select count(*) from ly_product sp,ly_classify fl WHERE  sp.productpid=fl.flid and productsxj=2
+  </select>
+
+  <select id="queryytg" resultType="HashMap">
+    SELECT sp.*,fl.flname producttype  FROM ly_product sp,ly_classify fl WHERE  sp.productpid=fl.flid and sp.productsxj=5
+      limit #{papa},#{pageSize}
+  </select>
+  <select id="queryytgcount" resultType="long">
+    select count(*) from ly_product sp,ly_classify fl WHERE  sp.productpid=fl.flid and productsxj=5
+  </select>
+</mapper>

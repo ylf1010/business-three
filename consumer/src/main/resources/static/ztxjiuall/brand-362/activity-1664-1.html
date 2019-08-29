@@ -1,0 +1,656 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>酒仙网电子商务（广东）有限公司</title>
+<meta name="Keywords" content="酒仙网电子商务有限公司，广东">
+<meta name="Description" content="酒仙网电子商务（广东）有限公司">
+<link href="../css/newIndexCss/base-20150709.css" type="text/css" rel="stylesheet">
+<link href="../css/newIndexCss/header-20150709.css" rel="stylesheet" type="text/css">
+<link href="../css/newIndexCss/footer-20150709.css" rel="stylesheet" type="text/css">
+
+
+<link href="../css/shop/shopDecoration/template/templateDefault.css" type="text/css" rel="stylesheet">
+<link href="../css/shop/shopDecoration/template/templateDefault_4.css" type="text/css" rel="stylesheet">
+<script src="../js/jquery.min-20161114.js" type="text/javascript"></script>
+<script src="../js/newIndexJs/base-20150709.js" type="text/javascript"></script>
+<script src="../js/public/region-20150709.js" type="text/javascript"></script>
+<script src="../js/public/public-20150709.js" type="text/javascript"></script>
+
+<script src="../js/shop/lazyload-20150709.js" type="text/javascript"></script>
+<script src="../js/shop/shopDecoration/slider-20150709.js" type="text/javascript"></script>
+
+
+<style>
+</style>
+</head>
+<body>
+		
+<!-- 全站公共url变量 -->
+<script type="text/javascript">
+    window.jxdomain={
+        misc:"http://misc.jiuxian.com",
+        list:"http://list.jiuxian.com",
+        pub:"http://public.jiuxian.com",
+        detail:"http://www.jiuxian.com",
+        home:"http://www.jiuxian.com",
+        wine:"http://wine.jiuxian.com",
+        spirits:"http://spirits.jiuxian.com",
+        clear:"http://clear.jiuxian.com",
+        tuan:"http://tuan.jiuxian.com",
+        tehui:"http://tehui.jiuxian.com",
+        happy:"http://www.jiuxian.com",
+        special:"http://special.jiuxian.com",
+        sale:"http://sale.jiuxian.com",
+        brand:"http://brand.jiuxian.com",
+        dingzhi:"http://dingzhi.jiuxian.com",
+        order:"http://order.jiuxian.com",
+        pay:"https://pay.jiuxian.com",
+        cart:"http://cart.jiuxian.com",
+        login:"https://login.jiuxian.com",
+        member:"http://member.jiuxian.com",
+        jifen:"http://jifen.jiuxian.com",
+        help:"http://help.jiuxian.com",
+        cps:"http://cps.jiuxian.com",
+        iosapi:"http://iosapi.jiuxian.com",
+        info:"http://info.jiuxian.com",
+        shop:"http://shop.jiuxian.com",
+        forum:"http://forum.jiuxian.com",
+        act:"http://act.jiuxian.com",
+        miaosha:"http://miaosha.jiuxian.com"
+    };
+</script>
+
+<script src="../js/skipmobileweb/skipmobileweb.js"></script>
+<script type="text/javascript">isMobile();</script>
+<script type="text/javascript">
+//获取区域ID并存储到Cookie
+var userArray=getCookie("user_province");userArray=userArray.split("_");if(userArray[0]==""||userArray[0]==undefined){var url_kc=window.jxdomain.pub+"/getOrgionByRequest.htm?t="+new Date().getTime();var proxy_url="/httpProxyAccess.htm?t="+new Date().getTime();jQuery.ajax({type:"POST",url:proxy_url,data:{target:url_kc},dataType:"json",success:function(data){var orgionId="2";if(data){orgionId=data.orgionId}if(orgionId==""){orgionId="2"}userArray[0]=orgionId;setCookie("user_province",orgionId,12);var sa1=returnArrya(1,orgionId);$(".ajax_deli_city").text(sa1[1])}})}else{try{var sa1=returnArrya(1,userArray[0]);$(".ajax_deli_city").text(sa1[1])}catch(e){setCookie("user_province","2",12);$(".ajax_deli_city").text("北京")}};	
+var header1200 = ""; var header1000 = "";
+
+</script>
+<div class="topHeader"><div class="topHeaderCon"><div class="topHeaderLeft" name="_new_login_status_panel"><div class="clearfix"><p class="greeting">欢迎来酒仙网！</p>
+<a class="headerLogin" href="../login1.html" rel="nofollow">请登录</a>
+<a class="headerReg" href="../register1.html" rel="nofollow">免费注册</a>
+</div>
+</div>
+<div class="topHeaderRight">
+<ul>
+<li class="hd-n1 dropTitle">
+<div class="myJiuxian"><a href="../index1.html" target="_blank" rel="nofollow">我的酒仙</a><s class="publicIcon"></s></div>
+<div class="myJiuxianBox dropTitleBox clearfix"><a href="../trademanage/my_order-9.html" target="_blank" rel="nofollow">我的订单</a>
+<a href="../trademanage/my_order-9.html" target="_blank" rel="nofollow">物流跟踪</a><a href="javascript:;" target="_blank" rel="nofollow">我的优惠券</a></div>
+</li>
+<li class="hd-n2"><a href="../feedback.html" target="_blank" rel="nofollow">CEO邮箱</a></li>
+<li class="hd-n3"><i class="publicIcon"></i><a href="../Index.html" target="_blank" rel="nofollow">购物车<b class="qty jx_car_num">&nbsp;0&nbsp;</b>件</a></li>
+<li class="hd-n4"><a href="javascript:;" target="_blank">CLUB会员</a><s></s></li>
+<li class="hd-n6"><a href="../index-1171/activity-1577.html" target="_blank">招商入驻</a><s></s></li>
+<li class="hd-n5"><a href="../mobile/sjgjx/index.html" target="_blank"><i class="publicIcon"></i>手机逛酒仙</a><s></s><div class="erm2015922"><img alt="手机酒仙网" src="../img/newIndexImg/jxPho-code.jpg" width="80" height="80"></div></li>
+<li class="hd-n7 dropTitle">
+<div class="subNav"><i class="publicIcon"></i><a href="javascript:;">网站导航</a><s class="publicIcon"></s></div>
+<div class="subNavBox dropTitleBox">
+<div class="subNav-item  frist ">
+<div class="snItem-tit"><h3>购物</h3></div>
+<div class="snItem-con snThere">
+<a href="../1-0-0-0-0-0-0-0-0-0-0-0.html" target="_blank">白酒</a>
+<a href="../2-0-0-0-0-0-0-0-0-0-0-0.html" target="_blank">葡萄酒</a>
+<a href="../4-0-0-0-0-0-0-0-0-0-0-0.html" target="_blank">洋酒</a>
+<a href="../151-0-0-0-0-0-0-0-0-0-0-0.html" target="_blank">啤酒</a>
+<a href="../6-0-0-0-0-0-0-0-0-0-0-0.html" target="_blank">保健酒</a>
+<a href="../95-0-0-0-0-0-0-0-0-0-0-0.html" target="_blank">黄酒</a>
+</div>
+</div>           		
+<div class="subNav-item  bg ">
+<div class="snItem-tit"><h3>活动</h3></div>
+<div class="snItem-con snThere">
+<a href="../brand-41/activity-3399-23.html" target="_blank">酒鬼酒</a>
+<a href="../Index3.html" target="_blank">进口馆</a>
+<a href="../brand-371/activity-1069.html" target="_blank">老酒特卖</a>
+<a href="../brand-382/activity-3682-11.html" target="_blank">酒粉节</a>
+<a href="../brand-382/activity-2932.html" target="_blank">新品发现</a>
+<a href="../index-1171/activity-1524.html" target="_blank">值得买</a>
+</div>
+</div>           		
+<div class="subNav-item  ">
+<div class="snItem-tit"><h3>其他</h3></div>
+<div class="snItem-con snThere">
+<a href="../club_index.html" target="_blank">会员中心</a>
+<a href="../Index2.html" target="_blank">社区</a>
+<a href="../view-2-114.html" target="_blank">常见问题</a>
+<a href="../index-1171/activity-1577.html" target="_blank">招商入驻</a>
+<a href="javascript:;" target="_blank">酒类资讯</a>
+<a href="javascript:;" target="_blank">VIP注册</a>
+</div>
+</div>           		
+<div class="subNav-item bg">
+<p class="sn-Tel"><span>咨询热线：</span><b>400-617-9999</b></p>
+</div>
+</div>
+</li>
+ <li class="hd-n8 dropTitle">
+<div class="cusService"><i class="publicIcon"></i><a href="javascript:;" rel="nofollow">客户服务</a><s class="publicIcon"></s></div>
+<div class="cusServiceBox dropTitleBox clearfix"><a href="../view-2-424.html" target="_blank" rel="nofollow">常见问题</a><a href="../view-3-100.html" target="_blank" rel="nofollow">配送说明</a><a href="../view-5-123.html" target="_blank" rel="nofollow">售后服务</a></div>
+</li>
+ <li class="hd-n9"><span>客服热线</span><b class="servPhone">400-617-9999</b></li>
+</ul>        
+</div>
+</div>
+</div>
+<div class="midHeader">
+<div class="midHeaderCon">
+<div class="headerLogo">
+<p class="jxwLogo"><a href="../Index5.html" target="_blank"><img alt="酒仙网" src="../img/newIndexImg/logo.png" width="137" height="65"></a></p>
+<p><a name="home_logogif" href="../index-20.html" target="_blank"><img alt="" src="../bill/2019/0507/7d48c51d53fb4dad98998b375a8236d0.gif" width="110" height="65"></a></p>
+</div>
+        
+<script type="text/javascript">
+	//临时 调整页头位置
+	$(function() {
+		//临时 调整页头位置URL
+		try {
+			changeHeaderUrl();
+		} catch (e) {
+		}
+	});
+</script>
+
+<div class="headerSearch">
+	<div class="searchHome">
+		<form action="http://list.jiuxian.com/search.htm" method="get">
+			<input id="wd" class="search-form" type="text" name="key" value="" maxlength="50" autocomplete="off"> 
+			<input class="search-btn" type="submit" name="" value="搜&nbsp;索"> 
+			<input id="area" name="area" type="hidden" value="">
+		</form>
+		<div class="searchCon" id="searchCon" style="display: none;">
+			<ul></ul>
+		</div>
+	</div>
+	<div class="hotWords" style="display: none;">
+				<p>
+						<a href="../brand-382/activity-3376.html" target="_blank">茅台<s></s>
+				</a> 
+						<a href="../1-2-0-0-0-0-0-0-0-0-0-0.html" target="_blank">五粮液<s></s>
+				</a> 
+						<a href="../brand-41/activity-3399-23.html" target="_blank">酒鬼<s></s>
+				</a> 
+						<a href="../search-2_E68B89E88FB2.html" target="_blank">拉菲<s></s>
+				</a> 
+						<a href="../brand-381/activity-3106.html" target="_blank">郎酒<s></s>
+				</a> 
+						<a href="../2-254-0-0-0-0-0-0-0-0-0-0.html" target="_blank">黄尾袋鼠<s></s>
+				</a> 
+						<a href="../brand-386/activity-3757.html" target="_blank">水井坊<s></s>
+				</a> 
+						<a href="../1-14-0-0-0-0-0-0-0-0-0-0-0-0-0-0.html" target="_blank">泸州老窖<s></s>
+				</a> 
+						<a href="../search-2_E5A594E5AF8C.html" target="_blank">奔富<s></s>
+				</a> 
+						<a href="../index-1314.html" target="_blank">董酒<s></s>
+				</a> 
+					</p>
+			</div>
+	
+	<script>
+
+		var defaultKey = '';
+
+		$(function() {
+			//搜索框默认值
+			function searchback(data) {
+				if (data == null || data == undefined) {
+					return;
+				}
+				var key = $("#wd").val();
+				if (key == '') {
+					if (data && data != null && data != '') {
+						$("#wd").val(data);
+						//搜索页底部搜索框
+						$("#bottomKeys").val(data);
+						defaultKey = data;
+					}
+				}
+			}
+			
+			setTimeout(function() {
+
+				jQuery.get("http://list.jiuxian.com" + "/selectSearchDefaultKey.htm?t=" + new Date().getTime(), 
+						{ "name" : "searchBoxDefaultKey" }, 
+						function(d) {
+							if (d == undefined){
+								return;
+							}
+							searchback(d.defaultSearchKey);
+						}, "json");
+			}, 1000);
+
+		});
+	</script>
+</div><div class="headerProtect"><a rel="nofollow"></a><a rel="nofollow"></a><a rel="nofollow"></a></div></div></div>
+<!--页头end-->		
+	
+	
+	<!-- class="lazyload" -->
+<div class="layoutContain" id="layoutContain" bgcolor="ffffff" bgimage="" reaptpattern="repeat">
+						<div class="layoutBox noMargin on"><div class="layoutCon layoutWidAuto" layoutname="通栏布局(100%)"><div class="layoutOne"><div class="modulesBox focus" modulesname="自定义内容区" poptype="userConPop"><div class="userDefinedBox" userconwidth=""><div style="text-align: center;"><img src="../brandlogo/2017/0831/cbc1506184cc4e92953f07fc53a48fbd.jpg" align="middle" alt=""></div></div></div></div></div></div>
+			</div>
+<script src="../resource/js/shopDecoration/price-20170807.js" type="text/javascript"></script>
+
+<!--页脚-->
+<div class="footer">
+		<div class="footerTopBox">
+		<div class="footerTop">
+			<div class="footerContact">
+				<i class="publicIcon"></i><b>400-617-9999</b><span>客服热线</span><span>9:00-23:00</span><span>贴心服务</span>
+			</div>
+			<div class="footerTopRight">
+				<div class="ftRight-tit">优惠促销早知道</div>
+				<div class="ftRight-form">
+					<input id="subscribe_email" type="text" value="" name=""><span>请输入您的邮箱地址</span><i class="publicIcon" id="subscribe_but"></i>
+				</div>
+			</div>
+		</div>
+		<div class="footerServices">
+			<ul class="clearfix">
+				<li class="servicesItme01">
+					<h3>
+						<i class="publicIcon"></i><span>新手入门</span>
+					</h3>
+					<p>
+						<a href="../topic/zpbz/zhengpin.html" target="_blank" rel="nofollow">购物保障</a>
+					</p>
+					<p>
+						<a href="../view-1-112.html" target="_blank" rel="nofollow">服务协议</a>
+					</p>
+					<p>
+						<a href="../view-1-113.html" target="_blank" rel="nofollow">发票说明</a>
+					</p>
+				</li>
+				<li class="servicesItme02">
+					<h3>
+						<i class="publicIcon"></i><span>常见问题</span>
+					</h3>
+					<p>
+						<a href="../view-2-114.html" target="_blank" rel="nofollow">红包使用</a>
+					</p>
+					<p>
+						<a href="../view-2-115.html" target="_blank" rel="nofollow">返现使用</a>
+					</p>
+					<p>
+						<a href="../view-2-116.html" target="_blank" rel="nofollow">兑换码</a>
+					</p>
+				</li>
+				<li class="servicesItme03">
+					<h3>
+						<i class="publicIcon"></i><span>配送说明</span>
+					</h3>
+					<p>
+						<a href="../view-3-118.html" target="_blank" rel="nofollow">配送时间</a>
+					</p>
+					<p>
+						<a href="../view-3-119.html" target="_blank" rel="nofollow">配送费用</a>
+					</p>
+					<p>
+						<a href="../view-3-117.html" target="_blank" rel="nofollow">配送范围</a>
+					</p>
+				</li>
+				<li class="servicesItme04">
+					<h3>
+						<i class="publicIcon"></i><span>支付方式</span>
+					</h3>
+					<p>
+						<a href="../view-4-120.html" target="_blank" rel="nofollow">货到付款</a>
+					</p>
+					<p>
+						<a href="../view-4-121.html" target="_blank" rel="nofollow">在线支付</a>
+					</p>
+					<p>
+						<a href="../view-4-122.html" target="_blank" rel="nofollow">线下支付</a>
+					</p>
+				</li>
+				<li class="servicesItme05">
+					<h3>
+						<i class="publicIcon"></i><span>售后服务</span>
+					</h3>
+					<p>
+						<a href="../view-5-123.html" target="_blank" rel="nofollow">品质保证</a>
+					</p>
+					<p>
+						<a href="../view-5-124.html" target="_blank" rel="nofollow">退换货政策</a>
+					</p>
+					<p>
+						<a href="../view-5-125.html" target="_blank" rel="nofollow">退换货流程</a>
+					</p>
+				</li>
+				<li class="servicesItme06">
+					<h3>
+						<i class="publicIcon"></i><span>特色服务</span>
+					</h3>
+					<p>
+						<a href="../club_index.html" target="_blank">会员俱乐部</a>
+					</p>
+					<p>
+						<a href="../company.html" target="_blank" rel="nofollow">企业客户</a>
+					</p>
+					<p>
+						<a target="_blank" href="../Index2.html">酒仙社区</a>
+					</p>
+				</li>
+				<li class="jxMicroblogging">
+					<div class="item sinaMb">
+						<div class="sinaMbCom clearfix">
+							<a href="javascript:;" target="_blank" rel="nofollow"><i class="publicIcon"></i></a><a href="javascript:;" target="_blank" rel="nofollow">酒仙新浪微博</a>
+						</div>
+					</div>
+					<div class="item weixin">
+						<div class="weixinCon clearfix">
+							<i class="publicIcon"></i><a id="jxWeixin" falg="hide" href="javascript:;" target="_blank" rel="nofollow">酒仙微信</a>
+						</div>
+						<div class="weixinCode" id="weixinCode">
+							<img src="../img/newIndexImg/weixin-code-20160405.jpg">
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="footerBotBox">
+		<div class="footerBot clearfix">
+			<div class="footerBotLeft">
+				<p class="footerInfo">
+					<a href="../view-0-105.html" target="_blank" rel="nofollow">公司简介<i></i></a> <a href="../view-0-106.html" target="_blank" rel="nofollow">管理团队<i></i></a>
+					<a href="../view-0-109.html" target="_blank" rel="nofollow">媒体报道<i></i></a> <a href="../view-0-110.html" target="_blank" rel="nofollow">联系我们<i></i></a>
+					<a href="../sitemap.html" target="_blank">网站地图<i></i></a> <a href="../allbrands.html" target="_blank">品牌大全<i></i></a>
+				</p>
+				<p class="copyright">
+                    北京酒仙网络科技有限公司&nbsp;&nbsp;©&nbsp;&nbsp;酒仙网&nbsp;&nbsp;&nbsp;2011&nbsp;&nbsp;jiuxian.com&nbsp;&nbsp;All&nbsp;&nbsp;&nbsp;Rights&nbsp;Reserved&nbsp;&nbsp;&nbsp;<a href="javascript:;" target="_blank" rel="nofollow">京ICP备17043395号</a>&nbsp;&nbsp;&nbsp;京公网安备1101050188221
+				</p>
+				<p class="footerAddr" style="color: #999; line-height: 22px; padding-top: 5px;">
+					<span>统一社会信用代码&nbsp;&nbsp;91110302306646672B&nbsp;&nbsp;&nbsp;食品流通许可证编号&nbsp;&nbsp;JY11131010328793&nbsp;&nbsp;&nbsp;京食药网食备201910019&nbsp;&nbsp;&nbsp;</span>
+				</p>
+				<p class="footerAddr" style="color: #999; line-height: 22px; padding-bottom: 7px;">
+					<span>地址：北京市北京经济技术开发区经海五路58号院8幢4层</span>
+				</p>
+				<p class="copybot">
+					<span id="kx_verify" style="float: left; padding-right: 6px;"></span>
+					<script type="text/javascript">
+            (function() {
+              var _kxs = document.createElement('script');
+              _kxs.id = 'kx_script';
+              _kxs.async = true;
+              _kxs.setAttribute('cid', 'kx_verify');
+              _kxs.src = ('https:' == document.location.protocol
+                      ? 'https://ss.knet.cn' : 'http://rr.knet.cn')
+                      + '/static/js/icon3.js?sn=2011040600100007749&tp=icon3';
+              _kxs.setAttribute('size', 0);
+              var _kx = document.getElementById('kx_verify');
+              _kx.parentNode.insertBefore(_kxs, _kx);
+            })();
+          </script>
+					<a href="javascript:;" target="_blank" rel="nofollow"><img src="../img/newIndexImg/copyBot03.jpg" width="128" height="47"></a>
+    				
+				</p>
+				<p class="footerPro" style="padding: 8px 0 6px;">购买前请确认达到法定饮酒年龄！酒仙网不销售任何含酒精产品给18岁以下人士！</p>
+			</div>
+			<div class="footerBotCode">
+				<div class="jxPho-code">
+					<p class="codePic">
+						<img alt="手机酒仙网" src="../img/newIndexImg/jxPho-code-20160405.jpg" width="80" height="80">
+					</p>
+					<p class="codeText">手机酒仙网</p>
+				</div>
+				<div class="jkd-code">
+					<p class="codePic">
+						<img alt="微信公众号" src="../img/newIndexImg/jx-wxgzh.png" width="80" height="80">
+					</p>
+					<p class="codeText">微信公众号</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style type="text/css">
+.footerBotLeft .footerInfo {
+	margin-left: -8px;
+}
+
+.footerBotLeft p {
+	font-family: Arial, Helvetica, sans-serif, "宋体";
+}
+
+.footerBotLeft .footerInfo a {
+	color: #666;
+}
+
+.footerBotLeft .copyright {
+	color: #666;
+}
+</style>
+<!--页脚end-->
+
+<!-- 邮件订阅  start-->
+<script type="text/javascript">
+  jQuery(function() {
+    jQuery("#subscribe_but")
+            .bind(
+                    "click",
+                    function() {
+                      var subscribeEmail = jQuery("#subscribe_email").val();
+                      if (subscribeEmail == "" || subscribeEmail == "请输入您的邮箱") {
+                        alert("请输入您的邮箱！")
+                      } else {
+                        var regemail = /^[\w\-\.]+?@[\w\-]+?(\.\w+?)+?$/;
+                        if (subscribeEmail.length > 30) {
+                          alert("请输入正确的邮箱")
+                        } else {
+                          if (!subscribeEmail.match(regemail)) {
+                            alert("请输入正确的邮箱")
+                          } else {
+                            var proxy_url = "/httpProxyAccess.htm?t="
+                                    + new Date().getTime();
+                            var sub_request_url = "http://public.jiuxian.com/saveUserSubscribeInfos.htm";
+                            jQuery.post(proxy_url, {
+                              target: sub_request_url,
+                              emailAddress: subscribeEmail
+                            }, function(data) {
+                              if (data != null) {
+                                if (data.code == 1) {
+                                  alert("订阅促销信息成功。")
+                                } else {
+                                  if (data.code == 0) {
+                                    alert("请输入正确的邮箱")
+                                  } else {
+                                    if (data.code == 2) {
+                                      alert("该Email地址已经订阅过促销信息！")
+                                    } else {
+                                      if (data.code == 3) {
+                                        alert("对不起，订阅失败！")
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }, "JSON")
+                          }
+                        }
+                      }
+                    })
+  });
+</script>
+<!-- 邮件订阅  end-->
+<script>
+  //用户登录信息
+  function profileback(data) {
+    var str = window.location + "";
+    if (str.indexOf("http://cart.jiuxian.com/") != -1
+            || str.indexOf("https://pay.jiuxian.com/") != -1
+            || str.indexOf("http://order.jiuxian.com/") != -1) {
+      var _login_status_panel = $("li[name='_login_status_panel']");
+    } else {
+      var _login_status_panel = $(".topHeaderLeft[name='_new_login_status_panel']");
+    }
+    if (data.jx_user_name) {
+      var old_jx_user_name = stripscript(data.jx_user_name);
+      var jx_user_name;
+      if (old_jx_user_name != cut_str(old_jx_user_name, 10)) {
+        jx_user_name = cut_str(old_jx_user_name, 10)
+      } else {
+        jx_user_name = data.jx_user_name
+      }
+
+      if (str.indexOf("http://cart.jiuxian.com/") != -1
+    		  || str.indexOf("https://pay.jiuxian.com/") != -1
+              || str.indexOf("http://order.jiuxian.com/") != -1) {
+        _login_status_panel
+                .html("<span> hi，<span class='userName' title='" + old_jx_user_name + "'>"
+                        + jx_user_name
+                        + "</span><span><a href='https://login.jiuxian.com/logout.htm' class='cartlogout'>退出</a><a class='newsNum' href='http://member.jiuxian.com/jxcircle/info_center-0.htm' target='_blank'><em>消息</em><i class='mesNum'></i></a><a class='newsNum' href='http://member.jiuxian.com/purse/my_gold_coin-1.htm' target='_blank'><em>金币</em><i class='mesNum'></i></a></span></span><i></i>")
+      } else {
+        _login_status_panel
+                .html("<div class='clearfix'><p class='greeting'><em>hi，</em><span>"
+                        + jx_user_name
+                        + "</span></p><a class='headerExit' href='https://login.jiuxian.com/logout.htm'>退出</a><a class='newsNum' href='http://member.jiuxian.com/jxcircle/info_center-0.htm' target='_blank'><em>消息</em><i class='mesNum'></i></a><a class='newsNum' href='http://member.jiuxian.com/purse/my_gold_coin-1.htm' target='_blank'><em>金币</em><i class='mesNum'></i></a></div>");
+      }
+      showMesNum();
+
+    }
+    if (data.jx_user_id) {
+      _ozuid = data.jx_user_id
+    }
+    //购物车数量
+    if (data.jxcart_nums) {
+      if (data.jxcart_nums > 999) {
+        $(".jx_car_num").text("999+")
+        if ($("#side_goods_count") != null) {
+          $("#side_goods_count").text("999+");
+        }
+      } else {
+        $(".jx_car_num").text(data.jxcart_nums);
+        if ($("#side_goods_count") != null) {
+          $("#side_goods_count").text(data.jxcart_nums);
+        }
+      }
+    }
+  }
+
+  $(function() {
+    setTimeout(function() {
+      jQuery.post("/addJXCenterCookie.htm", {
+
+      }, function(d) {
+        if (d == undefined) { return; }
+        profileback(d);
+      }, "json");
+    }, 1000);
+  });
+</script>
+
+<script type="text/javascript">
+  //99click用户ID变量赋值
+  var _ozuid = getUserId();
+</script>
+<script type="text/javascript" src="../js/recommend_99.js"></script>
+<script type="text/javascript" src="../js/third/99click/p_code.js"></script>
+<script type="text/javascript" src="../js/third/99click/o_code.js"></script>
+<!--99click(统计)-->
+<script type="text/javascript">
+  var _mvq = _mvq || [];
+  _mvq.push(["$setAccount", "m-471-1"]);
+  _mvq.push(["$logConversion"]);
+  (function() {
+    var mvl = document.createElement("script");
+    mvl.type = "text/javascript";
+    mvl.async = true;
+    mvl.src = ("https:" == document.location.protocol
+            ? "https://static-ssl.mediav.com/mvl.js"
+            : "http://static.mediav.com/mvl.js");
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(mvl, s)
+  })();
+</script>
+<!-- mediav(访客找回) -->
+<script type="text/javascript">
+
+
+	<!--
+	(function (d) {
+	window._JX_INFO = window._JX_INFO || [];
+	_JX_INFO.push(["userId",getUserId()]);
+
+	})(document);
+	//-->
+
+
+    (function (d) {
+        window._JX_INFO = window._JX_INFO || [];
+        _JX_INFO.push(["userId",getUserId()]);
+        var s = d.createElement("script");s.type = "text/javascript";s.async = true;s.src = location.protocol + "//misc.jiuxian.com/js/visittrack.min.js";
+        var s0 = d.getElementsByTagName("script")[0];s0.parentNode.insertBefore(s, s0);
+    })(document);
+
+
+
+  //BFD begin
+  /*var bfd_on = bfd_on || "true";
+  var bfd_client_id = bfd_client_id || "Ctest_jiuxian";
+  if (bfd_on == "true") {
+    window["_BFD"] = window["_BFD"] || {};
+    _BFD.client_id = bfd_client_id;
+    if (window.getWareIdByRgnId) {
+      _BFD.city = getWareIdByRgnId();
+    }
+    _BFD.script = document.createElement("script");
+    _BFD.script.type = "text/javascript";
+    _BFD.script.async = true;
+    _BFD.script.charset = "utf-8";
+    _BFD.script.src = (('https:' == document.location.protocol
+            ? 'https://ssl-static1' : 'http://static1') + '.bfdcdn.com/service/jiuxianwang/jiuxianwang.js');
+    document.getElementsByTagName("head")[0].appendChild(_BFD.script);
+  }*/
+
+  var dmt_on = dmt_on || "true";
+  if (dmt_on == "true") {
+    try {
+      var dmtTracker = _dmt.init("mfn", "S-000168-01");
+      dmtTracker._setTrack(dmtJsHost + '://mdt.dmtrck.com');
+      dmtTracker._trackSpotLight();
+    } catch (err) {
+    }
+  }
+
+  //消息数量start
+  function showMesNum() {
+    var proxy_url = "/httpProxyAccess.htm?date=" + new Date().getTime();
+    jQuery.ajax({
+      type: 'post',
+      url: proxy_url,
+      data: {
+        target: "http://member.jiuxian.com/getUserMessageNums.htm"
+      },
+      dataType: 'json',
+      success: function(data) {
+        if (data != null) {
+          if (data.returnCode == "1") {
+            if (data.messageNums > 0) {
+              $('.mesNum').eq(0).text(data.messageNums);
+            } else {
+              $('.mesNum').eq(0).text("0");
+            }
+            if (data.usableGold > 0) {
+              $('.mesNum').eq(1).text(data.usableGold);
+            } else {
+              $('.mesNum').eq(1).text("0");
+            }
+          } else {
+            $('.mesNum').eq(0).text("0");
+            $('.mesNum').eq(1).text("0");
+          }
+        }
+
+      }
+    });
+  }
+  <!-- 消息数量end --> 
+</script><script src="../js/shop/shopDecoration/handle-20160919.js" type="text/javascript"></script>
+</body>
+</html>
